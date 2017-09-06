@@ -1,10 +1,8 @@
-var video   = document.querySelector("video")
-var canvas  = document.querySelector("canvas")
-var ctx     = canvas.getContext("2d");
-var image   = document.querySelector("img") 
-
-
- navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+  var video = document.querySelector('video');
+  var canvas = document.querySelector('canvas');
+  var ctx = canvas.getContext('2d');
+  var image = document.querySelector('img');
+  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
   window.URL = window.URL || window.webkitURL;
 
