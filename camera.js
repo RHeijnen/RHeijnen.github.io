@@ -6,7 +6,7 @@
 
   window.URL = window.URL || window.webkitURL;
 
-
+ 
   function snapshot() {
       var cw = video.clientWidth;
       var ch = video.clientHeight;
@@ -15,6 +15,7 @@
       image.height = ch;
       image.width = cw;
       console.log(video)
+      
   }
 
   video.addEventListener('click', snapshot, false);

@@ -22,12 +22,10 @@
 <script type="text/javascript" src="src/databr.js"></script>
 <script type="text/javascript" src="main.js"></script>
 <link rel="stylesheet" type="text/css" href="stylesheet.css">
-
+<script src="src/index.js"></script> 
 
 
 <body>
-    <h2>Modal Example</h2>
-    
     <!-- Trigger/Open The Modal -->
     <button id="myBtn">Open Modal</button>
     
@@ -37,9 +35,12 @@
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>
-        <!---
+            <h2>Upload file</h2>
+            <input type="file" id="upload">
 
-        -->
+            <h2>Result</h2>
+            <div id="preview"></div>
+
         <button id="myBtn">Screenshot</button>
         
       </div>
