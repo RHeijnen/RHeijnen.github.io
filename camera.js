@@ -14,6 +14,7 @@
       image.src = canvas.toDataURL();
       image.height = ch;
       image.width = cw;
+      console.log(video)
   }
 
   video.addEventListener('click', snapshot, false);

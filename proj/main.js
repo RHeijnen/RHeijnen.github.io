@@ -1,4 +1,43 @@
 window.onload = function() {
+    // the items in this array are the whitelisted 'QR codes'
+    var validationArr = [ "appidaapi","appidaapi2"];
+
+    // this function takes a key and checks if it is whitelisted
+    var validationKey = function(key){
+        var validation = false;
+        for(var i = 0; i < validationArr.length;i++){
+            if(validationArr[i] == key){
+                validation = true;
+            }
+        }
+        return validation
+    }
+    // set a key in storage as owned
+    var setStorageItem = function(key){
+        if (typeof(Storage) !== "undefined") {
+            if(validationKey(key)){
+                // good to go
+                localStorage.setItem(key,1)    // define 1 as 'true' or 'present'             
+            }else{
+                console.log("this item does not pass validation")
+                // let user know this aint alrighty
+            }
+        } else {
+            alert("Browser does not support storage! git gud browser plz")
+        }        
+
+    }
+    // setStorageItem("appidaapi4")
+
+
+    /////////////////
+    /////////////////
+    /////////////////
+    /////////////////
+
+    /*
+        Modal controls
+    */
     // Get the modal
     var modal = document.getElementById('myModal');
 
