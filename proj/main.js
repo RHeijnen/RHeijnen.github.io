@@ -62,6 +62,7 @@ window.onload = function() {
         var resultZ = result.result;
         setStorageItem(resultZ);
         console.error("Found QR: " +result.result);
+        span.textContent = result.result;
       }
       else{
         span.textContent = 'Error! See error message in console!';
