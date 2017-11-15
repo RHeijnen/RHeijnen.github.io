@@ -3,18 +3,20 @@ window.onload = function() {
     var validationArr = [ "appidaapi","appidaapi2"];
     var imageHolder;
 
-    var width       = 320;    // We will scale the photo width to this
-    var height      = 0;     // This will be computed based on the input stream
-    var streaming   = false;
-    var video       = document.getElementById('video');
-    var canvas      = document.getElementById('canvas');
-    var photo       = document.getElementById('photo');
-    var upload      = document.getElementById('upload');
-    var preview     = document.getElementById('preview');
-    var qr          = new QrCode();
+    var width         = 320;    // We will scale the photo width to this
+    var height        = 0;     // This will be computed based on the input stream
+    var streaming     = false;
+    var scanning      = false;
+    var playing       = false;
+    var video         = document.getElementById('video');
+    var canvas        = document.getElementById('canvas');
+    var photo         = document.getElementById('photo');
+    var upload        = document.getElementById('upload');
+    var preview       = document.getElementById('preview');
+    var qr            = new QrCode();
     const constraints = {advanced: [{facingMode: "environment"}]}
     // this function takes a key and checks if it is whitelisted
-    var validationKey = function(key){
+    function validationKey(key){
         var validation = false;
         for(var i = 0; i < validationArr.length;i++){
             if(validationArr[i] == key){
@@ -25,11 +27,16 @@ window.onload = function() {
     }
     
     // set a key in storage as owned
-    var setStorageItem = function(key){
+    function setStorageItem(key){
         if (typeof(Storage) !== "undefined") {
             if(validationKey(key)){
                 // good to go
-                localStorage.setItem(key,1)    // define 1 as 'true' / 'present'             
+                localStorage.setItem(key,1)    // define 1 as 'true' / 'present'  
+                if('vibrate' in navigator){
+                    navigator.vibrate([200,100,50])
+                }else{
+                    console.log("Should be vibrating.. but your device sucks")
+                }         
             }else{
                 console.log("this item does not pass validation")
             }
@@ -52,9 +59,9 @@ window.onload = function() {
     qr.callback = function(err, result) {
       var span = document.querySelector('span') || document.createElement('span');
       if(result){
-        span.textContent = result;
-        console.error(result);
-
+        var result = result.result;
+        setStorageItem(result);
+        console.error("Found QR: " +result.result);
       }
       else{
         span.textContent = 'Error! See error message in console!';
@@ -113,33 +120,26 @@ window.onload = function() {
           reader.readAsDataURL(f[i]);	
         }
     }
-    function takepicture() {
-        var context = canvas.getContext('2d');
-        if (width != undefined && height != undefined) {
-          canvas.width = width;
-          canvas.height = height;
-          context.drawImage(video, 0, 0, width, height);
-          var data = canvas.toDataURL('image/png');
-          qr.decode(data);
-        } else {
-          clearphoto();
-        }
-      }
 
-    var startScan = function(){
-        var takeScreenCap = function(){
-
-        }
-
-        setInterval(fn , 2000)
-        
+    function startscan(){
+        scanning = true;        
+        video.play();        
+        if(!playing){
+            var takeScreenCap = function(){
+                if(scanning){
+                    var context = canvas.getContext('2d');
+                    if (width != undefined && height != undefined) {
+                      canvas.width = width;
+                      canvas.height = height;
+                      context.drawImage(video, 0, 0, width, height);
+                      var data = canvas.toDataURL('image/png');
+                      qr.decode(data);
+                    } 
+                }
+            }
+            setInterval(takeScreenCap , 1000) 
+        }   
     }
-    //   startbutton.addEventListener('click', function(ev){
-    //     takepicture();
-    //     ev.preventDefault();
-    //   }, false);
-    
-
 
     /*
         Modal controls
@@ -155,17 +155,23 @@ window.onload = function() {
 
     // When the user clicks the button, open the modal 
     btn.onclick = function() {
+        startscan();
+        playing = true;        
         modal.style.display = "block";
     }
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
+        scanning = false;        
+        video.pause();     
         modal.style.display = "none";
     }
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == modal) {
+            scanning = false;            
+            video.pause();                    
             modal.style.display = "none";
         }
     }
