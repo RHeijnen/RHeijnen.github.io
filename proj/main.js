@@ -2,6 +2,16 @@ window.onload = function() {
     // the items in this array are the whitelisted 'QR codes'
     var validationArr = [ "appidaapi","appidaapi2"];
     var imageHolder;
+
+    var width       = 320;    // We will scale the photo width to this
+    var height      = 0;     // This will be computed based on the input stream
+    var streaming   = false;
+    var video       = document.getElementById('video');
+    var canvas      = document.getElementById('canvas');
+    var photo       = document.getElementById('photo');
+    var upload      = document.getElementById('upload');
+    var preview     = document.getElementById('preview');
+    var qr          = new QrCode();
     
     // this function takes a key and checks if it is whitelisted
     var validationKey = function(key){
@@ -19,10 +29,9 @@ window.onload = function() {
         if (typeof(Storage) !== "undefined") {
             if(validationKey(key)){
                 // good to go
-                localStorage.setItem(key,1)    // define 1 as 'true' or 'present'             
+                localStorage.setItem(key,1)    // define 1 as 'true' / 'present'             
             }else{
                 console.log("this item does not pass validation")
-                // let user know this aint alrighty
             }
         } else {
             alert("Browser does not support storage! git gud browser plz")
@@ -30,9 +39,16 @@ window.onload = function() {
 
     }
     // setStorageItem("appidaapi4")
-    var upload = document.getElementById('upload');
-    var preview = document.getElementById('preview');
-    var qr = new QrCode();
+    
+
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then(function(stream) {
+        video.srcObject = stream;
+        video.play();
+    }).catch(function(err) {
+        console.log("An error occured initialising video element! \n error code: " + err);
+    });
+
+
     qr.callback = function(err, result) {
       var span = document.querySelector('span') || document.createElement('span');
       if(result){
@@ -46,6 +62,20 @@ window.onload = function() {
       }
       preview.appendChild(span);
     }
+    /*
+
+    */
+    video.addEventListener('canplay', function(ev){
+        if (!streaming) {
+          height = video.videoHeight / (video.videoWidth/width);
+          video.setAttribute('width', width);
+          video.setAttribute('height', height);
+          canvas.setAttribute('width', width);
+          canvas.setAttribute('height', height);
+          streaming = true;
+        }
+      }, false);
+
     upload.addEventListener('change', function() {
         for (var i = 0; i < this.files.length; i++) {
           var file = this.files[i];
@@ -83,12 +113,29 @@ window.onload = function() {
           reader.readAsDataURL(f[i]);	
         }
     }
-    
+    function takepicture() {
+        var context = canvas.getContext('2d');
+        if (width && height) {
+          canvas.width = width;
+          canvas.height = height;
+          context.drawImage(video, 0, 0, width, height);
+        
+          var data = canvas.toDataURL('image/png');
+        //   photo.setAttribute('src', data);
+          var reader = new FileReader();
+          qr.decode(data);
 
 
-    /////////////////
+        } else {
+          clearphoto();
+        }
+      }
 
-    /////////////////
+    var startScan = function(){
+        
+    }
+
+
 
     /*
         Modal controls

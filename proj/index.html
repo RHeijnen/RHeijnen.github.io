@@ -25,6 +25,7 @@
 <script src="src/index.js"></script> 
 
 
+
 <body>
     <!-- Trigger/Open The Modal -->
     <button id="myBtn">Open Modal</button>
@@ -37,6 +38,16 @@
         <span class="close">&times;</span>
             <h2>Upload file</h2>
             <input type="file" id="upload">
+
+            <div class="camera">
+                <video id="video">Video stream not available.</video>
+                <button id="startbutton">Take photo</button>
+              </div>
+            <canvas id="canvas" style="display:none"> </canvas>
+            <div class="output">
+                <img id="photo" alt="The screen capture will appear in this box.">
+            </div>
+
 
             <h2>Result</h2>
             <div id="preview"></div>
