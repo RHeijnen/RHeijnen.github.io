@@ -59,8 +59,8 @@ window.onload = function() {
     qr.callback = function(err, result) {
       var span = document.querySelector('span') || document.createElement('span');
       if(result){
-        var result = result.result;
-        setStorageItem(result);
+        var resultZ = result.result;
+        setStorageItem(resultZ);
         console.error("Found QR: " +result.result);
       }
       else{
