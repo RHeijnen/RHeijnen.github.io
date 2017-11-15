@@ -12,7 +12,7 @@ window.onload = function() {
     var upload      = document.getElementById('upload');
     var preview     = document.getElementById('preview');
     var qr          = new QrCode();
-    
+    const constraints = {advanced: [{facingMode: "environment"}]}
     // this function takes a key and checks if it is whitelisted
     var validationKey = function(key){
         var validation = false;
@@ -41,7 +41,7 @@ window.onload = function() {
     // setStorageItem("appidaapi4")
     
 
-    navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then(function(stream) {
+    navigator.mediaDevices.getUserMedia({ video: constraints, audio: false }).then(function(stream) {
         video.srcObject = stream;
         video.play();
     }).catch(function(err) {
@@ -115,26 +115,30 @@ window.onload = function() {
     }
     function takepicture() {
         var context = canvas.getContext('2d');
-        if (width && height) {
+        if (width != undefined && height != undefined) {
           canvas.width = width;
           canvas.height = height;
           context.drawImage(video, 0, 0, width, height);
-        
           var data = canvas.toDataURL('image/png');
-        //   photo.setAttribute('src', data);
-          var reader = new FileReader();
           qr.decode(data);
-
-
         } else {
           clearphoto();
         }
       }
 
     var startScan = function(){
+        var takeScreenCap = function(){
+
+        }
+
+        setInterval(fn , 2000)
         
     }
-
+    //   startbutton.addEventListener('click', function(ev){
+    //     takepicture();
+    //     ev.preventDefault();
+    //   }, false);
+    
 
 
     /*
