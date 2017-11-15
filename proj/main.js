@@ -14,6 +14,14 @@ window.onload = function() {
     var upload        = document.getElementById('upload');
     var preview       = document.getElementById('preview');
     var qr            = new QrCode();
+    console.log(MobileEsp)
+    if(MobileEsp.DetectTierIphone()){
+        console.log("kut apparaat")
+        navigator.vibrate([200,100,50])
+        
+    }else{
+        console.log("android")
+    }
     const constraints = {advanced: [{facingMode: "environment"}]}
     // this function takes a key and checks if it is whitelisted
     function validationKey(key){
@@ -25,6 +33,8 @@ window.onload = function() {
         }
         return validation
     }
+
+    
     
     // set a key in storage as owned
     function setStorageItem(key){
