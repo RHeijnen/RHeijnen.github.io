@@ -17,7 +17,7 @@ window.onload = function() {
     circle = new createjs.Shape();
     createjs.Touch.enable(stage);
     
-    circle.graphics.beginFill("red").drawCircle(0, 0, 40);
+    circle.graphics.beginFill("red").drawCircle(-50, -50, 40);
     //Set position of Shape instance.
     circle.x = circle.y = 50;
     //Add Shape instance to stage display list.
@@ -34,10 +34,7 @@ window.onload = function() {
     //VARIABLES
     //Drag Object Size
     dragRadius = 40;
-    //Destination Size
-    destHeight = 100;
-    destWidth = 100;
-
+    
     dragger.setBounds(100, 100, dragRadius*2, dragRadius*2);
     //DragRadius * 2 because 2*r = width of the bounding box
     var label2 = new createjs.Text("HERE", "bold 14px Lato", "#000");
