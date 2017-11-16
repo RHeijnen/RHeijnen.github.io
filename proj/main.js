@@ -26,8 +26,6 @@ window.onload = function() {
         }
         return validation
     }
-
-    
     
     // set a key in storage as owned
     function setStorageItem(key){
