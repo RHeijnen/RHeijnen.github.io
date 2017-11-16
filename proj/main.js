@@ -14,14 +14,7 @@ window.onload = function() {
     var upload        = document.getElementById('upload');
     var preview       = document.getElementById('preview');
     var qr            = new QrCode();
-    console.log(MobileEsp)
-    if(MobileEsp.DetectTierIphone()){
-        console.log("kut apparaat")
-        navigator.vibrate([200,100,50])
-        
-    }else{
-        console.log("android")
-    }
+    
     const constraints = {advanced: [{facingMode: "environment"}]}
     // this function takes a key and checks if it is whitelisted
     function validationKey(key){
@@ -43,7 +36,9 @@ window.onload = function() {
                 // good to go
                 localStorage.setItem(key,1)    // define 1 as 'true' / 'present'  
                 if('vibrate' in navigator){
-                    navigator.vibrate([200,100,50])
+                    navigator.vibrate([200,100])
+                    video.pause();  
+                    modal.style.display = "none"
                 }else{
                     console.log("Should be vibrating.. but your device sucks")
                 }         
@@ -71,13 +66,13 @@ window.onload = function() {
       if(result){
         var resultZ = result.result;
         setStorageItem(resultZ);
-        console.error("Found QR: " +result.result);
+        console.log("Found QR: " +result.result);
         span.textContent = result.result;
       }
-      else{
-        span.textContent = 'Error! See error message in console!';
-        console.error(err);
-      }
+    //   else{
+    //     span.textContent = 'Error! See error message in console!';
+    //     console.error(err);
+    //   }
       preview.appendChild(span);
     }
     /*
