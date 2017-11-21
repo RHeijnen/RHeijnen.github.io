@@ -67,10 +67,10 @@ window.onload = function() {
         console.log("Found QR: " +result.result);
         span.textContent = result.result;
       }
-    //   else{
-    //     span.textContent = 'Error! See error message in console!';
-    //     console.error(err);
-    //   }
+      else{
+        span.textContent = 'Error! See error message in console!';
+        console.error(err);
+      }
       preview.appendChild(span);
     }
     /*
