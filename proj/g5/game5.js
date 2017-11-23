@@ -5,11 +5,13 @@ window.addEventListener('load', function(){ // on page load
     var initialDistance = 5
     var distance = initialDistance //distance between you and person chasing
     var duration = 20 //countdown timer in seconds
+    var tapCount = 0;
     startCountdowns(duration)
 
     canvas.addEventListener("touchstart", function (e) {  
         //increase distance by tapping
         distance++
+        tapCount++
         console.log("tap")
     });
 
@@ -26,14 +28,21 @@ window.addEventListener('load', function(){ // on page load
 
             //timeer reaches 0, you win
             if(timer == 0){
+                timer = duration
+                distance = initialDistance
                 alert("Winner")
+            }
+
+            if(tapCount >= 30){  
+                alert("Escapedr")
+                tapCount = 0 //reset, moet wat anders worden
             }
 
             //distance = 0, you got caught, you lose
             if(distance == 0){
                 timer = duration
                 distance = initialDistance
-                alert("Loser, try again")
+                alert("Caught, try again")
             }
         }, 1000)
     }
