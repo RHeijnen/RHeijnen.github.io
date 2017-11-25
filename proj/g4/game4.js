@@ -1,7 +1,7 @@
 window.onload = function() {
     var canvas          = document.getElementById("sig-canvas");
     var ctx             = canvas.getContext("2d");
-    var playerPosIndex  = 2;    
+    var playerPosIndex  = 1;    
     var playerLocHeight = 0;
     var playerLocWidth  = 0;
     var enabled = true;
@@ -20,6 +20,11 @@ window.onload = function() {
         {x:sp2, y:canvas.height+350},
         {x:sp3, y:canvas.height+350},
     ]
+    
+    ctx.beginPath();                
+    ctx.fillStyle = "white";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.stroke(); 
     
     // Get the position of the mouse relative to the canvas
     function getMousePos(canvasDom, mouseEvent) {
@@ -65,13 +70,19 @@ window.onload = function() {
         drawing.src = "./test.png"; 
     }
     function clearRect(startX,startY){
-
+        // ctx.clearRect(startX,startY,10,10);
     }
 
     document.onkeydown = checkKey;
     function movePlayer(direction){
         console.log("got directionshift: "+direction)
-        console.log(playerLocations)
+        // ctx.clearRect(playerLocations[playerPosIndex].x,playerLocations[playerPosIndex].y,50,50);  
+        ctx.beginPath();                
+        ctx.fillStyle = "white";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.stroke();        
+        console.log(playerLocations[playerPosIndex].x,playerLocations[playerPosIndex].y,50,50)
+
         if(direction == 'l'){
             // decrement
             if(playerPosIndex == 0){
@@ -89,8 +100,8 @@ window.onload = function() {
         }
 
         //and draw
-        // drawPlayerOnCanvas(playerLocations[playerPosIndex].x,playerLocations[playerPosIndex].y);
-
+        drawRecOnCanvas(playerLocations[playerPosIndex].x,canvas.height-20,5,5)
+        
     }
     function checkKey(e) {
         e = e || window.event;
@@ -116,7 +127,8 @@ window.onload = function() {
 
     // draw initial player location
     // drawPlayerOnCanvas(playerLocations[playerPosIndex].x,playerLocations[playerPosIndex].y);
-    drawRecOnCanvas(playerLocations[playerPosIndex].x,canvas.height,5,5)
+
+    drawRecOnCanvas(playerLocations[playerPosIndex].x,canvas.height-20,5,5)
     
 
 
