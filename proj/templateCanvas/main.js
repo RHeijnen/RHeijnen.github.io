@@ -1,4 +1,3 @@
-'use strict'
 window.onload = function() {
     var canvas          = document.getElementById("sig-canvas");
     var context         = canvas.getContext("2d");
@@ -44,7 +43,12 @@ window.onload = function() {
                     entityContainer[this.entityID].d_height = this.height;
                     // in order to start drawing from the middle of an image, instead of the top corner,
                     // we /2 the length and width and reduce that from the requested starting co-ords
-                    context.drawImage(this,this.posX - this.width/2,this.posY - this.height/2); 
+                    context.drawImage(this,this.posX - this.width/2,this.posY - this.height/2);
+                    if(this.entityID == 0){
+                        if(this.width == 586){
+                            console.log("ohoh")
+                        }
+                    }
                 }
                 this.texture.onload();
             },
@@ -58,15 +62,33 @@ window.onload = function() {
             for(var j = 0; j < entityContainer.length;j++){
                 if(!entityContainer[i].colissionFreedom && !entityContainer[j].colissionFreedom){
                     if(entityContainer[i].id != entityContainer[j].id){
-                        if((entityContainer[i].currentPOS_X + entityContainer[i].d_width/2) == (entityContainer[j].currentPOS_X - entityContainer[j].d_width/2)
-                        || (entityContainer[i].currentPOS_X - entityContainer[i].d_width/2) == (entityContainer[j].currentPOS_X + entityContainer[j].d_width/2)){
+                        var element1_posX   = entityContainer[i].currentPOS_X;
+                        var element1_posY   = entityContainer[i].currentPOS_Y;
+                        var element1_width  = entityContainer[i].d_width;
+                        var element1_height = entityContainer[i].d_height;
+                        var element2_posX   = entityContainer[j].currentPOS_X;
+                        var element2_posY   = entityContainer[j].currentPOS_Y;
+                        var element2_width  = entityContainer[j].d_width;
+                        var element2_height = entityContainer[j].d_height;
+                        var x_col1          = (element1_posX + element1_width/2) == (element2_posX - element2_width/2)   || (element1_posX + element1_width/2)  - (element2_posX - element2_width/2)   == -1;
+                        var x_col2          = (element1_posX - element1_width/2) == (element2_posX + element2_width/2)   || (element1_posX - element1_width/2)  - (element2_posX + element2_width/2)   == +1;
+                        var y_col1          = (element1_posY + element1_height/2) == (element2_posY - element2_height/2) || (element1_posY + element1_height/2) - (element2_posY - element2_height/2)  == -1;
+                        var y_col2          = (element1_posY - element1_height/2) == (element2_posY + element2_height/2) || (element1_posY - element1_height/2) - (element2_posY + element2_height/2)  == +1;
+    
+   
+                        // console.log(y_col1)
+                        // console.log(y_col2)
+                        if( (x_col1  ||  x_col2) || (y_col1 || y_col2) ){
                             entityContainer[i].colided = true;
+                            
                         }
+                        
                     }
                 }
             }
         }
     }
+
     function movePlayer(){
         // this.currentPOS_X++
         if(this.currentPOS_X > canvas.width){
@@ -97,10 +119,24 @@ window.onload = function() {
             this.currentPOS_X = this.currentPOS_X-1         
         }
     }
-
+    function moveC(){
+        if(this.currentPOS_Y < 0){
+            this.currentPOS_Y = canvas.height-1;
+        }else{
+            this.currentPOS_Y = this.currentPOS_Y-1         
+        }
+    }
+    function moveD(){
+        if(this.currentPOS_Y == canvas.height){
+            this.currentPOS_Y = 0;
+        }else{
+            this.currentPOS_Y = this.currentPOS_Y+1        
+        }
+    }
+    
     function setUp(){
-        createEntity('aap',0,canvas.height/2,moveA,"./test.png")
-        createEntity('vogel',canvas.width,canvas.height/2,moveB,"./dory.png")
+        createEntity('aap',canvas.width/2,0,moveC,"./test.png")
+        createEntity('vogel',canvas.width/2,canvas.height,moveD,"./dory.png")
     }setUp(); // run once initialy to setup entities
 
 
@@ -120,14 +156,16 @@ window.onload = function() {
         // runs every 'animated itteration'
         for(var x = 0; x < animSpeed; x ++){
             // check for colissions
-            simpleColission();  
-
+            simpleColission();                  
+            
             for(var i = 0; i < entityContainer.length;i++){
                 if(entityContainer[i].colided){
+                    entityContainer[i].currentPOS_Y = entityContainer[i].startPOS_Y
                     entityContainer[i].currentPOS_X = entityContainer[i].startPOS_X
                     entityContainer[i].colided = false;
                 }
                 entityContainer[i].move();
+                
                 entityContainer[i].drawTexture(i);
             }
             // setup roster for texture debugging (helps with colission checking)
