@@ -7,8 +7,8 @@ window.onload = function() {
     var waitForAnim     = 0;
     var index           = 10;
     var entityContainer = [];
-    var debugTextures   = true;
-    var animSpeed       = 4;
+    var debugTextures   = false;
+    var animSpeed       = 8;
     
     
     window.requestAnimFrame = (function(callback) {
@@ -55,7 +55,90 @@ window.onload = function() {
 
         })
     }
+
+    function boxColission(){
+        this.initialize = function() {}
+
+        this.hitTest = function( source, target ) {
+            var hit = false;
+            var start = new Date().getTime();
     
+            if( this.boxHitTest( source, target ) ) {
+                if( this.pixelHitTest( source, target ) ) {
+                    hit = true;
+                }
+            }
+            var end = new Date().getTime();
+
+            if( hit == true ){
+                console.log( 'detection took: ' + (end - start) + 'ms' );
+            }    
+            return hit;
+        }
+        this.boxHitTest = function( source, target ) {
+            return !( 
+                ( ( source.y + source.height ) < ( target.y ) ) ||
+                ( source.y > ( target.y + target.height ) ) ||
+                ( ( source.x + source.width ) < target.x ) ||
+                ( source.x > ( target.x + target.width ) ) 
+            );
+        }
+        this.pixelHitTest = function( source, target ) {
+                var top = parseInt( Math.max( source.y, target.y ) );
+                var bottom = parseInt( Math.min(source.y+source.height, target.y+target.height) );
+                var left = parseInt( Math.max(source.x, target.x) );
+                var right = parseInt( Math.min(source.x+source.width, target.x+target.width) );
+    
+                for (var y = top; y < bottom; y++)
+                {
+                    for (var x = left; x < right; x++)
+                    {
+                        var pixel1 = source.pixelMap.data[ (x - source.x) +"_"+ (y - source.y) ];
+                        var pixel2 = target.pixelMap.data[ (x - target.x) +"_"+ (y - target.y) ];
+    
+                        if( !pixel1 || !pixel2 ) {
+                            continue;
+                        };
+                        
+                        if (pixel1.pixelData[3] == 255 && pixel2.pixelData[3] == 255)
+                        {
+                            return true;
+                        }
+                    }
+                }
+    
+                return false;
+        }
+        this.buildPixelMap = function( source ) {
+            var resolution = 1;
+            var ctx = source.getContext("2d");
+            var pixelMap = [];
+    
+            for( var y = 0; y < source.height; y++) {
+                for( var x = 0; x < source.width; x++ ) {
+                    var dataRowColOffset = y+"_"+x;//((y * source.width) + x);
+                    var pixel = ctx.getImageData(x,y,resolution,resolution);
+                    var pixelData = pixel.data;
+    
+                    pixelMap[dataRowColOffset] = { x:x, y:y, pixelData: pixelData };
+    
+                }
+            }
+            return {
+                data: pixelMap,
+                resolution: resolution
+            };
+        }
+        // Initialize the collider
+        this.initialize();
+    
+        // Return our outward facing interface.
+        return {
+            hitTest: this.hitTest.bind( this ),
+            buildPixelMap: this.buildPixelMap.bind( this )
+        };
+
+    }
     function simpleColission(){
         var entityIDContainer = [];
         for(var i = 0; i < entityContainer.length;i++){
@@ -64,25 +147,45 @@ window.onload = function() {
                     if(entityContainer[i].id != entityContainer[j].id){
                         var element1_posX   = entityContainer[i].currentPOS_X;
                         var element1_posY   = entityContainer[i].currentPOS_Y;
-                        var element1_width  = entityContainer[i].d_width;
-                        var element1_height = entityContainer[i].d_height;
+                        var element1_width  = entityContainer[i].d_width/2+30;
+                        var element1_height = entityContainer[i].d_height/2+30;
                         var element2_posX   = entityContainer[j].currentPOS_X;
                         var element2_posY   = entityContainer[j].currentPOS_Y;
-                        var element2_width  = entityContainer[j].d_width;
-                        var element2_height = entityContainer[j].d_height;
+                        var element2_width  = entityContainer[j].d_width/2+30;
+                        var element2_height = entityContainer[j].d_height/2+30;
                         var x_col1          = (element1_posX + element1_width/2) == (element2_posX - element2_width/2)   || (element1_posX + element1_width/2)  - (element2_posX - element2_width/2)   == -1;
                         var x_col2          = (element1_posX - element1_width/2) == (element2_posX + element2_width/2)   || (element1_posX - element1_width/2)  - (element2_posX + element2_width/2)   == +1;
                         var y_col1          = (element1_posY + element1_height/2) == (element2_posY - element2_height/2) || (element1_posY + element1_height/2) - (element2_posY - element2_height/2)  == -1;
                         var y_col2          = (element1_posY - element1_height/2) == (element2_posY + element2_height/2) || (element1_posY - element1_height/2) - (element2_posY + element2_height/2)  == +1;
-    
-   
-                        // console.log(y_col1)
-                        // console.log(y_col2)
-                        if( (x_col1  ||  x_col2) || (y_col1 || y_col2) ){
+                            // if colission on X    or on the Y 
+                        // if( (x_col1  ||  x_col2) || (y_col1 || y_col2) ){
+                        //     entityContainer[i].colided = true;
+                        // }
+
+                        // if(x_col1 && y_col1 || x_col1 && y_col2){
+                        //     entityContainer[i].colided = true;
+                        // }
+
+                        // if(x_col2 && y_col1 || x_col2 && y_col2){
+                        //     entityContainer[i].colided = true;
+                        // }
+
+
+                        if(    element1_posX < element2_posX + element2_width 
+                            && element1_posX + element1_width > element2_posX
+                            && element1_posY < element2_posY + element2_height
+                            && element1_posY + element1_height > element2_posY
+                        ){
                             entityContainer[i].colided = true;
-                            
+                            // console.log("colission")
                         }
-                        
+
+                        // if( col1_check || col2_check || col3_check || col4_check){
+                        //     console.log("collision")
+                        //     entityContainer[i].colided = true;
+                        // } 
+
+
                     }
                 }
             }
@@ -113,7 +216,7 @@ window.onload = function() {
     }
     function moveB(){
         // this.currentPOS_X++
-        if(this.currentPOS_X < 0){
+        if(this.currentPOS_X == 0){
             this.currentPOS_X = canvas.width;
         }else{
             this.currentPOS_X = this.currentPOS_X-1         
@@ -134,9 +237,12 @@ window.onload = function() {
         }
     }
     
+
     function setUp(){
-        createEntity('aap',canvas.width/2,0,moveC,"./test.png")
-        createEntity('vogel',canvas.width/2,canvas.height,moveD,"./dory.png")
+        createEntity('aap',0,350,moveA,"./dory.png")
+        createEntity('vogel',0,350,moveB,"./dory.png")        
+        createEntity('aap',canvas.width/2,canvas.height,moveC,"./dory.png")
+        createEntity('vogel',canvas.width/2 - 300,0,moveD,"./dory.png")
     }setUp(); // run once initialy to setup entities
 
 
@@ -156,8 +262,9 @@ window.onload = function() {
         // runs every 'animated itteration'
         for(var x = 0; x < animSpeed; x ++){
             // check for colissions
-            simpleColission();                  
-            
+            simpleColission()
+            // console.log(boxColission())      
+            //            
             for(var i = 0; i < entityContainer.length;i++){
                 if(entityContainer[i].colided){
                     entityContainer[i].currentPOS_Y = entityContainer[i].startPOS_Y
@@ -165,7 +272,6 @@ window.onload = function() {
                     entityContainer[i].colided = false;
                 }
                 entityContainer[i].move();
-                
                 entityContainer[i].drawTexture(i);
             }
             // setup roster for texture debugging (helps with colission checking)
@@ -175,8 +281,8 @@ window.onload = function() {
                     debugTexturesFunc(i);
                 }
             }
-        }
 
+        }
     }
 
     function animate(canvas, context, startTime) {
