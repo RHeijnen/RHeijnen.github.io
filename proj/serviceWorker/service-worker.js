@@ -16,7 +16,7 @@ self.addEventListener('install' , function(event){
     )
 })
 
-self.addEventListener('activate' , function(e){
+self.addEventListener('activate' , function(event){
     console.log("Inside sw.js, service worker activated")
     var cacheWhitelist = ['v1'];
     
@@ -35,7 +35,7 @@ self.addEventListener('activate' , function(e){
 })
 
 self.addEventListener('fetch' , function(event){
-    console.log("Inside sw.js, service worker fetched", e.request.url)
+    console.log("Inside sw.js, service worker fetched", event.request.url)
     event.respondWith(
         caches.match(event.request)
           .then(function(response) {
