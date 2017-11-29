@@ -1,7 +1,7 @@
 var cacheName = 'v1'
 var urlsToCache = [
         '/',
-        '../templateCanvas/template.js'
+        'index.html'
     ];
 
 self.addEventListener('install' , function(event){

@@ -10,14 +10,8 @@
 //         })
 // }
 
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('/serviceWorker/service-worker.js').then(function(registration) {
-        // Registration was successful
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      }, function(err) {
-        // registration failed :(
-        console.log('ServiceWorker registration failed: ', err);
-      });
-    });
-  }
+  navigator.serviceWorker.register('/worker.js').then(function(reg) {
+    console.log('◕‿◕', reg);
+  }, function(err) {
+    console.log('ಠ_ಠ', err);
+  });
