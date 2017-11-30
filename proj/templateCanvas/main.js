@@ -1,14 +1,16 @@
 window.onload = function() {
-    var canvas          = document.getElementById("sig-canvas");
-    var context         = canvas.getContext("2d");
-    canvas.width        = window.innerWidth;
-    canvas.height       = window.innerHeight; 
-    var thirdOfScreen   = parseInt((canvas.width /3).toFixed(0));
-    var waitForAnim     = 0;
-    var index           = 10;
-    var entityContainer = [];
-    var debugTextures   = false;
-    var animSpeed       = 8;
+    var canvas                 = document.getElementById("sig-canvas");
+    var context                = canvas.getContext("2d");
+    canvas.width               = window.innerWidth;
+    canvas.height              = window.innerHeight; 
+    var thirdOfScreen          = parseInt((canvas.width /3).toFixed(0));
+    var waitForAnim            = 0;
+    var index                  = 10;
+    var entityContainer        = [];
+    var debugTextures          = true;
+    var animSpeed              = 2;
+    var colorColissionData;
+    var simpleColissionMargins = 15;
     
     
     window.requestAnimFrame = (function(callback) {
@@ -44,11 +46,6 @@ window.onload = function() {
                     // in order to start drawing from the middle of an image, instead of the top corner,
                     // we /2 the length and width and reduce that from the requested starting co-ords
                     context.drawImage(this,this.posX - this.width/2,this.posY - this.height/2);
-                    if(this.entityID == 0){
-                        if(this.width == 586){
-                            console.log("ohoh")
-                        }
-                    }
                 }
                 this.texture.onload();
             },
@@ -56,88 +53,55 @@ window.onload = function() {
         })
     }
 
-    function boxColission(){
-        this.initialize = function() {}
-
-        this.hitTest = function( source, target ) {
-            var hit = false;
-            var start = new Date().getTime();
-    
-            if( this.boxHitTest( source, target ) ) {
-                if( this.pixelHitTest( source, target ) ) {
-                    hit = true;
-                }
-            }
-            var end = new Date().getTime();
-
-            if( hit == true ){
-                console.log( 'detection took: ' + (end - start) + 'ms' );
-            }    
-            return hit;
-        }
-        this.boxHitTest = function( source, target ) {
-            return !( 
-                ( ( source.y + source.height ) < ( target.y ) ) ||
-                ( source.y > ( target.y + target.height ) ) ||
-                ( ( source.x + source.width ) < target.x ) ||
-                ( source.x > ( target.x + target.width ) ) 
-            );
-        }
-        this.pixelHitTest = function( source, target ) {
-                var top = parseInt( Math.max( source.y, target.y ) );
-                var bottom = parseInt( Math.min(source.y+source.height, target.y+target.height) );
-                var left = parseInt( Math.max(source.x, target.x) );
-                var right = parseInt( Math.min(source.x+source.width, target.x+target.width) );
-    
-                for (var y = top; y < bottom; y++)
-                {
-                    for (var x = left; x < right; x++)
-                    {
-                        var pixel1 = source.pixelMap.data[ (x - source.x) +"_"+ (y - source.y) ];
-                        var pixel2 = target.pixelMap.data[ (x - target.x) +"_"+ (y - target.y) ];
-    
-                        if( !pixel1 || !pixel2 ) {
-                            continue;
-                        };
-                        
-                        if (pixel1.pixelData[3] == 255 && pixel2.pixelData[3] == 255)
-                        {
-                            return true;
+    function colorColission(x,y,xSize,ySize){
+        for(var x = 0; x < entityContainer.length;x++){
+            for(var j = 0; j < entityContainer.length;j++){
+                if(!entityContainer[x].colissionFreedom && !entityContainer[j].colissionFreedom){
+                    if(entityContainer[x].id != entityContainer[j].id){
+                        var element1_posX   = entityContainer[x].currentPOS_X;
+                        var element1_posY   = entityContainer[x].currentPOS_Y;
+                        var element1_width  = (entityContainer[x].d_width/2)-simpleColissionMargins;
+                        var element1_height = (entityContainer[x].d_height/2)-simpleColissionMargins;
+                        var element2_posX   = entityContainer[j].currentPOS_X;
+                        var element2_posY   = entityContainer[j].currentPOS_Y;
+                        var element2_width  = (entityContainer[j].d_width/2)-simpleColissionMargins;
+                        var element2_height = (entityContainer[j].d_height/2)-simpleColissionMargins;
+                        if(debugTextures){
+                            context.fillRect(element1_posX-element1_width,element1_posY - element1_height,element1_width*2,element1_height*2);                            
                         }
+                        var pixelData = context.getImageData(element1_posX-element1_width, element1_posY - element1_height, element1_width*2, element1_height*2);
+                        var pix = pixelData.data
+                        for(var z = 0; z < pix.length;z++){
+                            for(var i = 0 ; i <colorColissionData.length;i++){
+                                if(pix[z][0] == colorColissionData[i][0] 
+                                && pix[z][1] == colorColissionData[i][1]
+                                && pix[z][2] == colorColissionData[i][2]
+                                && pix[z][3] == colorColissionData[i][3]){
+                                    entityContainer[i].colided = true;                                       
+                                }
+                            }
+                        }
+                        // console.log(pix);
                     }
                 }
-    
-                return false;
+            }                
         }
-        this.buildPixelMap = function( source ) {
-            var resolution = 1;
-            var ctx = source.getContext("2d");
-            var pixelMap = [];
-    
-            for( var y = 0; y < source.height; y++) {
-                for( var x = 0; x < source.width; x++ ) {
-                    var dataRowColOffset = y+"_"+x;//((y * source.width) + x);
-                    var pixel = ctx.getImageData(x,y,resolution,resolution);
-                    var pixelData = pixel.data;
-    
-                    pixelMap[dataRowColOffset] = { x:x, y:y, pixelData: pixelData };
-    
-                }
-            }
-            return {
-                data: pixelMap,
-                resolution: resolution
-            };
-        }
-        // Initialize the collider
-        this.initialize();
-    
-        // Return our outward facing interface.
-        return {
-            hitTest: this.hitTest.bind( this ),
-            buildPixelMap: this.buildPixelMap.bind( this )
-        };
-
+        // var xlength = xSize || 1
+        // var ylength = ySize || 1
+        // var imgd = context.getImageData(x, y, xlength, ylength);
+        // var pix = imgd.data;
+        // for(var i = 0 ; i <colorColissionData.length;i++){
+        //     if(pix[0] == colorColissionData[i][0] 
+        //     && pix[1] == colorColissionData[i][1]
+        //     && pix[2] == colorColissionData[i][2]
+        //     && pix[3] == colorColissionData[i][3]){
+                
+        //     }
+        // }
+        
+        // for(var i = 0 ;i < pix.length;i++){
+        //     console.log(pix[i])
+        // }
     }
     function simpleColission(){
         var entityIDContainer = [];
@@ -147,45 +111,28 @@ window.onload = function() {
                     if(entityContainer[i].id != entityContainer[j].id){
                         var element1_posX   = entityContainer[i].currentPOS_X;
                         var element1_posY   = entityContainer[i].currentPOS_Y;
-                        var element1_width  = entityContainer[i].d_width/2+30;
-                        var element1_height = entityContainer[i].d_height/2+30;
+                        var element1_width  = (entityContainer[i].d_width/2)-simpleColissionMargins;
+                        var element1_height = (entityContainer[i].d_height/2)-simpleColissionMargins;
                         var element2_posX   = entityContainer[j].currentPOS_X;
                         var element2_posY   = entityContainer[j].currentPOS_Y;
-                        var element2_width  = entityContainer[j].d_width/2+30;
-                        var element2_height = entityContainer[j].d_height/2+30;
+                        var element2_width  = (entityContainer[j].d_width/2)-simpleColissionMargins;
+                        var element2_height = (entityContainer[j].d_height/2)-simpleColissionMargins;
+
                         var x_col1          = (element1_posX + element1_width/2) == (element2_posX - element2_width/2)   || (element1_posX + element1_width/2)  - (element2_posX - element2_width/2)   == -1;
                         var x_col2          = (element1_posX - element1_width/2) == (element2_posX + element2_width/2)   || (element1_posX - element1_width/2)  - (element2_posX + element2_width/2)   == +1;
                         var y_col1          = (element1_posY + element1_height/2) == (element2_posY - element2_height/2) || (element1_posY + element1_height/2) - (element2_posY - element2_height/2)  == -1;
                         var y_col2          = (element1_posY - element1_height/2) == (element2_posY + element2_height/2) || (element1_posY - element1_height/2) - (element2_posY + element2_height/2)  == +1;
-                            // if colission on X    or on the Y 
-                        // if( (x_col1  ||  x_col2) || (y_col1 || y_col2) ){
-                        //     entityContainer[i].colided = true;
-                        // }
-
-                        // if(x_col1 && y_col1 || x_col1 && y_col2){
-                        //     entityContainer[i].colided = true;
-                        // }
-
-                        // if(x_col2 && y_col1 || x_col2 && y_col2){
-                        //     entityContainer[i].colided = true;
-                        // }
-
-
-                        if(    element1_posX < element2_posX + element2_width 
-                            && element1_posX + element1_width > element2_posX
-                            && element1_posY < element2_posY + element2_height
-                            && element1_posY + element1_height > element2_posY
-                        ){
-                            entityContainer[i].colided = true;
-                            // console.log("colission")
+                        if(debugTextures){
+                            context.fillRect(element1_posX-element1_width,element1_posY - element1_height,element1_width*2,element1_height*2);                            
                         }
-
-                        // if( col1_check || col2_check || col3_check || col4_check){
-                        //     console.log("collision")
-                        //     entityContainer[i].colided = true;
-                        // } 
-
-
+                        
+                        if(    element1_posX < element2_posX + (element2_width + element1_width) //element2_width*2 // x2 of (element2_width + element1_width) not sure..
+                            && element1_posX + (element2_width + element1_width) > element2_posX
+                            && element1_posY < element2_posY + (element1_height+element2_height)
+                            && element1_posY + (element1_height+element2_height) > element2_posY
+                        ){
+                            entityContainer[i].colided = true;   
+                        }
                     }
                 }
             }
@@ -210,9 +157,17 @@ window.onload = function() {
         if(this.currentPOS_X > canvas.width){
             this.currentPOS_X = 0;
         }else{
-            this.currentPOS_X = this.currentPOS_X+1        
+            this.currentPOS_X = this.currentPOS_X+2       
         }
 
+    }
+    function moveE(){
+        // this.currentPOS_X++
+        if(this.currentPOS_X <= 0){
+            this.currentPOS_X = canvas.width;
+        }else{
+            this.currentPOS_X = this.currentPOS_X-3         
+        }
     }
     function moveB(){
         // this.currentPOS_X++
@@ -239,10 +194,20 @@ window.onload = function() {
     
 
     function setUp(){
-        createEntity('aap',0,350,moveA,"./dory.png")
-        createEntity('vogel',0,350,moveB,"./dory.png")        
-        createEntity('aap',canvas.width/2,canvas.height,moveC,"./dory.png")
-        createEntity('vogel',canvas.width/2 - 300,0,moveD,"./dory.png")
+        createEntity('0',0,375,moveA,"./dory.png")
+        createEntity('1',0,150,moveA,"./dory.png")
+        createEntity('2',0,350,moveB,"./dory.png")        
+        createEntity('8',0,490,moveB,"./dory.png")        
+        createEntity('3',canvas.width/2,canvas.height,moveC,"./dory.png")
+        createEntity('4',canvas.width/2 - 300,0,moveD,"./dory.png")
+        createEntity('5',canvas.width/2 - 100,0,moveD,"./dory.png")
+        createEntity('6',canvas.width/2 + 100,0,moveD,"./dory.png")
+        createEntity('7',canvas.width/2 + 350,0,moveD,"./dory.png")
+        createEntity('71',0,800,moveE,"./dory.png")
+        
+        colorColissionData = [
+            [[0],[0],[0],[255]]
+        ]
     }setUp(); // run once initialy to setup entities
 
 
@@ -263,6 +228,7 @@ window.onload = function() {
         for(var x = 0; x < animSpeed; x ++){
             // check for colissions
             simpleColission()
+            // colorColission();
             // console.log(boxColission())      
             //            
             for(var i = 0; i < entityContainer.length;i++){
@@ -281,7 +247,6 @@ window.onload = function() {
                     debugTexturesFunc(i);
                 }
             }
-
         }
     }
 

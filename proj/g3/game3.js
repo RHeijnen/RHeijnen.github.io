@@ -29,19 +29,42 @@ window.requestAnimFrame = (function (callback) {
      };
 })(); // SELF INVOKING FUNCTION
 
+
+function colorColission(x,y,xSize,ySize){
+  var xlength = xSize || 1
+  var ylength = ySize || 1
+  var imgd = ctx.getImageData(x, y, xlength, ylength);
+  var pix = imgd.data;
+  if(pix[0] == 0 && pix[1] == 0 && pix[2] == 0 && pix[3] == 255){
+    clear();
+  }
+  
+  // for(var i = 0 ;i < pix.length;i++){
+  //     console.log(pix[i])
+  // }
+}
 // Draw to the canvas
 function renderCanvas() {
   if (drawing) {
+    colorColission(mousePos.x,mousePos.y)
     ctx.moveTo(lastPos.x, lastPos.y);
     ctx.lineTo(mousePos.x, mousePos.y);
     ctx.stroke();
     lastPos = mousePos;
   }
 }
+function clear(){
+  ctx.fillStyle="white";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="black";
+}
+clear();
 // Allow for animation
 (function drawLoop () {
   requestAnimFrame(drawLoop);
   renderCanvas();
+  ctx.fillRect(1,1,40,40);
+  
 })();
 
 
