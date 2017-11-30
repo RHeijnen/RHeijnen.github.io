@@ -1,63 +1,10 @@
-<html lang="">
-    <head>
-        <!--<meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Tracking testpages</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <link rel="stylesheet" href="_resources/stylesheet.css">
-        <script src="_resources/tracking.js"></script>-->
-        <!-- <script src="camera.js"></script> -->
-        <!--<link rel="stylesheet" href="css/main.css">
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>-->
-    </head>
-    <body>
-        <!--<p>Hello world! Page 1</p>
-        <a href="page2.html">Page 2</a>-->
-        <video autoplay></video>
-        <img src="">
-        <canvas style="display:none;"></canvas>
-        <script>
-  var video = document.querySelector('video');
-  var canvas = document.querySelector('canvas');
-  var ctx = canvas.getContext('2d');
-  var image = document.querySelector('img');
-  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+<head>
+    <script src="app.js"></script>
+    <link rel="manifest" href="./projmanifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+</head>
 
-  window.URL = window.URL || window.webkitURL;
+<body>
+    <p>test</p>
 
-
-  function snapshot() {
-      var cw = video.clientWidth;
-      var ch = video.clientHeight;
-      ctx.drawImage(video, 0, 0, cw, ch, 0, 0, cw / 2, ch / 3);
-      image.src = canvas.toDataURL();
-      image.height = ch;
-      image.width = cw;
-      console.log(video)
-  }
-
-  video.addEventListener('click', snapshot, false);
-
-if (navigator.getUserMedia) {
-    navigator.getUserMedia({ video: true,audio:true},
-      function(stream) {
-         video.src = window.URL.createObjectURL(stream);
-         video.onloadedmetadata = function(e) {
-           video.play();
-         };
-      },
-      function(err) {
-         console.log("The following error occured: " + err.name);
-      }
-   );
-} else {
-   console.log("getUserMedia not supported");
-}
-            </script>
-    </body>
-</html>
+</body>
