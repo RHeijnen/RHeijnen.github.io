@@ -1,0 +1,241 @@
+*{
+    margin:0;
+    padding:0;
+}
+ /* with asbulote on body */
+
+
+html, body {
+    height :100%;
+    width  :100%;
+    overflow-y: hidden; 
+    overflow-x: hidden; 
+}   
+#loadingScreen{
+    height :100%;
+    width  :100%;
+    background:white;
+    font-family:Georgia;
+    font-size: 34px;
+    font-style: italic;
+    letter-spacing:-1px;
+}
+#fillerL{
+    margin:0px;
+    bottom:0px;
+    float:left;
+    height:100%;
+    /*border-style: solid;
+    border-color: coral;
+    border-radius: 0px 15px 15px 0px;
+    border-left : 0px*/
+}
+#fillerR{
+    margin:0px;
+    bottom:0px;
+    float:left;
+    height:100%;
+    /*border-style: solid;
+    border-color: coral;
+    border-radius: 15px;*/
+}
+#container{
+    height : 100%;
+    font-family:Georgia;
+    font-size: 34px;
+    font-style: italic;
+    letter-spacing:-1px;
+    overflow:hidden; 
+    /*position:absolute;*/
+
+}
+.bg{
+    width:100%;
+    height:100%;
+    position:absolute;
+}
+#bg0{
+    z-index: -1;
+    background: url("../resources/01_BG_Moana.png");
+    opacity: 1;
+}
+#bg1{
+    z-index: -1;
+    background: url("../resources/02_BG_Dory.png");
+    opacity: 0;
+}
+#bg2{
+    z-index: -1;
+    background: url("../resources/03_BG_Frozen.png");
+    opacity: 0;
+}
+#bg3{
+    z-index: -1;
+    background: url("../resources/04_BG_Incredibles.png");
+    opacity: 0;
+}
+#cameraBtn{
+    position:absolute;
+    background: white;
+    z-index : 1;
+        border-radius: 50px;
+    font-family:Georgia;
+    font-size: 34px;
+    font-style: italic;
+    letter-spacing:-1px;
+}
+#infoBtn{
+    position:absolute;
+    background: white;
+    z-index : 1;
+    border-radius: 50%;
+    font-family:Georgia;
+    font-size: 34px;
+    font-style: italic;
+    letter-spacing:-1px;
+}
+#section0{
+        background: url("../resources/01_B_Moana.png");
+}
+#section1{
+        background: url("../resources/01_B_Moana.png");
+
+}
+#section2{
+        background: url("../resources/01_B_Moana.png");
+
+}
+#section3{
+        background: url("../resources/01_B_Moana.png");
+
+}
+.section{   
+    margin:0px;
+    bottom:0px;
+    width:2000px;
+    float:left;
+    height:100%;
+    /*border-style: solid;
+    border-color: coral;
+    border-radius: 15px;*/
+}
+
+.subsection{
+
+}
+.section h2{
+    margin:50px 0px 30px 50px;
+}
+.section p{
+    margin:20px 0px 0px 50px;
+    width:600px;
+}
+.black{
+    color:#fff;
+    background:#000 url(../images/black.jpg) no-repeat top right;
+}
+.white{
+    color:#000;
+    background:#fff url(../images/white.jpg) no-repeat top right;
+}
+.blue1{
+    color:red;
+    /*background-image: url(../images/1.png) ;*/
+}
+.blue2{
+    color:#000;
+    /*background-image: url(../images/2.png) ;*/
+}
+
+.section ul{
+    list-style:none;
+    margin:20px 0px 0px 550px;
+}
+.black ul li{
+    float:left;
+    padding:5px;
+    margin:5px;
+    color:#aaa;
+}
+.black ul li a{
+    display:block;
+    color:#f0f0f0;
+}
+.black ul li a:hover{
+    text-decoration:none;
+    color:#fff;
+}
+.white ul li{
+    float:left;
+    padding:5px;
+    margin:5px;
+    color:#aaa;
+}
+.white ul li a{
+    display:block;
+    color:#222;
+}
+.white ul li a:hover{
+    text-decoration:none;
+    color:#000;
+}
+
+
+
+
+
+        a{
+            color:#fff;
+            text-decoration:none;
+        }
+        a:hover{
+            text-decoration:underline;
+        }
+        span.reference{
+            position:fixed;
+            left:10px;
+            bottom:10px;
+            font-size:13px;
+            font-weight:bold;
+        }
+        span.reference a{
+            color:#fff;
+            text-shadow:1px 1px 1px #000;
+            padding-right:20px;
+        }
+        span.reference a:hover{
+            color:#ddd;
+            text-decoration:none;
+        }
+
+.background_animation_element{
+
+    -webkit-transition: background 5s ;
+    -moz-transition: background 5s ;
+    -ms-transition: background 5s ;
+    -o-transition: background 5s ;
+    transition: background 5s ;
+
+    background: rgb(71,234,46);
+    background: -moz-linear-gradient(top,  rgba(71,234,46,1) 0%, rgba(63,63,63,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(71,234,46,1)), color-stop(100%,rgba(63,63,63,1)));
+    background: -webkit-linear-gradient(top,  rgba(71,234,46,1) 0%,rgba(63,63,63,1) 100%);
+    background: -o-linear-gradient(top,  rgba(71,234,46,1) 0%,rgba(63,63,63,1) 100%);
+    background: -ms-linear-gradient(top,  rgba(71,234,46,1) 0%,rgba(63,63,63,1) 100%);
+    background: linear-gradient(top,  rgba(71,234,46,1) 0%,rgba(63,63,63,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47ea2e', endColorstr='#3f3f3f',GradientType=2 );
+
+}
+
+.background_animation_element.yellow{
+
+    background: rgb(247,247,49);
+    background: -moz-linear-gradient(top,  rgba(247,247,49,1) 0%, rgba(63,63,63,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(247,247,49,1)), color-stop(100%,rgba(63,63,63,1)));
+    background: -webkit-linear-gradient(top,  rgba(247,247,49,1) 0%,rgba(63,63,63,1) 100%);
+    background: -o-linear-gradient(top,  rgba(247,247,49,1) 0%,rgba(63,63,63,1) 100%);
+    background: -ms-linear-gradient(top,  rgba(247,247,49,1) 0%,rgba(63,63,63,1) 100%);
+    background: linear-gradient(top,  rgba(247,247,49,1) 0%,rgba(63,63,63,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f731', endColorstr='#3f3f3f',GradientType=2 );
+
+}

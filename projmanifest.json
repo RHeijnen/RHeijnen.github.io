@@ -18,7 +18,7 @@
         "type": "image/png"
       }
     ],
-    "start_url": "/proj/page/index.html",
+    "start_url": "/app/index.html",
     "display": "fullscreen",
     "orientation": "landscape"
   }
