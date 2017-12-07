@@ -6,15 +6,25 @@ window.onload = function() {
     var middleOfScreen          = parseInt((canvas.width /2).toFixed(0));
     var thirdOfScreen           = parseInt((canvas.width /3).toFixed(0));
     var sixthOfScreen           = thirdOfScreen / 2;
-    var playerPosition          = canvas.height - 50
+    var playerPositionHeight          = canvas.height - 50
     var waitForAnim             = 0;
     var index                   = 10;
     var entityContainer         = [];
-    var debugTextures           = true;
+    var debugTextures           = false;
     var animSpeed               = 1;
     var movement                = 3;
     var colorColissionData;
     var simpleColissionMargins  = 15;
+    var score                   = 0;
+    var target                  = 8; //targetscore the player has to reach
+    var playerPosition          = 1;
+    var scaling                 = canvas.height / movement;
+    var currentImgWidth         = 0;
+    var currentImgHeight        = 0;
+    var playerTargetPosition;
+    var playerHasTarget         = false;
+    var snappingSpeed           = 8;
+    
 
     
     
@@ -32,13 +42,13 @@ window.onload = function() {
         context.moveTo(2 * thirdOfScreen, 0);
         context.lineTo(2 * thirdOfScreen,canvas.height);
 
-        context.rect(sixthOfScreen, playerPosition, 5, 5)
-        context.rect(middleOfScreen, playerPosition, 5, 5)
-        context.rect(canvas.width - sixthOfScreen, playerPosition, 5, 5)
+        context.rect(sixthOfScreen, playerPositionHeight, 5, 5)
+        context.rect(middleOfScreen, playerPositionHeight, 5, 5)
+        context.rect(canvas.width - sixthOfScreen, playerPositionHeight, 5, 5)
         context.stroke();
     };
 
-    function createEntity(_id,_startX,_startY,moveFunc,_texture){
+    function createEntity(_id,_startX,_startY,moveFunc,_texture, rescale){
         entityContainer.push( {
             id          : _id,
             startPOS_X  : _startX,
@@ -60,9 +70,20 @@ window.onload = function() {
                 this.texture.onload = function(){
                     entityContainer[this.entityID].d_width = this.width;
                     entityContainer[this.entityID].d_height = this.height;
+
+                    //starts small and keeps getting bigger untill it reaches it's original size
+                    if(currentImgWidth <= entityContainer[this.entityID].d_width && currentImgHeight <= entityContainer[this.entityID].d_height){
+                        currentImgWidth = currentImgWidth + (entityContainer[this.entityID].d_width / scaling) / 3;
+                        currentImgHeight = currentImgHeight + (entityContainer[this.entityID].d_height / scaling) / 3;
+                    }
+                    
                     // in order to start drawing from the middle of an image, instead of the top corner,
                     // we /2 the length and width and reduce that from the requested starting co-ords
-                    context.drawImage(this,this.posX - this.width/2,this.posY - this.height/2);
+                    if(rescale){
+                        context.drawImage(this,this.posX - this.width/2,this.posY - this.height/2, currentImgWidth, currentImgHeight);
+                    }else{
+                        context.drawImage(this,this.posX - this.width/2,this.posY - this.height/2);                        
+                    }
                 }
                 this.texture.onload();
             },
@@ -132,7 +153,10 @@ window.onload = function() {
                             && element1_posY < element2_posY + (element1_height+element2_height)
                             && element1_posY + (element1_height+element2_height) > element2_posY
                         ){
-                            entityContainer[i].colided = true;   
+                            entityContainer[i].colided = true;
+                            playerPosition = 1;
+                            resetScale()
+                            // console.log("next step")  
                         }
                     }
                 }
@@ -142,7 +166,7 @@ window.onload = function() {
 
     function horizontalMovement(){
         var horizontal = thirdOfScreen
-        var vertical = playerPosition
+        var vertical = playerPositionHeight
 
         var val = vertical / horizontal
         var result = movement / val
@@ -154,8 +178,10 @@ window.onload = function() {
         // this.currentPOS_X++
 
         if(this.currentPOS_Y > canvas.height){
+            score++
             this.currentPOS_Y = 0;   
-            this.move = createRandomMovement()         
+            this.move = determineMovement()   
+            resetScale()      
         }else{
             this.currentPOS_Y = this.currentPOS_Y+ movement
         }
@@ -168,12 +194,14 @@ window.onload = function() {
             this.currentPOS_X = middleOfScreen;
             this.currentPOS_Y = 0; 
         }else{
-            this.currentPOS_X = this.currentPOS_X + horizontalMovement()    
+            this.currentPOS_X = this.currentPOS_X - horizontalMovement()    
         }
-        if(this.currentPOS_Y > canvas.height){
+        if(this.currentPOS_Y >= canvas.height){
+            score++
             this.currentPOS_X = middleOfScreen
             this.currentPOS_Y = 0
-            this.move = createRandomMovement()        
+            this.move = determineMovement() 
+            resetScale()       
         }else{
             this.currentPOS_Y = this.currentPOS_Y+ movement  
         }
@@ -185,69 +213,153 @@ window.onload = function() {
         if(this.currentPOS_X > canvas.width){
             this.currentPOS_X = middleOfScreen
             this.currentPOS_Y = 0
-            this.move = createRandomMovement()
+            this.move = determineMovement()
+            resetScale()
         }else{
-            this.currentPOS_X = this.currentPOS_X - horizontalMovement()        
+            this.currentPOS_X = this.currentPOS_X + horizontalMovement()        
         }
-        if(this.currentPOS_Y > canvas.height){
+        if(this.currentPOS_Y >= canvas.height){
+            score++            
             this.currentPOS_X = middleOfScreen
             this.currentPOS_Y = 0
-            this.move = createRandomMovement()        
+            this.move = determineMovement()   
+            resetScale()
         }else{
             this.currentPOS_Y = this.currentPOS_Y+ movement
         }
     }
     
-    function createRandomMovement(){
+    function determineMovement(){
         //# between 0-2
-        var randomNumber = Math.floor(Math.random() * 3);
-        console.log("random: " + randomNumber)
-        if(randomNumber == 0){
+        if(playerPosition == 0){
             return moveEnemyLeft
-        } else if(randomNumber == 1){
+        } else if(playerPosition == 1){
             return moveEnemyMiddle
-        } else if(randomNumber == 2){
+        } else if(playerPosition == 2){
             return moveEnemyRight
         } else{
             Console.log("wtf javascript")
         }
     }
-    canvas.addEventListener('keypress', function(e) {
-        var keycode = e.keyCode
-        var aKey = 97
-        var dKey = 115
-        var sKey = 100
-        
-        if(keycode == aKey){
-            entityContainer[0].currentPOS_X = sixthOfScreen
-        } else if(keycode == dKey){
-            entityContainer[0].currentPOS_X = middleOfScreen                
-        } else if(keycode = sKey){
-            entityContainer[0].currentPOS_X = canvas.width - sixthOfScreen                
+
+    function movePlayerLeft(){
+        if(this.currentPOS_X >= playerTargetPosition){
+            this.currentPOS_X = this.currentPOS_X - snappingSpeed
         }
-        console.log("keypress? " + e.keyCode );
-    },false);
-
-    function movePlayer(){
-
-
-
+        if(this.currentPOS_X >= playerTargetPosition - 10 && this.currentPOS_X <= playerTargetPosition + 10){
+            playerHasTarget = false
+            console.log("target reached going left")
+            this.move = blank
+        }
     }
+
+    function movePlayerRight(){
+        if(this.currentPOS_X <= playerTargetPosition){
+            this.currentPOS_X = this.currentPOS_X + snappingSpeed
+        }
+        console.log("Target: " + playerTargetPosition + " current: " + this.currentPOS_X)
+        if(this.currentPOS_X >= playerTargetPosition - 10 && this.currentPOS_X <= playerTargetPosition + 10){
+            playerHasTarget = false
+            console.log("target reached going right")            
+            this.move = blank
+        }
+    }
+
+    canvas.addEventListener("touchmove", function(e){
+        if (e.target == canvas) {
+            e.preventDefault();
+        }
+        var touch = e.touches[0];
+        var mouseEvent = new MouseEvent("mousemove", {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
+          entityContainer[0].currentPOS_X = touch.clientX-25;
+          
+        console.log("touch x: " + touch.clientX)
+        canvas.dispatchEvent(mouseEvent);
+    }, false);
+
+    canvas.addEventListener("touchend", function(e){
+        if (e.target == canvas) {
+          e.preventDefault();
+        }
+        var position = entityContainer[0].currentPOS_X
+        var mouseEvent = new MouseEvent("mouseup", {});
+        if(position <= thirdOfScreen){
+            playerPosition = 0
+            playerTargetPosition = sixthOfScreen
+            playerHasTarget = true
+            snapHorizontally(entityContainer[0].currentPOS_X , sixthOfScreen)           
+            
+            // entityContainer[0].currentPOS_X = sixthOfScreen 
+        } else if(thirdOfScreen < position  && position <= thirdOfScreen * 2){
+            playerPosition = 1; 
+            playerTargetPosition = middleOfScreen
+            playerHasTarget = true
+            snapHorizontally(entityContainer[0].currentPOS_X , middleOfScreen)           
+            
+            // entityContainer[0].currentPOS_X = middleOfScreen     
+        } else{
+            playerPosition = 2; 
+            playerTargetPosition = canvas.width - sixthOfScreen
+            playerHasTarget = true
+            snapHorizontally(entityContainer[0].currentPOS_X , canvas.width - sixthOfScreen)           
+            // entityContainer[0].currentPOS_X = canvas.width - sixthOfScreen 
+        }
+        canvas.dispatchEvent(mouseEvent);
+    }, false);
+
+    function snapHorizontally(currPos, targetPosition){
+        if(playerHasTarget){
+            if(currPos >= targetPosition){
+                entityContainer[0].move = movePlayerLeft
+            } else if(currPos <= targetPosition){
+                entityContainer[0].move = movePlayerRight           
+            } else {
+                console.log("no need to move")
+            }
+        }
+    }
+    // canvas.addEventListener('keypress', function(e) {
+    //     var keycode = e.keyCode
+    //     var aKey = 97
+    //     var dKey = 115
+    //     var sKey = 100
+        
+    //     if(keycode == aKey){
+    //         playerPosition = 0;
+    //         entityContainer[0].currentPOS_X = sixthOfScreen
+    //     } else if(keycode == dKey){
+    //         playerPosition = 1;            
+    //         entityContainer[0].currentPOS_X = middleOfScreen                
+    //     } else if(keycode = sKey){
+    //         playerPosition = 2;            
+    //         entityContainer[0].currentPOS_X = canvas.width - sixthOfScreen                
+    //     }
+    //     console.log("keypress? " + e.keyCode );
+    // },false);
 
     function blank(){
 
     }
 
-    
+    function resetScale(){
+        currentImgWidth = 0;
+        currentImgHeight = 0;
+    }
 
+    function checkStatus(){
+        console.log("Score: " + score)
+        if(score == target){
+            console.log("winner winner")
+        }
+    }
 
     function setUp(){
-        createEntity('0', middleOfScreen, playerPosition, blank,"./dorysmall.png")
-        createEntity('1', middleOfScreen, 0, moveEnemyLeft,"./dorysmall.png")
+        createEntity('0', middleOfScreen, playerPositionHeight, blank,"./dorysmall.png", false)
+        createEntity('1', middleOfScreen, 0, moveEnemyMiddle,"./dorysmall.png", true)
 
-        colorColissionData = [
-            [[0],[0],[0],[255]]
-        ]
     }setUp(); // run once initialy to setup entities
 
 
@@ -267,7 +379,7 @@ window.onload = function() {
         // runs every 'animated itteration'
         for(var x = 0; x < animSpeed; x ++){
             drawDebug();
-            
+            checkStatus();
             // check for colissions
             simpleColission()
             // colorColission();
