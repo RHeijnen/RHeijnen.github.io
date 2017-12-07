@@ -1,53 +1,194 @@
 window.onload = function() {
-    var bubbleIMG      = "bubble.svg"
-    var canvas         = document.getElementById("canvas");
-    canvas.width       = window.innerWidth;
-    canvas.height      = window.innerHeight;    
-    var middle         = canvas.width/2;
-    var stage          = new createjs.Stage("canvas");
-    var dragRadius     = 40;
-    var numberOfPoints = 10;
-
-    var circleArr      = [];
-    var dragArr        = [];
+    var canvas                 = document.getElementById("sig-canvas");
+    var context                = canvas.getContext("2d");
+    canvas.width               = window.innerWidth;
+    canvas.height              = window.innerHeight; 
+    var thirdOfScreen          = parseInt((canvas.width /3).toFixed(0));
+    var waitForAnim            = 0;
+    var index                  = 10;
+    var entityContainer        = [];
+    var debugTextures          = true;
+    var animSpeed              = 2;
+    var colorColissionData;
+    var simpleColissionMargins = 15;
     
-    createjs.Touch.enable(stage);
     
-    function getRandomX(){
-        var rng = Math.floor(Math.random() * canvas.width) + 1 
-        console.log(rng)
-        return rng
-    }
-    function getRandomY(){
-        var rng = Math.floor(Math.random() * canvas.height) + 1  
-        console.log(rng)
-        return rng
-    }
-    for(var i = 0; i < numberOfPoints;i++){
-        dragArr.push(new createjs.Container());
-        // dragArr[i].setBounds(-50, -50, 80, 80);
-        circleArr.push(new createjs.Shape());
-        circleArr[i].graphics.beginFill("red").drawCircle(-50, -50, 50);
-        circleArr[i].x = 50
-        circleArr[i].y = 50
-        stage.addChild(circleArr[i]);
+    window.requestAnimFrame = (function(callback) {
+        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+        function(callback) {
+          window.setTimeout(callback, 1000 / 60);
+        };
+    })();
 
-        dragArr[i].addChild(circleArr[i]);
-        dragArr[i].on("pressmove", function(evt){
-            evt.currentTarget.x = evt.stageX;
-            evt.currentTarget.y = evt.stageY;
-            stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker   
-        });
-        dragArr[i].x = getRandomX();
-        dragArr[i].y = getRandomY();
-        stage.addChild(dragArr[i]);
-        stage.update();
+
+    function createEntity(_id,_startX,_startY,moveFunc,_texture){
+        entityContainer.push( {
+            id          : _id,
+            startPOS_X  : _startX,
+            startPOS_Y  : _startY,
+            currentPOS_X: _startX,
+            currentPOS_Y: _startY,
+            d_width     : 0,
+            d_height    : 0,
+            hitpoints   : 1,
+            colissionFreedom : false,
+            colided     : false,
+            move        : moveFunc,
+            texture     : new Image(),
+            drawTexture : function(itt){
+                this.texture.src        = _texture;
+                this.texture.posX       = this.currentPOS_X;
+                this.texture.posY       = this.currentPOS_Y;
+                this.texture.entityID   = itt;
+                this.texture.onload = function(){
+                    entityContainer[this.entityID].d_width = this.width;
+                    entityContainer[this.entityID].d_height = this.height;
+                    // in order to start drawing from the middle of an image, instead of the top corner,
+                    // we /2 the length and width and reduce that from the requested starting co-ords
+                    context.drawImage(this,this.posX - this.width/2,this.posY - this.height/2);
+                }
+                this.texture.onload();
+            },
+
+        })
+    }
+
+
+    function simpleColission(){
+        var entityIDContainer = [];
+        for(var i = 0; i < entityContainer.length;i++){
+            for(var j = 0; j < entityContainer.length;j++){
+                if(!entityContainer[i].colissionFreedom && !entityContainer[j].colissionFreedom){
+                    if(entityContainer[i].id != entityContainer[j].id){
+                        var element1_posX   = entityContainer[i].currentPOS_X;
+                        var element1_posY   = entityContainer[i].currentPOS_Y;
+                        var element1_width  = (entityContainer[i].d_width/2)-simpleColissionMargins;
+                        var element1_height = (entityContainer[i].d_height/2)-simpleColissionMargins;
+                        var element2_posX   = entityContainer[j].currentPOS_X;
+                        var element2_posY   = entityContainer[j].currentPOS_Y;
+                        var element2_width  = (entityContainer[j].d_width/2)-simpleColissionMargins;
+                        var element2_height = (entityContainer[j].d_height/2)-simpleColissionMargins;
+
+                        var x_col1          = (element1_posX + element1_width/2) == (element2_posX - element2_width/2)   || (element1_posX + element1_width/2)  - (element2_posX - element2_width/2)   == -1;
+                        var x_col2          = (element1_posX - element1_width/2) == (element2_posX + element2_width/2)   || (element1_posX - element1_width/2)  - (element2_posX + element2_width/2)   == +1;
+                        var y_col1          = (element1_posY + element1_height/2) == (element2_posY - element2_height/2) || (element1_posY + element1_height/2) - (element2_posY - element2_height/2)  == -1;
+                        var y_col2          = (element1_posY - element1_height/2) == (element2_posY + element2_height/2) || (element1_posY - element1_height/2) - (element2_posY + element2_height/2)  == +1;
+                        if(debugTextures){
+                            context.fillRect(element1_posX-element1_width,element1_posY - element1_height,element1_width*2,element1_height*2);                            
+                        }
+                        
+                        if(    element1_posX < element2_posX + (element2_width + element1_width) //element2_width*2 // x2 of (element2_width + element1_width) not sure..
+                            && element1_posX + (element2_width + element1_width) > element2_posX
+                            && element1_posY < element2_posY + (element1_height+element2_height)
+                            && element1_posY + (element1_height+element2_height) > element2_posY
+                        ){
+                            entityContainer[i].colided = true;   
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    function noMove(){
+
+    }
+    function setUp(){
+        createEntity('0',100,375,noMove,"./bub.png")
+        createEntity('1',200,150,noMove,"./bub.png")
+        createEntity('2',400,350,noMove,"./dub.png")        
+        createEntity('3',750,400,noMove,"./dub.png")        
+    }setUp(); // run once initialy to setup entities
+
+
+    function debugTexturesFunc(itt){
+        context.fillStyle="red";
+        context.beginPath();                 
+        context.moveTo(entityContainer[itt].currentPOS_X-entityContainer[itt].d_width/2,entityContainer[itt].currentPOS_Y);
+        context.lineTo(entityContainer[itt].currentPOS_X+entityContainer[itt].d_width/2 ,entityContainer[itt].currentPOS_Y); 
+        
+        context.moveTo(entityContainer[itt].currentPOS_X,entityContainer[itt].currentPOS_Y-entityContainer[itt].d_height/2);
+        context.lineTo(entityContainer[itt].currentPOS_X,entityContainer[itt].currentPOS_Y+entityContainer[itt].d_height/2);
+        context.stroke();  
+        context.fillRect(entityContainer[itt].currentPOS_X-2,entityContainer[itt].currentPOS_Y-2,4,4);
         
     }
-    console.log(stage)
+    function draw(){
+        // runs every 'animated itteration'
+        for(var x = 0; x < animSpeed; x ++){
+            // check for colissions
+            simpleColission()
+            // colorColission();
+            // console.log(boxColission())      
+            //            
+            for(var i = 0; i < entityContainer.length;i++){
+                if(entityContainer[i].colided){
+                    entityContainer[i].currentPOS_Y = entityContainer[i].startPOS_Y
+                    entityContainer[i].currentPOS_X = entityContainer[i].startPOS_X
+                    entityContainer[i].colided = false;
+                }
+                entityContainer[i].move();
+                entityContainer[i].drawTexture(i);
+            }
+            // setup roster for texture debugging (helps with colission checking)
+            if(debugTextures){
+                // do it after so we layer it ontop of the entities
+                for(var i = 0; i < entityContainer.length;i++){
+                    debugTexturesFunc(i);
+                }
+            }
+        }
+    }
+
+    function animate(canvas, context, startTime) {
+        // clear canvas
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        // update
+        var time = (new Date()).getTime() - startTime;
+        var linearSpeed = 100;
+        // redraw
+        draw();
+        /*
+            // move a pixel based on passed time..
+            var newX = linearSpeed * time / 1000;
+        */
+        // request new frame
+        requestAnimFrame(function() {
+            animate( canvas, context, startTime);
+        });
+    }
 
 
 
+      
+    // wait {waitForAnim} ms before starting animation
+    setTimeout(function() {
+        var startTime = (new Date()).getTime();
+        animate(canvas, context, startTime);
+    }, waitForAnim);
 
+
+// Prevent scrolling when touching the canvas
+document.body.addEventListener("touchstart", function (e) {
+    if (e.target == canvas) {
+      e.preventDefault();  
+    }
     
+    
+    
+  }, false);
+  
+  
+  document.body.addEventListener("touchend", function (e) {
+    if (e.target == canvas) {
+      e.preventDefault();
+    }
+  }, false);
+  
+  
+  document.body.addEventListener("touchmove", function (e) {
+    if (e.target == canvas) {
+      e.preventDefault();
+    }
+  }, false);
 }

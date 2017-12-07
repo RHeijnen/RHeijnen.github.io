@@ -1,135 +1,195 @@
-window.onload = function() {
-  var canvas = document.getElementById("sig-canvas");
-  var ctx = canvas.getContext("2d");
-  ctx.strokeStyle = "#222222";
-  ctx.lineWith = 2;
+window.addEventListener('load', function(){ // on page load
+    var direction = 'r'
+    var canvas = new fabric.Canvas('sig-canvas');
+    canvas.setHeight(window.innerHeight);
+    canvas.setWidth(window.innerWidth);
+    canvas.selection = false; // disable group selection
+    var entityContainer = [];
+    var hookCoords = [[75,100],[200,75],[300,200],[400,300],[200,300],[100,300],[350,50],[450,125],[525,150]];
+    
 
-  // Set up mouse events for drawing
-  var drawing = false;
-  var mousePos = { x:0, y:0 };
-  var lastPos = mousePos;
-
-// Get the position of the mouse relative to the canvas
-function getMousePos(canvasDom, mouseEvent) {
-  var rect = canvasDom.getBoundingClientRect();
-  return {
-    x: mouseEvent.clientX - rect.left,
-    y: mouseEvent.clientY - rect.top
-  };
-}
-// Get a regular interval for drawing to the screen
-window.requestAnimFrame = (function (callback) {
-  return window.requestAnimationFrame || 
-     window.webkitRequestAnimationFrame ||
-     window.mozRequestAnimationFrame ||
-     window.oRequestAnimationFrame ||
-     window.msRequestAnimaitonFrame ||
-     function (callback) {
-      window.setTimeout(callback, 1000/60);
-     };
-})(); // SELF INVOKING FUNCTION
-
-
-function colorColission(x,y,xSize,ySize){
-  var xlength = xSize || 1
-  var ylength = ySize || 1
-  var imgd = ctx.getImageData(x, y, xlength, ylength);
-  var pix = imgd.data;
-  if(pix[0] == 0 && pix[1] == 0 && pix[2] == 0 && pix[3] == 255){
-    clear();
-  }
-  
-  // for(var i = 0 ;i < pix.length;i++){
-  //     console.log(pix[i])
-  // }
-}
-// Draw to the canvas
-function renderCanvas() {
-  if (drawing) {
-    colorColission(mousePos.x,mousePos.y)
-    ctx.moveTo(lastPos.x, lastPos.y);
-    ctx.lineTo(mousePos.x, mousePos.y);
-    ctx.stroke();
-    lastPos = mousePos;
-  }
-}
-function clear(){
-  ctx.fillStyle="white";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle="black";
-}
-clear();
-// Allow for animation
-(function drawLoop () {
-  requestAnimFrame(drawLoop);
-  renderCanvas();
-  ctx.fillRect(1,1,40,40);
-  
-})();
-
-
-// Get the position of a touch relative to the canvas
-function getTouchPos(canvasDom, touchEvent) {
-  var rect = canvasDom.getBoundingClientRect();
-  return {
-    x: touchEvent.touches[0].clientX - rect.left,
-    y: touchEvent.touches[0].clientY - rect.top
-  };
-}
-
-
-
-// Set up touch events for mobile, etc
-canvas.addEventListener("touchstart", function (e) {
-  mousePos = getTouchPos(canvas, e);
-  var touch = e.touches[0];
-  var mouseEvent = new MouseEvent("mousedown", {
-     clientX: touch.clientX,
-     clientY: touch.clientY
-  });
-  canvas.dispatchEvent(mouseEvent);
-}, false);
-
-
-canvas.addEventListener("touchend", function (e) {
-  var mouseEvent = new MouseEvent("mouseup", {});
-  if (e.target == canvas) {
-    e.preventDefault();
-  }
-  canvas.dispatchEvent(mouseEvent);
-  }, false);
-
-canvas.addEventListener("touchmove", function (e) {
-    if (e.target == canvas) {
-      e.preventDefault();
-    }
-    var touch = e.touches[0];
-    var mouseEvent = new MouseEvent("mousemove", {
-      clientX: touch.clientX,
-      clientY: touch.clientY
+    var touchPoints = [];
+    var touchInitiated  = false;
+    var touchCounter    = 0;
+    var prevX;
+    var prevY;
+    canvas.on({
+      'touch:drag': function(e) {
+        if(e.e.changedTouches!= undefined ){
+          var x = -e.e.changedTouches[0].clientX;
+          var y = -e.e.changedTouches[0].clientY;
+          if(!touchInitiated){
+            touchPoints.push([x,y])
+            touchInitiated = true;
+            prevX = x;
+            prevY = y;
+          }
+          if(touchInitiated){
+            if(
+              (touchPoints[touchCounter][0] - x) > 15  ||
+              (touchPoints[touchCounter][1] - y) > 15  ||
+              (touchPoints[touchCounter][0] - x) > -15 ||
+              (touchPoints[touchCounter][1] - y) > -15)
+              
+              {
+             touchPoints.push([x,y])
+             touchCounter = touchCounter +1;
+             var testline = new fabric.Line([-prevX, -prevY, -x, -y], {
+               strokeDashArray: [5, 5],
+               stroke: 'black',
+               selectable :false
+             });
+             canvas.add(testline)
+             prevX = x;
+             prevY = y;
+             onChange(testline)
+             
+            }
+          }
+        }
+      },
     });
-    canvas.dispatchEvent(mouseEvent);
-}, false);
+    canvas.on({
+      'touch:stop': function() {
+
+      },
+
+    });
+      
+    function canvasReset(){
+      canvas.clear(); 
+      touchPoints = [] 
+      touchCounter = 0;
+      touchInitiated = false;
+
+      canvas.setBackgroundImage('Background-hooks.jpg', canvas.renderAll.bind(canvas), {
+        backgroundImageOpacity: 0.5,
+        backgroundImageStretch: false
+      });
+      
+    
+      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+        oImg.left = hookCoords[0][0];
+        oImg.top  = hookCoords[0][1];
+        oImg.selectable = false;
+        canvas.add(oImg);
+        animate(oImg,hookCoords[0][1],15)
+      });
+
+      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+        oImg.left = hookCoords[1][0];
+        oImg.top  = hookCoords[1][1]
+        oImg.selectable = false;
+        canvas.add(oImg);
+        animate(oImg,hookCoords[1][1],35)
+      });
+
+      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+        oImg.left = hookCoords[2][0];
+        oImg.top  = hookCoords[2][1]
+        oImg.selectable = false;
+        canvas.add(oImg);
+        animate(oImg,hookCoords[2][1],60)
+      });
+      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+        oImg.left = hookCoords[3][0];
+        oImg.top  = hookCoords[3][1]
+        oImg.selectable = false;
+        canvas.add(oImg);
+        animate(oImg,hookCoords[3][1],150)
+      });
+      
+      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+        oImg.left = hookCoords[4][0];
+        oImg.top  = hookCoords[4][1]
+        oImg.selectable = false;
+        canvas.add(oImg);
+        animate(oImg,hookCoords[4][1],250)
+      });
+
+      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+        oImg.left = hookCoords[5][0];
+        oImg.top  = hookCoords[5][1]
+        oImg.selectable = false;
+        canvas.add(oImg);
+        animate(oImg,hookCoords[5][1],500)
+      });
+      
+      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+        oImg.left = hookCoords[6][0];
+        oImg.top  = hookCoords[6][1]
+        oImg.selectable = false;
+        canvas.add(oImg);
+        animate(oImg,hookCoords[6][1],500)
+      });
+      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+        oImg.left = hookCoords[7][0];
+        oImg.top  = hookCoords[7][1]
+        oImg.selectable = false;
+        canvas.add(oImg);
+        animate(oImg,hookCoords[7][1],250)
+      });
+      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+        oImg.left = hookCoords[8][0];
+        oImg.top  = hookCoords[8][1]
+        oImg.selectable = false;      
+        canvas.add(oImg);
+        animate(oImg,hookCoords[8][1],4000)
+      });
+  
+    }
+    canvasReset();
+    function onChange(baseline) {
+      // options.target.setCoords();
+      canvas.forEachObject(function(obj) {
+        if(!obj.stroke){ // checks if object contains .stroke -> img objects do not have it, so we skip the lines
+          if(baseline.intersectsWithObject(obj)){
+            canvas.forEachObject(function(obj){
+              if(obj.stroke){
+                  // shake mobile
+                  location.reload();
+              } 
+            });
+            obj.set('opacity' ,baseline.intersectsWithObject(obj) ? 0.5 : 1);            
+          }
+        }
+      });
+    }
+
+    function animate(element,originalY,timeout){
+      setTimeout(function(){ 
+        element.animate('top', element.top === originalY ? originalY-20 : originalY, {
+          duration: 4000,
+          onChange: canvas.renderAll.bind(canvas),
+          onComplete: function() {
+            animate(element,originalY);
+          },
+          easing: fabric.util.ease.easeInOutCubic
+        });
+      }, timeout);
+    // Get the position of a touch relative to the canvas
+    function getTouchPos(canvasDom, touchEvent) {
+      var rect = canvasDom.getBoundingClientRect();
+      return {
+        x: touchEvent.touches[0].clientX - rect.left,
+        y: touchEvent.touches[0].clientY - rect.top
+      };
+    }
 
 
-canvas.addEventListener("mousedown", function (e) {
-  drawing = true;
-  lastPos = getMousePos(canvas, e);
-}, false);
 
-canvas.addEventListener("mouseup", function (e) {
-  drawing = false;
-}, false);
 
-canvas.addEventListener("mousemove", function (e) {
-  mousePos = getMousePos(canvas, e);
-}, false);
+
+
+
 
 // Prevent scrolling when touching the canvas
 document.body.addEventListener("touchstart", function (e) {
   if (e.target == canvas) {
     e.preventDefault();
+    
   }
+  
 }, false);
 
 
@@ -137,6 +197,14 @@ document.body.addEventListener("touchend", function (e) {
   if (e.target == canvas) {
     e.preventDefault();
   }
+  if(touchPoints[0] != undefined){
+    if(-touchPoints[touchPoints.length-1][0] < 300){
+      // console.log(touchPoints[touchPoints.length-1][0])
+      location.reload();
+      
+    }
+  }
+  
 }, false);
 
 
@@ -146,4 +214,17 @@ document.body.addEventListener("touchmove", function (e) {
   }
 }, false);
 
-}
+    
+
+
+      // element.animate('top', element.top === originalY ? originalY-20 : originalY, {
+      //   duration: 4000,
+      //   onChange: canvas.renderAll.bind(canvas),
+      //   onComplete: function() {
+      //     animate(element,originalY);
+      //   },
+      //   easing: fabric.util.ease.easeInOutCubic
+      // });
+    }
+
+  });
