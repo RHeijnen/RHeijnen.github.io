@@ -6,24 +6,26 @@ window.onload = function() {
     var middleOfScreen          = parseInt((canvas.width /2).toFixed(0));
     var thirdOfScreen           = parseInt((canvas.width /3).toFixed(0));
     var sixthOfScreen           = thirdOfScreen / 2;
-    var playerPositionHeight          = canvas.height - 50
+    var playerPositionHeight    = canvas.height - 50
     var waitForAnim             = 0;
     var index                   = 10;
     var entityContainer         = [];
     var debugTextures           = false;
     var animSpeed               = 1;
-    var movement                = 3;
+    var movement                = 2;
     var colorColissionData;
     var simpleColissionMargins  = 15;
     var score                   = 0;
-    var target                  = 8; //targetscore the player has to reach
+    var target                  = 10; //targetscore the player has to reach
     var playerPosition          = 1;
     var scaling                 = canvas.height / movement;
     var currentImgWidth         = 0;
     var currentImgHeight        = 0;
+    var maxWidth                = 128;
+    var maxHeight               = 114;
     var playerTargetPosition;
-    var playerHasTarget         = false;
     var snappingSpeed           = 8;
+    var running                 = true;
     
 
     
@@ -34,6 +36,10 @@ window.onload = function() {
           window.setTimeout(callback, 1000 / 60);
         };
     })();
+
+    function init(){
+        $("sig-canvas").css('background-image', 'url(' + "./img/G5_03_BG.png"+ ')')
+    } init();
 
     var drawDebug = function(){
         context.beginPath();
@@ -66,23 +72,36 @@ window.onload = function() {
                 this.texture.src        = _texture;
                 this.texture.posX       = this.currentPOS_X;
                 this.texture.posY       = this.currentPOS_Y;
+                this.texture.originalWidth;
+                this.texture.originalHeight;
+                this.texture.offset;
+                this.texture.padding;
                 this.texture.entityID   = itt;
                 this.texture.onload = function(){
-                    entityContainer[this.entityID].d_width = this.width;
-                    entityContainer[this.entityID].d_height = this.height;
+                    entityContainer[this.entityID].d_width = maxWidth;
+                    entityContainer[this.entityID].d_height = maxHeight;
 
                     //starts small and keeps getting bigger untill it reaches it's original size
                     if(currentImgWidth <= entityContainer[this.entityID].d_width && currentImgHeight <= entityContainer[this.entityID].d_height){
                         currentImgWidth = currentImgWidth + (entityContainer[this.entityID].d_width / scaling) / 3;
                         currentImgHeight = currentImgHeight + (entityContainer[this.entityID].d_height / scaling) / 3;
                     }
-                    
+
+                    this.originalWidth = this.width
+                    this.originalHeight = this.height
+
+                    this.offset = this.originalWidth / 3
+
+                    this.padding = (this.originalWidth - currentImgWidth) / 2
+                    console.log("padding: " + this.padding)
                     // in order to start drawing from the middle of an image, instead of the top corner,
                     // we /2 the length and width and reduce that from the requested starting co-ords
                     if(rescale){
-                        context.drawImage(this,this.posX - this.width/2,this.posY - this.height/2, currentImgWidth, currentImgHeight);
+                        context.drawImage(this, this.posX - this.width/2 + this.padding,this.posY - this.height/2 + (this.originalHeight / 3), currentImgWidth, currentImgHeight);
                     }else{
-                        context.drawImage(this,this.posX - this.width/2,this.posY - this.height/2);                        
+                        context.drawImage(this,this.posX - this.width/2 + (maxWidth / 2),this.posY - this.height/2 + (maxHeight / 2), maxWidth, maxHeight);   
+                        // context.drawImage(this,this.posX - this.width/2,this.posY - this.height/2, maxWidth, maxHeight);                        
+                        
                     }
                 }
                 this.texture.onload();
@@ -156,6 +175,7 @@ window.onload = function() {
                             entityContainer[i].colided = true;
                             playerPosition = 1;
                             resetScale()
+                            entityContainer[0].move = blank
                             // console.log("next step")  
                         }
                     }
@@ -247,8 +267,7 @@ window.onload = function() {
             this.currentPOS_X = this.currentPOS_X - snappingSpeed
         }
         if(this.currentPOS_X >= playerTargetPosition - 10 && this.currentPOS_X <= playerTargetPosition + 10){
-            playerHasTarget = false
-            console.log("target reached going left")
+            // console.log("target reached going left")
             this.move = blank
         }
     }
@@ -259,8 +278,7 @@ window.onload = function() {
         }
         console.log("Target: " + playerTargetPosition + " current: " + this.currentPOS_X)
         if(this.currentPOS_X >= playerTargetPosition - 10 && this.currentPOS_X <= playerTargetPosition + 10){
-            playerHasTarget = false
-            console.log("target reached going right")            
+            // console.log("target reached going right")            
             this.move = blank
         }
     }
@@ -311,7 +329,6 @@ window.onload = function() {
     }, false);
 
     function snapHorizontally(currPos, targetPosition){
-        if(playerHasTarget){
             if(currPos >= targetPosition){
                 entityContainer[0].move = movePlayerLeft
             } else if(currPos <= targetPosition){
@@ -319,7 +336,7 @@ window.onload = function() {
             } else {
                 console.log("no need to move")
             }
-        }
+        
     }
     // canvas.addEventListener('keypress', function(e) {
     //     var keycode = e.keyCode
@@ -352,13 +369,17 @@ window.onload = function() {
     function checkStatus(){
         console.log("Score: " + score)
         if(score == target){
+            running = false;
             console.log("winner winner")
+            endOverlay()
         }
     }
 
     function setUp(){
-        createEntity('0', middleOfScreen, playerPositionHeight, blank,"./dorysmall.png", false)
-        createEntity('1', middleOfScreen, 0, moveEnemyMiddle,"./dorysmall.png", true)
+        createEntity('0', middleOfScreen, playerPositionHeight, blank,"./img/G5_02_Dory.png", false)
+        createEntity('1', middleOfScreen, 0, moveEnemyMiddle,"./img/G5_01_School.png", true)
+        // createEntity('1', middleOfScreen, 0, moveEnemyMiddle,"./img/dorysmall.png", true)
+        
 
     }setUp(); // run once initialy to setup entities
 
@@ -377,36 +398,40 @@ window.onload = function() {
     }
     function draw(){
         // runs every 'animated itteration'
-        for(var x = 0; x < animSpeed; x ++){
-            drawDebug();
-            checkStatus();
-            // check for colissions
-            simpleColission()
-            // colorColission();
-            // console.log(boxColission())      
-            //            
-            for(var i = 0; i < entityContainer.length;i++){
-                if(entityContainer[i].colided){
-                    entityContainer[i].currentPOS_Y = entityContainer[i].startPOS_Y
-                    entityContainer[i].currentPOS_X = entityContainer[i].startPOS_X
-                    entityContainer[i].colided = false;
-                }
-                entityContainer[i].move();
-                entityContainer[i].drawTexture(i);
-            }
-            // setup roster for texture debugging (helps with colission checking)
-            if(debugTextures){
-                // do it after so we layer it ontop of the entities
+        if(running){
+            for(var x = 0; x < animSpeed; x ++){
+                drawDebug();
+                checkStatus();
+                // check for colissions
+                simpleColission()
+                // colorColission();
+                // console.log(boxColission())      
+                //            
                 for(var i = 0; i < entityContainer.length;i++){
-                    debugTexturesFunc(i);
+                    if(entityContainer[i].colided){
+                        entityContainer[i].currentPOS_Y = entityContainer[i].startPOS_Y
+                        entityContainer[i].currentPOS_X = entityContainer[i].startPOS_X
+                        entityContainer[i].colided = false;
+                    }
+                    entityContainer[i].move();
+                    entityContainer[i].drawTexture(i);
+                }
+                // setup roster for texture debugging (helps with colission checking)
+                if(debugTextures){
+                    // do it after so we layer it ontop of the entities
+                    for(var i = 0; i < entityContainer.length;i++){
+                        debugTexturesFunc(i);
+                    }
                 }
             }
-        }
+        }       
     }
 
     function animate(canvas, context, startTime) {
         // clear canvas
         context.clearRect(0, 0, canvas.width, canvas.height);
+        // $("sig-canvas").css('background-color', 'red')
+        // context.drawImage= ("./img/G5_03_BG.png", 0, 0)
         // update
         var time = (new Date()).getTime() - startTime;
         var linearSpeed = 100;
@@ -431,5 +456,7 @@ window.onload = function() {
         animate(canvas, context, startTime);
     }, waitForAnim);
 
-
+    function endOverlay(){
+        document.getElementById("my-overlay").style.width = "100%";
+    }
 }
