@@ -102,14 +102,29 @@ html, body {
     font-style: italic;
     letter-spacing:-1px;
 }
-
+#infoModal{
+    /*background-color: rgba(0, 0, 0, 0.5);*/
+}
+#cameraModal{
+    /*background-color: rgba(0, 0, 0, 0.5);*/
+}
+#closeInfo{
+    position:absolute;
+    z-index : 1;
+    border-radius: 50%;
+    font-family:Georgia;
+    font-size: 34px;
+    font-style: italic;
+    letter-spacing:-1px;
+}
 #slideshow{
     -moz-transition: 1s ease;
     transition: 1s ease;
     -webkit-transition: all 2000ms ease-in;
     -ms-transition: all 2000ms ease-in;
     -moz-transition: all 2000ms ease-in;
-    transition: all 2000ms ease-in;
+    transition: all 1000ms ease-in;
+     
 }
 #section0{
         background: url("../resources/dorybg.png");

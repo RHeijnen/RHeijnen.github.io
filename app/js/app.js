@@ -62,6 +62,18 @@ $(function() {
             "margin-top":(screenHeight/100)*3,
             "margin-left": (screenWidth/100)*3,
         })
+        $("#closeInfo").css({
+            "height" : (screenHeight/100)*10,
+            "width"  : (screenHeight/100)*10,
+            "margin-top":(screenHeight/100)*3,
+            "margin-left": (screenWidth/100)*3,
+        })
+        $("#closeCamera").css({
+            "height" : (screenHeight/100)*10,
+            "width"  : (screenHeight/100)*10,
+            "margin-top":(screenHeight/100)*3,
+            "margin-left": (screenWidth/100)*3,
+        })
         $(".subsection").css({
             "margin-top":  (screenHeight/100) * 50,
             "margin-left": (screenWidth/100) * 25,
@@ -229,7 +241,33 @@ $(function() {
         // event.preventDefault();
         // return false;
     });
+        var helpModal = document.getElementById('infoModal');
+        var cameraModal = document.getElementById('cameraModal');
 
+    $("#infoBtn").click(function(e){
+        helpModal.style.display = 'block'
+        $("#slideshow").css({
+            'opacity': 0
+        });
+    })
+    $("#cameraBtn").click(function(e){
+        cameraModal.style.display = 'block'
+        $("#slideshow").css({
+            'opacity': 0
+        });
+    })
+    $("#closeInfo").click(function(e){
+        helpModal.style.display = 'none'
+        $("#slideshow").css({
+            'opacity': 1
+        });
+    })
+    $("#closeCamera").click(function(e){
+        cameraModal.style.display = 'none'
+        $("#slideshow").css({
+            'opacity': 1
+        });
+    })
     $(".charIcon").click(function(e){
         var imgRef = e.target.currentSrc;
         imgRef = imgRef.replace(/(.+\/)/g," ")
@@ -291,7 +329,6 @@ $(function() {
                 });
                 setTimeout(function(){ 
                     modal.style.display = "none";
-
                 }, 1000);
                 
         }
