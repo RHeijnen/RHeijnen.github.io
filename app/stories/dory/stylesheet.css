@@ -1,0 +1,59 @@
+*{
+    margin:0;
+    padding:0;
+}
+ /* with asbulote on body */
+
+
+html, body {
+    height :100%;
+    width  :100%;
+    overflow-y: hidden; 
+    overflow-x: hidden; 
+}   
+#container{
+    display:inline-block;
+    height:100%;
+    width:100%;
+    background-image: url("dory1.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
+    
+}
+#left{
+    height:100%;
+    float:left;
+    width:50%;
+}
+#right{
+    margin-top:-111%;
+    margin-left:50%;
+    height:300%;
+    float:left;
+    width:300%;
+    border-radius: 50%;
+    background:white;
+    
+}
+#next{
+    margin-left: 50%;
+    margin-top: 50%;
+    position: fixed;
+    right: 0px;
+    z-index: 5;
+    top: -50%;
+}
+#text{
+    width:40%;
+    margin-top: 60%;
+    position: fixed;
+    right: 1%;
+    z-index: 5;
+    top: -50%;
+}
+#overlay{
+
+}

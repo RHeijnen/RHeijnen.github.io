@@ -1,5 +1,4 @@
-<style>
-/* mijnmijn99!!QWE */
+
 
 #OnionBro
 {
@@ -559,58 +558,3 @@
 
 
     
-</style>
-
-<div id="OnionBro">
-        <div id="head">
-            <div id="eyesCont">
-                <div id="eyes">
-                </div>
-                <div id="strip1">
-                </div>
-                <div id="strip2">
-                </div>
-            </div>
-        </div>
-        <div id="body">
-            <div id="pauldron"></div>
-            <div id="pauldron2p"></div>
-            <div id="arm"></div>
-            <div id="shield">
-                <div id="shield2"></div>
-            </div>
-            <div id="stripBody1"></div>
-            <div id="stripBody2"></div>
-            <div id="stripBody3"></div>
-            <div id="leftArm">
-                <div id="leftArm2"></div>
-                <div id="leftArm3"></div> 
-                <div id="hand">
-                    <div id="finger">
-                        <div id="sword">
-                            <div id="handle"></div>
-                            <div id="pommel"></div>
-                            <div id="blade"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="footer">
-            <div id="leftLeg">
-                <div id="leftFoot">
-                </div>
-            </div>
-            
-            <div id="rightLeg">
-                <div id="rightFoot">
-                </div>
-                <div id="rightFoot2">
-                </div>
-            </div>
-        </div>
-        
-        <div id="sleep">
-            Zzz
-        </div>
-    </div>

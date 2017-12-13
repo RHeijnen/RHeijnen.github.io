@@ -28,14 +28,10 @@ $(function() {
         $("#container").css("width", 12000);
         $("body").css({"height": screenHeight});
         $("html").css("height", screenHeight);
-        $("#slideshow").css({
-            "height" : (screenHeight/100)*100,
-            "width"  : (screenWidth/100)*100,
-        })
         $(".section").css({
             "height" : (screenHeight/100)*70,
             "width"  : (screenWidth/100)*80,
-            "margin-top":(screenHeight/100)*20,
+            "margin-top":(screenHeight/100)*15,
             "margin-left":(screenWidth/100)*5,
         })
         $("#fillerL").css({
@@ -53,20 +49,18 @@ $(function() {
         $("#cameraBtn").css({
             "height" : (screenHeight/100)*10,
             "width"  : (screenWidth/100)*15,
-            "margin-top":(screenHeight/100)*3,
-            "margin-left": (screenWidth/100)*85,
+            "margin-top":(screenHeight/100)*1,
+            "margin-left": (screenWidth/100)*80,
         })
         $("#infoBtn").css({
             "height" : (screenHeight/100)*10,
             "width"  : (screenHeight/100)*10,
-            "margin-top":(screenHeight/100)*3,
-            "margin-left": (screenWidth/100)*3,
+            "margin-top":(screenHeight/100)*1,
+            "margin-left": (screenWidth/100)*1,
         })
         $(".subsection").css({
             "margin-top":  (screenHeight/100) * 50,
             "margin-left": (screenWidth/100) * 25,
-            "background-size": '100%',
-            "background-repeat": 'no-repeat',
         })
         $(".subsectionTran").css({
             "margin-left": (screenWidth/100) * 5,
@@ -78,7 +72,8 @@ $(function() {
         });
         $("#modalR").css({
             "margin-right": '-50%',
-            "width"      : (screenHeight/100) * 75,
+            
+            "width"      : (screenHeight/100) * 50,
             "height"     : (screenHeight/100) *100,
         });
 
@@ -90,14 +85,14 @@ $(function() {
             var elem = document.getElementById("myBar");   
             var width = 20;
 
-            var asyncload = function(callback){
+            var doSomething = function(callback){
                 var id = setInterval(frame, 10);
                 function frame() {
                   if (width >= 100) {
                     clearInterval(id);
                     // callback;
                     loadingElement.hide();
-                    $('#slideshow').stop().animate({
+                    $('html, body').stop().animate({
                         scrollLeft: ((screenWidth/100)*60) - (screenWidth/100)*15
                     }, 1000,'easeInOutExpo');
     
@@ -112,18 +107,16 @@ $(function() {
                   }
                 }
             }
-            asyncload()
+            doSomething()
             
          }, 2000);
     }init();
-
     var playBtn = $("#playInfo")
     playBtn.click(function(){
         console.log("launching the story of: "+selectedCharacter+ " || playID: "+selectedCharacterID)
         var stringBuilderUrl = $(location).attr('href').replace("index.html","stories/"+selectedCharacter+"/index.html")
         window.location.href = stringBuilderUrl;
     });
-
     var backgroundTransition = function(page){
         // replace by adding and removing css classes that set the opacity
         console.log("bg"+page)
@@ -132,10 +125,10 @@ $(function() {
                 $("#bg"+i).animate({ opacity: 1 }, { duration: 1000 });
             }else{
                 $("#bg"+i).animate({ opacity: 0 }, { duration: 1000 });
+
             }
         }
     }
-
     var pageTransition = function(page){
         backgroundTransition(page);
         // wtf waarom werkt het niet meer op element positie opeens -_- dan maar switch en hardcoded idgaf
@@ -166,7 +159,7 @@ $(function() {
             case 3: scrollpoint = defaultPos+(margins*page)       ;break;
         }
 
-        $('#slideshow').stop().animate({
+        $('html, body').stop().animate({
             scrollLeft: scrollpoint
         }, 1000,'easeInOutExpo'); 
 
@@ -206,19 +199,13 @@ $(function() {
     }
 
     // $('*').bind('touchmove', false);
-    $(document).bind('touchmove',function(e){
-        // todo make better navigation logic
-    });
-
     // ^ removes touching alltogether
     $(document).bind('touchend', function (e){
         var new_xCoord = e.originalEvent.changedTouches[0].clientX;
-        if(xCoord > new_xCoord+15){
+        if(xCoord > new_xCoord+5){
             slide_right();
-            return
         }else if(xCoord < new_xCoord-5){
             slide_left();
-            return
         }
         // event.preventDefault();
         // return false;
@@ -259,43 +246,22 @@ $(function() {
             $("#modalR").css({
                 "margin-right": '0%',
             });
-
         }, 100);
-        $("#slideshow").css({
-            // "margin-right": '2.5%',
-            // "margin-top": '2%',
-            "-webkit-transform": "scale(0.1)", 
-            "-ms-transform": "scale(0.1)",
-            "-moz-transform": "scale(0.1)",
-            "transform": "scale(0.1)"
-        });
     })
 
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-                $("#modalL").css({
-                    "margin-left": '-90%',
-                });
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                    $("#modalL").css({
+                        "margin-left": '-50%',
+                    });
 
-                $("#modalR").css({
-                    "margin-right": '-90%',
-                });
-                $("#slideshow").css({
-                    // "margin-right": '2.5%',
-                    // "margin-top": '2%',
-                    "-webkit-transform": "scale(1)", 
-                    "-ms-transform": "scale(1)",
-                    "-moz-transform": "scale(1)",
-                    "transform": "scale(1)"
-                });
-                setTimeout(function(){ 
-                    modal.style.display = "none";
-
-                }, 1000);
-                
+                    $("#modalR").css({
+                        "margin-right": '-50%',
+                    });
+            }
         }
-    }
 
 
 

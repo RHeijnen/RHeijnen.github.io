@@ -20,7 +20,7 @@ html, body {
     font-size: 34px;
     font-style: italic;
     letter-spacing:-1px;
-    background: url('../resources/02_BG_Dory.png');
+    background: url('../resources/01_BG_Moana.png');
     overflow: hidden;
 
 }
@@ -64,12 +64,12 @@ html, body {
 }
 #bg0{
     z-index: -1;
-    background: url("../resources/02_BG_Dory.png");
+    background: url("../resources/01_BG_Moana.png");
     opacity: 1;
 }
 #bg1{
     z-index: -1;
-    background: url("../resources/01_BG_Moana.png");
+    background: url("../resources/02_BG_Dory.png");
     opacity: 0;
 }
 #bg2{
@@ -84,17 +84,17 @@ html, body {
 }
 #cameraBtn{
     position:absolute;
+    background: white;
     z-index : 1;
+        border-radius: 50px;
     font-family:Georgia;
     font-size: 34px;
     font-style: italic;
     letter-spacing:-1px;
 }
-#cameraicon{
-    width: 90%;
-}
 #infoBtn{
     position:absolute;
+    background: white;
     z-index : 1;
     border-radius: 50%;
     font-family:Georgia;
@@ -102,41 +102,26 @@ html, body {
     font-style: italic;
     letter-spacing:-1px;
 }
-
-#slideshow{
-    -moz-transition: 1s ease;
-    transition: 1s ease;
-    -webkit-transition: all 2000ms ease-in;
-    -ms-transition: all 2000ms ease-in;
-    -moz-transition: all 2000ms ease-in;
-    transition: all 2000ms ease-in;
-}
 #section0{
-        background: url("../resources/dorybg.png");
+        background: url("../resources/01_B_Moana.png");
         background-size: 100%;
-        background-repeat: no-repeat;
-        -webkit-transition: zoom 1s ease;
-        -moz-transition: 1s ease;
-        transition: 1s ease;
-        -webkit-transition: all 2000ms ease-in;
-        -ms-transition: all 2000ms ease-in;
-        -moz-transition: all 2000ms ease-in;
-        transition: all 2000ms ease-in;
+        background-repeat: no-repeat
+        /* -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover; */
 }
 #section1{
         background: url("../resources/01_B_Moana.png");
-        background-size: 100%;
-        background-repeat: no-repeat
+
 }
 #section2{
         background: url("../resources/01_B_Moana.png");
-        background-size: 100%;
-        background-repeat: no-repeat
+
 }
 #section3{
         background: url("../resources/01_B_Moana.png");
-        background-size: 100%;
-        background-repeat: no-repeat
+
 }
 .section{   
     margin:0px;
@@ -153,43 +138,32 @@ html, body {
     height:100%;
 }
 #modalL{
+    background:black;
+    border-right: black;
     float:left;
     margin-left:-50%;
     transition: margin 2500ms;
-    background-image: url("../resources/dorybground.png");
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    opacity: 0.8;
+    
 }
-#modalR{    
+#modalR{
+    background:black;
+    border-right: black;
+    
     float:right;
     margin-right:-50%;
     transition: margin 2500ms;
+    opacity: 0.8;
     
-}
-#charLogo{
-    margin-left:25%;
-    margin-top:35%;
 }
 #selectedChar{
-    margin-left:29%;
-    padding-top: 20%;    
+    margin-left:35%;
+    margin-top:55%;
+    opacity: 1;
     
 }
-#charDescription{
-    margin-left:50%;
-    margin-top: 15%; 
-}
-#others{
-
-    margin-top: 28%;
-    width: auto;
-    height: 69%;
-    margin-left: -52%;
-}
 #playInfo{
-    margin-left:25%;
+    margin-left:10%;
     margin-right:10%;
     border-radius: 50px;
     background: blue;
@@ -362,7 +336,8 @@ html, body {
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */

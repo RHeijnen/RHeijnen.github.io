@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0036)http://127.0.0.1:5500/app/index.html -->
+<html style="height: 551px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>V01</title>
+        
+        <meta name="description" content="Website Horizontal Scrolling with jQuery">
+        <meta name="keywords" content="jquery, horizontal, scrolling, scroll, smooth">
+        
+        <!--<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" media="screen"/>-->
+        
+        <script type="text/javascript" src="./V01_files/jquery.min.js"></script>		
+            <!-- <script> 
+                $(function(){
+                    $("#ds3").load("css/ds3.html"); 
+                });
+            </script>  -->
+
+    <link rel="stylesheet" href="./V01_files/style.css" type="text/css" media="screen"><link rel="stylesheet" href="./V01_files/ds3.css" type="text/css" media="screen"></head>
+    <body style="height: 551px; overflow-x: scroll;">
+        <div id="loadingScreen" style="display: none;"> 
+            <!-- <div id="ds3"> </div> -->
+            <div id="loadingIconContainer"> <div id="logo"> <img src="./V01_files/Disney_Logo.png">  </div>
+                <div id="myBar" class="w3-container w3-green w3-center" style="width: 100%; height: 15%;">&nbsp;</div>
+            </div>
+        </div>
+            <div id="bg0" class="bg" style="opacity: 1;"></div>
+            <div id="bg1" class="bg" style="opacity: 0;"></div>
+            <div id="bg2" class="bg" style="opacity: 0;"></div>
+            <div id="bg3" class="bg" style="opacity: 0;"></div>
+            <div id="infoBtn" style="height: 55.1px; width: 55.1px; margin-top: 5.51px; margin-left: 9.8px;"> 
+                i
+            </div>
+            <div id="cameraBtn" style="height: 55.1px; width: 147px; margin-top: 5.51px; margin-left: 784px;">
+                <!--[[fontawesomecamera]]--> 15/42
+            </div>
+        <div id="container" style="width: 12000px;"> 
+                <div id="fillerL" style="height: 385.7px; width: 490px; margin-top: 82.65px; margin-left: 0px;"></div>
+                <div class="section" id="section0" style="height: 385.7px; width: 784px; margin-top: 82.65px; margin-left: 49px;">
+                    <div class="subsection" id="sub0" style="margin-top: 275.5px; margin-left: 0px;"> 
+                        <div class="charIcon" id="0"> <img src="./V01_files/dory.png" alt=""> </div>
+                        <div class="charIcon" id="1"> <img src="./V01_files/dory.png" alt=""> </div>
+                        <div class="charIcon" id="2"> <img src="./V01_files/dory.png" alt=""> </div>
+                        <div class="charIcon" id="3"> <img src="./V01_files/dory.png" alt=""> </div>
+                        <p>
+                        </p>
+                    </div>
+                </div>
+                <div class="section" id="section1" style="height: 385.7px; width: 784px; margin-top: 82.65px; margin-left: 49px;">
+                        <div class="subsection" id="sub1" style="margin-top: 275.5px; margin-left: 0px;"> 
+                            <div class="charIcon" id="4"> <img src="./V01_files/dory.png" alt=""> </div>
+                            <div class="charIcon" id="5"> <img src="./V01_files/dory.png" alt=""> </div>
+                            <div class="charIcon" id="6"> <img src="./V01_files/dory.png" alt=""> </div>
+                            <div class="charIcon" id="7"> <img src="./V01_files/dory.png" alt=""> </div>
+                            <p>
+                            </p>
+                        </div>
+                </div>
+                <div class="section" id="section2" style="height: 385.7px; width: 784px; margin-top: 82.65px; margin-left: 49px;"> 
+                        <div class="subsection" style="margin-top: 275.5px; margin-left: 245px;"> 
+                            <div class="charIcon" id="8"> <img src="./V01_files/dory.png" alt=""> </div>
+                            <div class="charIcon" id="9"> <img src="./V01_files/dory.png" alt=""> </div>
+                            <div class="charIcon" id="10"> <img src="./V01_files/dory.png" alt=""> </div>
+                            <div class="charIcon" id="11"> <img src="./V01_files/dory.png" alt=""> </div>
+                            <p>
+                            </p>
+                        </div>
+                </div>
+                <div class="section" id="section3" style="height: 385.7px; width: 784px; margin-top: 82.65px; margin-left: 49px;"> 
+                        <div class="subsection" style="margin-top: 275.5px; margin-left: 245px;"> 
+                            <div class="charIcon" id="12"> <img src="./V01_files/dory.png" alt=""> </div>
+                            <div class="charIcon" id="13"> <img src="./V01_files/dory.png" alt=""> </div>
+                            <div class="charIcon" id="14"> <img src="./V01_files/dory.png" alt=""> </div>
+                            <div class="charIcon" id="15"> <img src="./V01_files/dory.png" alt=""> </div>
+                            <p>
+                            </p>
+                        </div>
+                </div>
+                <div id="fillerR" style="height: 385.7px; width: 588px; margin-top: 82.65px; margin-left: 147px;"></div>
+        </div>
+
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+                <div id="modalL" style="margin-left: -50%; width: 275.5px; height: 551px;">
+                    <img id="selectedChar">
+                    <div id="playInfo"> Play </div>
+                </div>
+
+                <div id="modalR" style="margin-right: -50%; width: 275.5px; height: 551px;">
+
+                </div>
+            </div>     
+
+        
+
+        <!-- JavaScript -->
+        <script type="text/javascript" src="./V01_files/jquery.min.js"></script>		
+        <script type="text/javascript" src="./V01_files/jquery.easing.1.3.js"></script>
+        <script type="text/javascript" src="./V01_files/app.js"></script>
+    <!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function() {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					head.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					head.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function(msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if(sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer'))
+			{
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>
