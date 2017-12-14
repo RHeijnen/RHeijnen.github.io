@@ -6,17 +6,17 @@ window.onload = function() {
     var middleOfScreen          = parseInt((canvas.width /2).toFixed(0));
     var thirdOfScreen           = parseInt((canvas.width /3).toFixed(0));
     var sixthOfScreen           = thirdOfScreen / 2;
-    var playerPositionHeight    = canvas.height - 50
+    var playerPositionHeight    = canvas.height - 170
     var waitForAnim             = 0;
     var index                   = 10;
     var entityContainer         = [];
     var debugTextures           = false;
     var animSpeed               = 1;
-    var movement                = 2;
+    var movement                = 3;
     var colorColissionData;
-    var simpleColissionMargins  = 15;
+    var simpleColissionMargins  = 0;
     var score                   = 0;
-    var target                  = 10; //targetscore the player has to reach
+    var target                  = 1; //targetscore the player has to reach
     var playerPosition          = 1;
     var scaling                 = canvas.height / movement;
     var currentImgWidth         = 0;
@@ -37,10 +37,6 @@ window.onload = function() {
         };
     })();
 
-    function init(){
-        $("sig-canvas").css('background-image', 'url(' + "./img/G5_03_BG.png"+ ')')
-    } init();
-
     var drawDebug = function(){
         context.beginPath();
         context.moveTo(thirdOfScreen, 0);
@@ -54,7 +50,7 @@ window.onload = function() {
         context.stroke();
     };
 
-    function createEntity(_id,_startX,_startY,moveFunc,_texture, rescale){
+    function createEntity(_id,_startX,_startY,moveFunc,_texture, rescale, colissionFreedom){
         entityContainer.push( {
             id          : _id,
             startPOS_X  : _startX,
@@ -64,7 +60,7 @@ window.onload = function() {
             d_width     : 0,
             d_height    : 0,
             hitpoints   : 1,
-            colissionFreedom : false,
+            colissionFreedom : colissionFreedom,
             colided     : false,
             move        : moveFunc,
             texture     : new Image(),
@@ -90,10 +86,7 @@ window.onload = function() {
                     this.originalWidth = this.width
                     this.originalHeight = this.height
 
-                    this.offset = this.originalWidth / 3
-
                     this.padding = (this.originalWidth - currentImgWidth) / 2
-                    console.log("padding: " + this.padding)
                     // in order to start drawing from the middle of an image, instead of the top corner,
                     // we /2 the length and width and reduce that from the requested starting co-ords
                     if(rescale){
@@ -110,40 +103,6 @@ window.onload = function() {
         })
     }
 
-    function colorColission(x,y,xSize,ySize){
-        for(var x = 0; x < entityContainer.length;x++){
-            for(var j = 0; j < entityContainer.length;j++){
-                if(!entityContainer[x].colissionFreedom && !entityContainer[j].colissionFreedom){
-                    if(entityContainer[x].id != entityContainer[j].id){
-                        var element1_posX   = entityContainer[x].currentPOS_X;
-                        var element1_posY   = entityContainer[x].currentPOS_Y;
-                        var element1_width  = (entityContainer[x].d_width/2)-simpleColissionMargins;
-                        var element1_height = (entityContainer[x].d_height/2)-simpleColissionMargins;
-                        var element2_posX   = entityContainer[j].currentPOS_X;
-                        var element2_posY   = entityContainer[j].currentPOS_Y;
-                        var element2_width  = (entityContainer[j].d_width/2)-simpleColissionMargins;
-                        var element2_height = (entityContainer[j].d_height/2)-simpleColissionMargins;
-                        if(debugTextures){
-                            context.fillRect(element1_posX-element1_width,element1_posY - element1_height,element1_width*2,element1_height*2);                            
-                        }
-                        var pixelData = context.getImageData(element1_posX-element1_width, element1_posY - element1_height, element1_width*2, element1_height*2);
-                        var pix = pixelData.data
-                        for(var z = 0; z < pix.length;z++){
-                            for(var i = 0 ; i <colorColissionData.length;i++){
-                                if(pix[z][0] == colorColissionData[i][0] 
-                                && pix[z][1] == colorColissionData[i][1]
-                                && pix[z][2] == colorColissionData[i][2]
-                                && pix[z][3] == colorColissionData[i][3]){
-                                    entityContainer[i].colided = true;                                       
-                                }
-                            }
-                        }
-                    }
-                }
-            }                
-        }
-
-    }
     function simpleColission(){
         var entityIDContainer = [];
         for(var i = 0; i < entityContainer.length;i++){
@@ -199,6 +158,7 @@ window.onload = function() {
 
         if(this.currentPOS_Y > canvas.height){
             score++
+            setScore();
             this.currentPOS_Y = 0;   
             this.move = determineMovement()   
             resetScale()      
@@ -218,6 +178,7 @@ window.onload = function() {
         }
         if(this.currentPOS_Y >= canvas.height){
             score++
+            setScore();
             this.currentPOS_X = middleOfScreen
             this.currentPOS_Y = 0
             this.move = determineMovement() 
@@ -239,7 +200,8 @@ window.onload = function() {
             this.currentPOS_X = this.currentPOS_X + horizontalMovement()        
         }
         if(this.currentPOS_Y >= canvas.height){
-            score++            
+            score++  
+            setScore();          
             this.currentPOS_X = middleOfScreen
             this.currentPOS_Y = 0
             this.move = determineMovement()   
@@ -276,7 +238,7 @@ window.onload = function() {
         if(this.currentPOS_X <= playerTargetPosition){
             this.currentPOS_X = this.currentPOS_X + snappingSpeed
         }
-        console.log("Target: " + playerTargetPosition + " current: " + this.currentPOS_X)
+        // console.log("Target: " + playerTargetPosition + " current: " + this.currentPOS_X)
         if(this.currentPOS_X >= playerTargetPosition - 10 && this.currentPOS_X <= playerTargetPosition + 10){
             // console.log("target reached going right")            
             this.move = blank
@@ -294,7 +256,7 @@ window.onload = function() {
         });
           entityContainer[0].currentPOS_X = touch.clientX-25;
           
-        console.log("touch x: " + touch.clientX)
+        // console.log("touch x: " + touch.clientX)
         canvas.dispatchEvent(mouseEvent);
     }, false);
 
@@ -334,7 +296,7 @@ window.onload = function() {
             } else if(currPos <= targetPosition){
                 entityContainer[0].move = movePlayerRight           
             } else {
-                console.log("no need to move")
+                // console.log("no need to move")
             }
         
     }
@@ -367,7 +329,7 @@ window.onload = function() {
     }
 
     function checkStatus(){
-        console.log("Score: " + score)
+        // console.log("Score: " + score)
         if(score == target){
             running = false;
             console.log("winner winner")
@@ -376,9 +338,13 @@ window.onload = function() {
     }
 
     function setUp(){
-        createEntity('0', middleOfScreen, playerPositionHeight, blank,"./img/G5_02_Dory.png", false)
-        createEntity('1', middleOfScreen, 0, moveEnemyMiddle,"./img/G5_01_School.png", true)
-        // createEntity('1', middleOfScreen, 0, moveEnemyMiddle,"./img/dorysmall.png", true)
+        // createEntity('2', middleOfScreen, playerPositionHeight, blank,"./img/G5_04_Oval.png", false, true)
+        // createEntity('3', sixthOfScreen, playerPositionHeight, blank,"./img/G5_04_Oval.png", false, true)
+        // createEntity('4', canvas.width - sixthOfScreen, playerPositionHeight, blank,"./img/G5_04_Oval.png", false, true)   
+
+        createEntity('0', middleOfScreen, playerPositionHeight, blank,"./img/G5_02_Dory.png", false, false)
+        createEntity('1', middleOfScreen, 0, moveEnemyMiddle,"./img/G5_01_School.png", true, false)
+        
         
 
     }setUp(); // run once initialy to setup entities
@@ -400,7 +366,7 @@ window.onload = function() {
         // runs every 'animated itteration'
         if(running){
             for(var x = 0; x < animSpeed; x ++){
-                drawDebug();
+                             
                 checkStatus();
                 // check for colissions
                 simpleColission()
@@ -418,6 +384,7 @@ window.onload = function() {
                 }
                 // setup roster for texture debugging (helps with colission checking)
                 if(debugTextures){
+                    drawDebug();
                     // do it after so we layer it ontop of the entities
                     for(var i = 0; i < entityContainer.length;i++){
                         debugTexturesFunc(i);
@@ -457,6 +424,23 @@ window.onload = function() {
     }, waitForAnim);
 
     function endOverlay(){
-        document.getElementById("my-overlay").style.width = "100%";
+        document.getElementById("my-overlay").style.height = "100%";
     }
+
+    $(".home-button").click(function(){
+        console.log("TODO: home func")
+    });
+
+    $(".back-button").click(function(){
+        console.log("TODO: back func")
+    });
+
+    $(".overlay-continue").click(function(){
+        console.log("TODO: continue func")
+    });
+
+    function setScore(){
+        $(".score-counter").text(score + "/" + target);
+    } setScore();
+    
 }
