@@ -12,11 +12,11 @@ window.onload = function() {
     var entityContainer         = [];
     var debugTextures           = false;
     var animSpeed               = 1;
-    var movement                = 3;
+    var movement                = 2;
     var colorColissionData;
     var simpleColissionMargins  = 0;
     var score                   = 0;
-    var target                  = 1; //targetscore the player has to reach
+    var target                  = 5; //targetscore the player has to reach
     var playerPosition          = 1;
     var scaling                 = canvas.height / movement;
     var currentImgWidth         = 0;

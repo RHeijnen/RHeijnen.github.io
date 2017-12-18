@@ -1,4 +1,10 @@
 html, body{
-    height: 100vh;
+    height: 100%;
     margin: 0;
+}
+
+#sig-canvas{
+    z-index: 1;
+    background-image : url("./img/G4_01_BG.png");
+    background-size: cover;
 }
