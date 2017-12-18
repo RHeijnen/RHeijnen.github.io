@@ -263,6 +263,7 @@ window.addEventListener('load', function(){ // on page load
     }
     canvasReset();
     function animateDory(){
+        
         canvas.forEachObject(function(o){ 
             var elementInfo = o._element.currentSrc
             if( elementInfo.indexOf("dory") !== -1){
