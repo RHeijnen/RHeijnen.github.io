@@ -136,9 +136,6 @@ $(function() {
         window.location.href = stringBuilderUrl;
     });
 
-    $("#gameTest0").click(function(){
-        window.location.href = $(location).attr('href').replace("index.html","../proj/g4/game4.html")
-    })
     var backgroundTransition = function(page){
         // replace by adding and removing css classes that set the opacity
         console.log("bg"+page)
