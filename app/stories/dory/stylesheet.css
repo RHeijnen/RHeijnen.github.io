@@ -15,7 +15,7 @@ html, body {
     display:inline-block;
     height:100%;
     width:100%;
-    background-image: url("dory1.jpg");
+    background-image: url("dory1.png");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -56,4 +56,63 @@ html, body {
 }
 #overlay{
 
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 5; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+
+}
+#splashModal{
+    display: block;
+    background-image: url("splash.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+#game1modal{
+
+    width: 100%;
+    height: 100%;
+    background: white;
+}
+#decisionModal{
+    background-image: url("dorysplit.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#decisionA{
+    position:absolute;
+    width:100%;
+    height:50%;
+}
+#decisionB{
+    position:absolute;
+    width:100%;
+    height:50%;
+    margin-top: 28%;
+}
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
