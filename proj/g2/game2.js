@@ -1,72 +1,77 @@
-window.onload = function() {
-    // make dial draggable
-Draggable.create(".dial", {
-    type:"rotation",
-    throwProps:true
+window.onload = function(){
+  var plus1 = document.getElementById("plus1");
+  var plus2 = document.getElementById("plus2");
+  var plus3 = document.getElementById("plus3");
+
+  var min1 = document.getElementById("min1");
+  var min2 = document.getElementById("min2");
+  var min3 = document.getElementById("min3");
+
+  var number1Value = 0;
+  var number2Value = 0;
+  var number3Value = 0;
+
+  var targetCombination = [3, 5, 3]
+  
+  plus1.addEventListener("touchstart", function (e) {  
+    //increase distance by tapping
+    number1Value = plus(number1Value)
+    $("#number1").text(number1Value);
   });
-  // values 40 or above will be set to 0
-  const combo = [30, 5, 30],
-        findCombo = function(comboArr){
-          let dial = $(".dial"),
-              dialTrans = dial.css("transform"),
-              ticks = 40,
-              tickAngle = 360 / ticks,
-              numOffset = 0.5, // how far red arrow can be from number
-              // break down matrix value of dial transform and get angle
-              matrixVal = dialTrans.split('(')[1].split(')')[0].split(','),
-              cos1 = matrixVal[0],
-              sin = matrixVal[1],
-              negSin = matrixVal[2],
-              cos2 = matrixVal[3],
-              angle = Math.round(Math.atan2(sin, cos1) * (180 / Math.PI)) * -1;
-          // convert negative angles to positive
-          if (angle < 0) {
-            angle += 360;
-          }
-          // check numbers found, stop loop if at first number not found
-          for (let i = 0; i < comboArr.length; ++i) {
-            if (!$(".num" + (i + 1)).hasClass("found")) {
-              if (angle > (comboArr[i] - numOffset) * tickAngle &&
-                angle < (comboArr[i] + numOffset) * tickAngle) {
-                // make numbers green when found
-                $(".num" + (i + 1)).addClass("found");
-                // on unlock
-                if (i == comboArr.length - 1) {
-                  $(".shackle").addClass("unlocked");
-                  $(".top").addClass("pivot1");
-                  $(".inner").addClass("pivot2");
-                  $(".left").addClass("moveRight");
-                  $(".dentL, .dentR").addClass("moveLeft");
-                  // then lock again
-                  setTimeout(function() {
-                    $(".shackle").removeClass("unlocked");
-                    $(".top").removeClass("pivot1");
-                    $(".inner").removeClass("pivot2");
-                    $(".left").removeClass("moveRight");
-                    $(".dentL, .dentR").removeClass("moveLeft");
-                    for (let j = 0; j < combo.length; ++j) {
-                      $(".num" + (j + 1)).removeClass("found");
-                    }
-                  }, 2400);
-                }
-            }
-              break;
-            }
-        }
-      };
-  // show combination to user
-  for (let i = 0; i < combo.length; ++i) {
-    if (combo[i] >= 40) {
-      combo[i] = 0;
+
+  plus2.addEventListener("touchstart", function (e) {  
+    //increase distance by tapping
+    number2Value = plus(number2Value)
+    $("#number2").text(number2Value);    
+  });
+
+  plus3.addEventListener("touchstart", function (e) {  
+    //increase distance by tapping
+    number3Value = plus(number3Value)
+    $("#number3").text(number3Value);    
+  });
+
+  min1.addEventListener("touchstart", function (e) {  
+    //increase distance by tapping
+    number1Value = minus(number1Value)
+    $("#number1").text(number1Value);
+  });
+
+  min2.addEventListener("touchstart", function (e) {  
+    //increase distance by tapping
+    number2Value = minus(number2Value)
+    $("#number2").text(number2Value);
+  });
+
+  min3.addEventListener("touchstart", function (e) {  
+    //increase distance by tapping
+    number3Value = minus(number3Value)
+    $("#number3").text(number3Value);
+  });
+
+  function plus(number){
+    if(number == 9){
+      return 0;
+    }else{
+      return number + 1
     }
-    $(".num" + (i + 1)).html(combo[i]);
   }
-  // dial interaction (mouse)
-  $(".dial").on("click",function(){
-      findCombo(combo);
-  });
-  // dial interaction (touch)
-  $(".dial").on("touchend",function(){
-      findCombo(combo);
-  });
+
+  function minus(number){
+    if(number == 0){
+      return 9;
+    }else{
+      return number - 1
+    }
+  }
+
+  function checkCombination(){
+    var currentCombination = [number1Value, number2Value, number3Value]
+    var i = targetCombination.length;
+    while (i--) {
+        if (currentCombination[i] !== targetCombination[i]) return false;
+    }
+    console.log("combination correct") 
+    return true;
+  }
 }

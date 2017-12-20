@@ -27,6 +27,21 @@ window.onload = function(){ // on page load
         tapCount++
     });
 
+    function draw(){
+
+    }
+
+    function drawControls(){
+        var left = document.getElementById('leftTap');
+        var right = document.getElementById('rightTap');
+
+        var imgWidth = left.width / 2
+        var padding = 50
+        var paddingRight = canvas.width - imgWidth - padding
+        context.drawImage(left, padding, canvas.height / 2, imgWidth, left.height/2);
+        context.drawImage(right, paddingRight,  canvas.height / 2, imgWidth, right.height / 2);
+    } drawControls()
+
     function drawEnemy(){
         var img = new Image();
         img.onload = function () {
@@ -59,6 +74,7 @@ window.onload = function(){ // on page load
         var myTimer = setInterval(function(){
             context.clearRect(0, 0, canvas.width, canvas.height);
             drawEnemy()
+            drawControls()
             scale = scale + 0.1
 
             //timer will go down every second

@@ -1,67 +1,58 @@
-<script type="text/javascript" src="game2.js"></script>
-<link rel="stylesheet" type="text/css" href="game2.css">
-
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta name="viewport" content="user-scalable=no" />
+    
+  <script src="game2.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="game2.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+  
+</head> 
 <body>
-    <div class="container">
-        <div class="lock">
-          <div class="shackle">
-            <div class="top">
-              <div class="inner"></div>
-            </div>
-            <div class="left">
-              <div class="dentL"></div>
-              <div class="dentR"></div>
-            </div>
-            <div class="right"></div>
-          </div>
-          <div class="arrow"></div>
-        </div>
-        <div class="dial">
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-          <div class="tick"></div>
-        </div>
-      </div>
-      <div class="combo"><span class="num1"></span> <span class="num2"></span> <span class="num3"></span> 
-      </div>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.5/TweenMax.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.5/utils/Draggable.min.js"></script>
-</body>
+
+  <div id="buttonContainer">
+    <div id="leftRow" class="buttonRow">
+      <img src="./img/G6_03_Plus.png" class="plus" id="plus1">
+      <p class="number" id="number1">0</p>
+      <img src="./img/G6_04_Min.png" class="min" id="min1">
+    </div>
+      
+
+    <div id="middleRow" class="buttonRow">
+      <img src="./img/G6_03_Plus.png" class="plus" id="plus2">
+      <p class="number" id="number2">0</p>
+      <img src="./img/G6_04_Min.png" class="min" id="min2">
+    </div>
+
+    <div id="rightRow" class="buttonRow">
+      <img src="./img/G6_03_Plus.png" class="plus" id="plus3">
+      <p class="number" id="number3">0</p>
+      <img src="./img/G6_04_Min.png" class="min" id="min3">
+    </div>
+
+  </div>
+  <!-- Navigation buttons etc -->
+  <div class="home-button">
+    <span class="glyphicon glyphicon-home"></span>
+  </div>
+
+  <div class="back-button">
+    <!-- <span class="glyphicon glyphicon-chevron-left"></span> -->
+    <img class="back-arrow" src="../img/02_Icon_Back.svg">
+  </div>
+
+  <!-- Overlay content after completing game -->
+  <div id="my-overlay" class="overlay">
+    <div class="overlay-content">
+        <h2>Goed gedaan!</h2></br>
+        <p class="overlay-text">filler
+        </p>
+
+        <div class="overlay-continue">Ga verder!</div>
+    </div>
+  </div>
+</html>

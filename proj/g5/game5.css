@@ -107,20 +107,19 @@ html, body {
     color: black;
     /* padding-right: 2px; */
 }
-
-.score-counter{
-    z-index: 2;       
-    position: absolute;
-    height: 60px;
-    width: 60px;
-    right: 25px;
-    top: 25px;
-    color: white;
-    border-radius: 30px;
-    background-color: rgba(0, 0, 0, 0.6);
-    font-size: 22px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* 
+#leftTap{
+    z-index: 2;
+    width: 20px;
+    height: 20px;
+    left: 10%;
+    top: 50%;
 }
+
+#rightTap{
+    z-index: 2;    
+    width: 50%;
+    height: 20px;
+    left: 10%;
+    top: 50%;
+} */
