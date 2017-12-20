@@ -1,7 +1,14 @@
 html, body {
   height: 100%;
   width: 100%;
-  margin: 0;
+  margin: 0; 
+  background-image : url("./img/G6_02_BG.png");
+  background-size:  cover;
+}
+
+#bodyContainer{
+  height: 100%;
+  width: 100%;
   background-image : url("./img/G6_01_BG.png");
   background-size:  cover;
 }

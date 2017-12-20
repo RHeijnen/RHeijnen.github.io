@@ -12,41 +12,48 @@ window.onload = function(){
   var number3Value = 0;
 
   var targetCombination = [3, 5, 3]
+  var bgUrl = "./img/G6_02_BG.png"
   
   plus1.addEventListener("touchstart", function (e) {  
     //increase distance by tapping
     number1Value = plus(number1Value)
     $("#number1").text(number1Value);
+    checkStatus()
   });
 
   plus2.addEventListener("touchstart", function (e) {  
     //increase distance by tapping
     number2Value = plus(number2Value)
-    $("#number2").text(number2Value);    
+    $("#number2").text(number2Value);  
+    checkStatus()  
   });
 
   plus3.addEventListener("touchstart", function (e) {  
     //increase distance by tapping
     number3Value = plus(number3Value)
     $("#number3").text(number3Value);    
+    checkStatus()
   });
 
   min1.addEventListener("touchstart", function (e) {  
     //increase distance by tapping
     number1Value = minus(number1Value)
     $("#number1").text(number1Value);
+    checkStatus()
   });
 
   min2.addEventListener("touchstart", function (e) {  
     //increase distance by tapping
     number2Value = minus(number2Value)
     $("#number2").text(number2Value);
+    checkStatus()
   });
 
   min3.addEventListener("touchstart", function (e) {  
     //increase distance by tapping
     number3Value = minus(number3Value)
     $("#number3").text(number3Value);
+    checkStatus()  
   });
 
   function plus(number){
@@ -65,13 +72,21 @@ window.onload = function(){
     }
   }
 
+  function checkStatus(){
+    if(checkCombination()){
+      $('#bodyContainer').css('background','transparent');
+      setInterval(function(){
+        document.getElementById("my-overlay").style.height = "100%";
+      },2000);
+      console.log("combination correct") 
+    }
+  }
   function checkCombination(){
     var currentCombination = [number1Value, number2Value, number3Value]
     var i = targetCombination.length;
     while (i--) {
         if (currentCombination[i] !== targetCombination[i]) return false;
-    }
-    console.log("combination correct") 
+    }    
     return true;
   }
 }
