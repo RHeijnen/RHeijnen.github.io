@@ -6,6 +6,91 @@ $(function() {
     var scrollable;
     var xCoord;
     var modal = document.getElementById('myModal');
+    var cameraCanvas = document.getElementById("cameraCanvas")
+    var ctx = cameraCanvas.getContext('2d');
+    var image = document.getElementById('imgWorkaround');
+    var video = document.querySelector('video');
+    var image = document.querySelector('img');
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+    window.URL = window.URL || window.webkitURL;
+
+    if (navigator.getUserMedia) {
+        navigator.getUserMedia({ video: true,audio:false},
+          function(stream) {
+             video.src = window.URL.createObjectURL(stream);
+             video.onloadedmetadata = function(e) {
+               video.play();
+             };
+          },
+          function(err) {
+             console.log("The following error occured: " + err.name);
+          }
+       );
+    } else {
+       console.log("getUserMedia not supported");
+    }
+    $("#snapshot").click(function(){
+        var cw = 200;
+        var ch = 200;
+        ctx.drawImage(video, 0, 0, cw, ch, 0, 0, cw / 2, ch / 3);
+        image.src = cameraCanvas.toDataURL();
+        image.height = ch;
+        image.width = cw;
+        sendPic(image.src)
+    });
+
+    var sendPic = function(_input){
+        function b64toBlob(dataURI) {
+            // convert base64 to raw binary data held in a string
+            // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+            var byteString = atob(dataURI.split(',')[1]);
+         
+            // separate out the mime component
+            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+         
+            // write the bytes of the string to an ArrayBuffer
+            var ab = new ArrayBuffer(byteString.length);
+            var ia = new Uint8Array(ab);
+            for (var i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+         
+            // write the ArrayBuffer to a blob, and you're done
+            var bb = new Blob([ab]);
+            return bb;
+        }
+
+        var reader = new FileReader();
+        var xhr = new XMLHttpRequest();           
+        reader.readAsDataURL(b64toBlob(_input));
+        reader.addEventListener("load", function () {
+
+            var b64Data = b64EncodeUnicode(reader.result)
+            // b64 = reader.result;
+            xhr.open("GET","http://188.166.18.229/cmdline?img="+b64Data ,true);
+            xhr.send();          
+        }, false);
+
+    
+            xhr.addEventListener("readystatechange", processRequest, false);
+
+            // xmlhttp.open("GET","http://188.166.18.229/cmdline?img=1" ,true);
+
+            // var url = endpoint + formatParams(params)
+            // http.send(url);
+            function processRequest(e) {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    try{
+                        var response = JSON.parse(xhr.responseText);
+                        console.log(response);
+                    }catch(e){
+                        console.log(xhr.responseText)
+                    }
+
+                }
+            }
+        }
+
     var selectedCharacterID = 0;
     var selectedCharacter;
     // var modalL = document.getElementById();
@@ -22,6 +107,9 @@ $(function() {
         // workaround fullscreen method with extreme width to setup horizontal page
         var screenHeight = $( window ).height();
         var screenWidth  = $( window ).width();
+        cameraCanvas.width  = screenHeight/3
+        cameraCanvas.height = screenWidth/3
+
         configObject.screenHeight = screenHeight;
         configObject.screenWidth = screenWidth;
 
@@ -74,12 +162,12 @@ $(function() {
             "margin-top":(screenHeight/100)*3,
             "margin-left": (screenWidth/100)*3,
         })
-        $(".subsection").css({
-            "margin-top":  (screenHeight/100) * 50,
-            "margin-left": (screenWidth/100) * 25,
-            "background-size": '100%',
-            "background-repeat": 'no-repeat',
-        })
+        // $(".subsection").css({
+        //     "margin-top":  (screenHeight/100) * 25,
+        //     "margin-left": (screenWidth/100) * 25,
+        //     "background-size": '100%',
+        //     "background-repeat": 'no-repeat',
+        // })
         $(".subsectionTran").css({
             "margin-left": (screenWidth/100) * 5,
         })
@@ -93,6 +181,11 @@ $(function() {
             "width"      : (screenHeight/100) * 75,
             "height"     : (screenHeight/100) *100,
         });
+        $("#cameraFeedback").css({
+            "width"      : (screenWidth/100) * 50,
+            "margin-left": (screenWidth/100) * 5,
+            "border-radius": "25px"
+        })
 
         setTimeout(function(){ 
             var loadingElement = $("#loadingScreen");
@@ -113,9 +206,9 @@ $(function() {
                         scrollLeft: ((screenWidth/100)*60) - (screenWidth/100)*15
                     }, 1000,'easeInOutExpo');
     
-                    $(".subsection:first").css({
-                        "margin-left": (screenWidth/100) * 5,
-                    })
+                    // $(".subsection:first").css({
+                    //     "margin-left": (screenWidth/100) * 5,
+                    // })
                   }else {
                     width++; 
                     elem.style.width = width + '%'; 
@@ -125,7 +218,6 @@ $(function() {
                 }
             }
             asyncload()
-            
          }, 2000);
     }init();
 
@@ -274,39 +366,55 @@ $(function() {
         imgRef = imgRef.split(".")
         var selectedCharREF = imgRef[0];
         var selectedCharID = e.currentTarget.id;
-        selectedCharREF = selectedCharREF.replace(" ","");
-        selectedCharacterID  = selectedCharID;
-        selectedCharacter = selectedCharREF;
-        // Get the modal
-        var modal = document.getElementById('myModal');
-        var span = document.getElementsByClassName("close")[0];
-        var selectedChar = document.getElementById("selectedChar")
-        selectedChar.src = "./resources/"+selectedCharREF+".png"
 
-        // $("#modalL").css({
-        //     "margin-left": '-0%',
-        // });
-        // $("#modalR").css({
-        //     "margin-right": '-0%',
-        // });
-        modal.style.display = "block";
-        setTimeout(function(){ 
-            $("#modalL").css({
-                "margin-left": '0%',
-            });
-            $("#modalR").css({
-                "margin-right": '0%',
-            });
 
-        }, 100);
-        $("#slideshow").css({
-            // "margin-right": '2.5%',
-            // "margin-top": '2%',
-            "-webkit-transform": "scale(0.1)", 
-            "-ms-transform": "scale(0.1)",
-            "-moz-transform": "scale(0.1)",
-            "transform": "scale(0.1)"
-        });
+        // workaround to start stuff based on who you click
+        if(selectedCharREF == "moana"){
+
+        }else if(selectedCharREF == "moanaguy"){
+
+        }else if(selectedCharREF == "moanagranny"){
+
+        }else if(selectedCharREF == "moanapig"){
+
+        }else if(selectedCharREF == "frozen1"){
+
+        }else{
+
+            selectedCharREF = selectedCharREF.replace(" ","");
+            selectedCharacterID  = selectedCharID;
+            selectedCharacter = selectedCharREF;
+            // Get the modal
+            var modal = document.getElementById('myModal');
+            var span = document.getElementsByClassName("close")[0];
+            var selectedChar = document.getElementById("selectedChar")
+            selectedChar.src = "./resources/"+selectedCharREF+".png"
+    
+            // $("#modalL").css({
+            //     "margin-left": '-0%',
+            // });
+            // $("#modalR").css({
+            //     "margin-right": '-0%',
+            // });
+            modal.style.display = "block";
+            setTimeout(function(){ 
+                $("#modalL").css({
+                    "margin-left": '0%',
+                });
+                $("#modalR").css({
+                    "margin-right": '0%',
+                });
+    
+            }, 100);
+            $("#slideshow").css({
+                // "margin-right": '2.5%',
+                // "margin-top": '2%',
+                "-webkit-transform": "scale(0.1)", 
+                "-ms-transform": "scale(0.1)",
+                "-moz-transform": "scale(0.1)",
+                "transform": "scale(0.1)"
+            });
+        }
     })
 
     // When the user clicks anywhere outside of the modal, close it
@@ -334,6 +442,15 @@ $(function() {
         }
     }
 
-
+// used for camera data encoding
+function b64EncodeUnicode(str) {
+    // first we use encodeURIComponent to get percent-encoded UTF-8,
+    // then we convert the percent encodings into raw bytes which
+    // can be fed into btoa.
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+        function toSolidBytes(match, p1) {
+            return String.fromCharCode('0x' + p1);
+    }));
+}
 
 });

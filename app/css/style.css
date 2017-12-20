@@ -139,20 +139,50 @@ html, body {
         transition: all 2000ms ease-in;
 }
 #section1{
-        background: url("../resources/01_B_Moana.png");
-        background-size: 100%;
-        background-repeat: no-repeat
+    background: url("../resources/moanaB.png");
+    background-size: 100%;
+    background-repeat: no-repeat
 }
 #section2{
-        background: url("../resources/01_B_Moana.png");
+        background: url("../resources/frozenB.png");
         background-size: 100%;
         background-repeat: no-repeat
 }
 #section3{
-        background: url("../resources/01_B_Moana.png");
+        background: url("../resources/incrediB.png");
         background-size: 100%;
         background-repeat: no-repeat
 }
+#section4{
+        background: url("../resources/toyB.png");
+        background-size: 100%;
+        background-repeat: no-repeat
+}
+#section5{
+    background: url("../resources/carsB.png");
+    background-size: 100%;
+    background-repeat: no-repeat
+}
+#section6{
+    background: url("../resources/donaldB.png");
+    background-size: 100%;
+    background-repeat: no-repeat
+}
+#section7{
+    background: url("../resources/cocoB.png");
+    background-size: 100%;
+    background-repeat: no-repeat
+}
+#section8{
+    background: url("../resources/ralphB.png");
+    background-size: 100%;
+    background-repeat: no-repeat
+}
+/* #section8{
+    background: url("../resources/01_B_Moana.png");
+    background-size: 100%;
+    background-repeat: no-repeat
+} */
 .section{   
     margin:0px;
     bottom:0px;
@@ -213,11 +243,47 @@ html, body {
 }
 
 .subsection{
-    margin-top:90%;
+    /* margin-top:90%; */
     transition: margin 2500ms;
-    
+    width:100%;
+}
+#sub0{
+    margin-top:28% 
+}
+#sub1{
+    margin-top: 19%;
 }
 
+#sub2{
+    margin-top: 23%;
+}
+#sub3{
+    margin-top: 23%;
+
+}
+
+#sub4{
+    margin-top: 23%;
+
+}
+#sub5{
+    margin-top: 32%;
+
+}
+
+#sub6{
+    margin-top: 24%;
+
+}
+
+#sub7{
+    margin-top: 22%;
+
+}
+#sub8{
+    margin-top: 21%;
+
+}
 .section h2{
     margin:50px 0px 30px 50px;
 }
