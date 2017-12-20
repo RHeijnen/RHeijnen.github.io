@@ -248,6 +248,8 @@ $(function() {
         // }, 1000); 
         /////////////////////////////////////////////////////////////////////////////////////////////////////
         // console.log($(".subsection").get(page));
+
+
         for(var i = 0; i < maxPage;i++){            
             if(page == i){
                 $("#sub"+i).css({
@@ -270,9 +272,9 @@ $(function() {
             case 3: scrollpoint = defaultPos+(margins*page)       ;break;
         }
 
-        $('#slideshow').stop().animate({
-            scrollLeft: scrollpoint
-        }, 1000,'easeInOutExpo'); 
+        // $('#slideshow').stop().animate({
+        //     scrollLeft: scrollpoint
+        // }, 1000,'easeInOutExpo'); 
 
         //if you want to use one of the easing effects:
         // $('html, body').stop().animate({
@@ -366,24 +368,29 @@ $(function() {
         imgRef = imgRef.split(".")
         var selectedCharREF = imgRef[0];
         var selectedCharID = e.currentTarget.id;
-
+        selectedCharREF = selectedCharREF.replace(" ","");
+        selectedCharacterID  = selectedCharID;
+        selectedCharacter = selectedCharREF;
 
         // workaround to start stuff based on who you click
         if(selectedCharREF == "moana"){
-
+            console.log("starting g1")
+            location.href = './proj/g1/index.html';
         }else if(selectedCharREF == "moanaguy"){
+            console.log("starting g2")
 
         }else if(selectedCharREF == "moanagranny"){
+            console.log("starting g3")
 
         }else if(selectedCharREF == "moanapig"){
+            console.log("starting g4")
 
         }else if(selectedCharREF == "frozen1"){
+            console.log("starting g5")
 
-        }else{
+        }else if(selectedCharREF === "dory"){
 
-            selectedCharREF = selectedCharREF.replace(" ","");
-            selectedCharacterID  = selectedCharID;
-            selectedCharacter = selectedCharREF;
+
             // Get the modal
             var modal = document.getElementById('myModal');
             var span = document.getElementsByClassName("close")[0];
@@ -406,6 +413,8 @@ $(function() {
                 });
     
             }, 100);
+
+
             $("#slideshow").css({
                 // "margin-right": '2.5%',
                 // "margin-top": '2%',
