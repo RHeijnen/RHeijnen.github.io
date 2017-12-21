@@ -7,7 +7,7 @@ window.onload = function() {
     var waitForAnim            = 0;
     var index                  = 10;
     var entityContainer        = [];
-    var debugTextures          = true;
+    var debugTextures          = false;
     var animSpeed              = 2;
     var colorColissionData;
     var movingBubble           = -1;
