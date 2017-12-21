@@ -120,6 +120,7 @@ $(function() {
             "height" : (screenHeight/100)*100,
             "width"  : (screenWidth/100)*100,
         })
+
         $(".section").css({
             "height" : (screenHeight/100)*70,
             "width"  : (screenWidth/100)*80,
@@ -242,7 +243,6 @@ $(function() {
                 })
             }
         }
-        console.log("bg"+page)
         for(var i = 0; i <= maxPage;i ++ ){
             if( i == page){
                 $("#bg"+i).animate({ opacity: 1 }, { duration: 1000 });

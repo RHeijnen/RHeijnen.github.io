@@ -66,47 +66,57 @@ html, body {
     z-index: -1;
     background: url("../resources/02_BG_Dory.png");
     opacity: 1;
-    -webkit-transition: all 2000ms ease-in;
-    -ms-transition: all 2000ms ease-in;
-    -moz-transition: all 2000ms ease-in;
     transition: all 1000ms ease-in;
 }
 #bg1{
     z-index: -1;
     background: url("../resources/01_BG_Moana.png");
     opacity: 0;
-    -webkit-transition: all 2000ms ease-in;
-    -ms-transition: all 2000ms ease-in;
-    -moz-transition: all 2000ms ease-in;
     transition: all 1000ms ease-in;
 }
 #bg2{
     z-index: -1;
     background: url("../resources/03_BG_Frozen.png");
     opacity: 0;
-    -webkit-transition: all 2000ms ease-in;
-    -ms-transition: all 2000ms ease-in;
-    -moz-transition: all 2000ms ease-in;
     transition: all 1000ms ease-in;
 }
 #bg3{
     z-index: -1;
     background: url("../resources/04_BG_Incredibles.png");
     opacity: 0;
-    -webkit-transition: all 2000ms ease-in;
-    -ms-transition: all 2000ms ease-in;
-    -moz-transition: all 2000ms ease-in;
     transition: all 1000ms ease-in;
 }
-/* #bg3{
+#bg4{
     z-index: -1;
-    background: url("../resources/01_BG_Moana.png");
+    background: url("../resources/05_BG_ToyStory.png");
     opacity: 0;
-    -webkit-transition: all 2000ms ease-in;
-    -ms-transition: all 2000ms ease-in;
-    -moz-transition: all 2000ms ease-in;
     transition: all 1000ms ease-in;
-} */
+}
+#bg5{
+    z-index: -1;
+    background: url("../resources/06_BG_Cars.png");
+    opacity: 0;
+    transition: all 1000ms ease-in;
+}
+#bg6{
+    z-index: -1;
+    background: url("../resources/07_BG_DonaldDuck.png");
+    opacity: 0;
+    transition: all 1000ms ease-in;
+}
+#bg7{
+    z-index: -1;
+    background: url("../resources/08_BG_Coco.png");
+    opacity: 0;
+    transition: all 1000ms ease-in;
+}
+#bg8{
+    z-index: -1;
+    background: url("../resources/09_BG_WreckItRalph.png");
+    opacity: 0;
+    transition: all 1000ms ease-in;
+}
+
 #cameraBtn{
     position:absolute;
     z-index : 1;
