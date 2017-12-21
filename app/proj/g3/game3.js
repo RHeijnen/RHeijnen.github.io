@@ -35,9 +35,10 @@ window.addEventListener('load', function(){ // on page load
              touchPoints.push([x,y])
              touchCounter = touchCounter +1;
              var testline = new fabric.Line([-prevX, -prevY, -x, -y], {
-               strokeDashArray: [5, 5],
-               stroke: 'black',
-               selectable :false
+              stroke: '#00A3FE',
+              selectable :false,
+              strokeWidth: 3,
+              strokeLineCap: 'round'
              });
              canvas.add(testline)
              prevX = x;
