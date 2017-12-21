@@ -201,7 +201,8 @@ document.body.addEventListener("touchend", function (e) {
     if(-touchPoints[touchPoints.length-1][0] < 300){
       // console.log(touchPoints[touchPoints.length-1][0])
       location.reload();
-      
+    }else{
+      //winstate
     }
   }
   
@@ -227,4 +228,12 @@ document.body.addEventListener("touchmove", function (e) {
       // });
     }
 
-  });
+    $('#startButton').click(function(e){
+      document.getElementById("explain-overlay").style.height = "0%";
+    });
+
+    function endOverlay(){
+      document.getElementById("my-overlay").style.height = "100%";
+    }
+
+});

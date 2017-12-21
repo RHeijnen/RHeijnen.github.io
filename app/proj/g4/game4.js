@@ -26,7 +26,7 @@ window.onload = function() {
     var playerTargetPosition;
     var snappingSpeed           = 8;
     var running                 = true;
-    
+    var start                   = false;
 
     
     
@@ -300,24 +300,6 @@ window.onload = function() {
             }
         
     }
-    // canvas.addEventListener('keypress', function(e) {
-    //     var keycode = e.keyCode
-    //     var aKey = 97
-    //     var dKey = 115
-    //     var sKey = 100
-        
-    //     if(keycode == aKey){
-    //         playerPosition = 0;
-    //         entityContainer[0].currentPOS_X = sixthOfScreen
-    //     } else if(keycode == dKey){
-    //         playerPosition = 1;            
-    //         entityContainer[0].currentPOS_X = middleOfScreen                
-    //     } else if(keycode = sKey){
-    //         playerPosition = 2;            
-    //         entityContainer[0].currentPOS_X = canvas.width - sixthOfScreen                
-    //     }
-    //     console.log("keypress? " + e.keyCode );
-    // },false);
 
     function blank(){
 
@@ -364,7 +346,7 @@ window.onload = function() {
     }
     function draw(){
         // runs every 'animated itteration'
-        if(running){
+        if(running && start){
             for(var x = 0; x < animSpeed; x ++){
                              
                 checkStatus();
@@ -442,5 +424,10 @@ window.onload = function() {
     function setScore(){
         $(".score-counter").text(score + "/" + target);
     } setScore();
+   
+    $('#startButton').click(function(e){
+        document.getElementById("explain-overlay").style.height = "0%";
+        start = true;
+    });
     
 }

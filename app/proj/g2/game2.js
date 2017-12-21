@@ -76,11 +76,16 @@ window.onload = function(){
     if(checkCombination()){
       $('#bodyContainer').css('background','transparent');
       setInterval(function(){
-        document.getElementById("my-overlay").style.height = "100%";
+        document.getElementById("finish-overlay").style.height = "100%";
       },2000);
-      console.log("combination correct") 
     }
   }
+
+  
+  $('#startButton').click(function(e){
+    document.getElementById("explain-overlay").style.height = "0%";
+  });
+
   function checkCombination(){
     var currentCombination = [number1Value, number2Value, number3Value]
     var i = targetCombination.length;

@@ -12,7 +12,10 @@ window.onload = function(){ // on page load
     var scale;                  
     var duration                = 20 //countdown timer in seconds
     var tapCount                = 0;
-    startCountdowns(duration)
+    var start                   = false;
+
+    draw();
+  
 
     // window.requestAnimFrame = (function(callback) {
     //     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
@@ -28,7 +31,8 @@ window.onload = function(){ // on page load
     });
 
     function draw(){
-
+        drawEnemy()
+        drawControls()
     }
 
     function drawControls(){
@@ -40,7 +44,7 @@ window.onload = function(){ // on page load
         var paddingRight = canvas.width - imgWidth - padding
         context.drawImage(left, padding, canvas.height / 2, imgWidth, left.height/2);
         context.drawImage(right, paddingRight,  canvas.height / 2, imgWidth, right.height / 2);
-    } drawControls()
+    } 
 
     function drawEnemy(){
         var img = new Image();
@@ -59,7 +63,7 @@ window.onload = function(){ // on page load
         }
         img.src = "./img/G4_02_Shark_V2.png";
         
-    } drawEnemy();
+    } 
 
     function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
         
@@ -85,20 +89,6 @@ window.onload = function(){ // on page load
                 distance = distance - 10          
             }
 
-
-            // //timeer reaches 0, you win
-            // if(timer == 0){
-            //     timer = duration
-            //     distance = initialDistance
-            //     alert("Winner")
-            // }
-
-            // //weet niet zeker of dit erin moet blijven
-            // if(tapCount >= 30){  
-            //     alert("Escapedr")
-            //     tapCount = 0 //reset, moet wat anders worden
-            // }
-
             //distance = 0, you got caught, you lose
             if(distance <= -30){
                 timer = duration
@@ -114,6 +104,11 @@ window.onload = function(){ // on page load
             }
         }, 1000)
     }
+
+    $('#startButton').click(function(e){
+        document.getElementById("explain-overlay").style.height = "0%";
+        startCountdowns(duration);
+    });
 
     function endOverlay(){
         document.getElementById("my-overlay").style.height = "100%";
