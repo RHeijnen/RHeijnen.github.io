@@ -1,6 +1,10 @@
 window.addEventListener('load', function(){ // on page load
     var splashModal = document.getElementById('splashModal');
     var game1Modal  = document.getElementById('game1modal');
+    var g2  = document.getElementById('game2modal');
+    var g3  = document.getElementById('game3modal');
+    var g4  = document.getElementById('game4modal');
+    var g5  = document.getElementById('game5modal');
     var decisionModal = document.getElementById('decisionModal');
     var additionStoryLine = ""
         
@@ -132,7 +136,7 @@ window.addEventListener('load', function(){ // on page load
 
 
         if(stage == 14 && additionStoryLine === "B"){
-            game1Modal.style.display = "block";
+            g2.style.display = "block";
             $("#text").text(`Gelukkig! Dory heeft het gered. De haai kon haar niet te pakken krijgen.
             In de verte ziet ze het gezonken schip. In de zijkant zit een gat, daar past ze wel door.
             Zodra ze binnenkomt in de boot, komt er een schol vissen op haar af! Snel duik weg!`)
