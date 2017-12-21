@@ -1,0 +1,140 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#sig-canvas{
+    z-index: 1;
+    background-image : url("./img/G5_03_BG_V2.png");
+    background-size: cover;
+}
+
+.overlay {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */    
+    height: 0;
+    width: 100%;
+    position: fixed; /* Stay in place */
+    z-index: 3; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgb(5, 26, 37); /* Black fallback color */
+    background-color: rgba(5, 26, 37, 0.9); /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+#explain-overlay{
+    height: 100%;
+  }
+  /* Position the content inside the overlay */
+  .overlay-content-finish {
+    z-index: 4;
+    position: absolute;
+    top: 25%; /* 25% from the top */
+    width: 100%; /* 100% width */
+    text-align: center; /* Centered text/links */
+  }
+  
+  .overlay-content-explain{
+    z-index: 4;
+    position: absolute;
+    top: 25%; /* 25% from the top */
+    width: 100%; /* 100% width */
+    text-align: center; /* Centered text/links */
+  }
+  
+  .overlay-content-finish h2 {
+    color: rgb(1, 177, 1);
+  }
+  
+  .overlay-content-explain h2 {
+    color: rgb(14, 72, 180);
+  }
+  
+  .overlay-text{
+    color: white;
+    /* font-size: 1.5em; */
+    font-size: 22px;
+    width: 70%;
+    margin: auto;
+    
+  }
+  
+  .overlay-button{
+    width: 20%;
+    background-color: white;
+    color: black;
+    /* font-size: 1.5em; */
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 32px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+    border-radius: 30px; 
+  }
+
+
+.home-button{
+    z-index: 5;
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    border-radius: 30px;
+    height: 60px;
+    width: 60px;
+    background-color: white;
+    /* text-align: center; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.glyphicon.glyphicon-home {
+    font-size: 22px;
+    color: black;
+    padding-right: 2px;
+}
+
+.back-button{
+    z-index: 2;
+    position: absolute;
+    left: 25px;
+    bottom: 25px;
+    border-radius: 30px;  
+    height: 60px;
+    width: 60px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-arrow{
+    height: 22px;
+    width: 22px;
+    margin: auto;
+}
+
+.glyphicon.glyphicon-chevron-left{
+    font-size: 22px;
+    color: black;
+    /* padding-right: 2px; */
+}
+
+.score-counter{
+    z-index: 2;       
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    right: 25px;
+    top: 25px;
+    color: white;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.6);
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

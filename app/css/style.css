@@ -171,7 +171,7 @@ html, body {
         -webkit-transition: all 2000ms ease-in;
         -ms-transition: all 2000ms ease-in;
         -moz-transition: all 2000ms ease-in;
-        transition: all 2000ms ease-in;
+        transition: all 2000 ease-in;
 }
 #section1{
     background: url("../resources/moanaB.png");
@@ -235,7 +235,7 @@ html, body {
 #modalL{
     float:left;
     margin-left:-50%;
-    transition: margin 2500ms;
+    transition: margin 1500ms;
     background-image: url("../resources/dorybground.png");
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -245,7 +245,7 @@ html, body {
 #modalR{    
     float:right;
     margin-right:-50%;
-    transition: margin 2500ms;
+    transition: margin 1500ms;
     
 }
 #charLogo{
