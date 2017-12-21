@@ -10,6 +10,7 @@ window.onload = function() {
     var debugTextures          = true;
     var animSpeed              = 2;
     var colorColissionData;
+    var movingBubble           = -1;
     var simpleColissionMargins = 15;
     var bubbles = [[270,65],[115,370],[325,420],[500,85],[690,145],[900,85],[820,460]];
     var darBub = [[135,210],[265,200],[395,240],[525,290],[655,320],[785,310],[915,280]];
@@ -21,7 +22,15 @@ window.onload = function() {
         };
     })();
 
-
+    var replaceContainer = function(obj){
+        var newContainer = [];
+        for(var i = 0; i< entityContainer.length;i++){
+            if(entityContainer[i] != obj){
+                newContainer.push(entityContainer[i])
+            }
+        }
+        entityContainer = newContainer
+    }
     function createEntity(_id,_startX,_startY,moveFunc,_texture){
         entityContainer.push( {
             id          : _id,
@@ -34,10 +43,11 @@ window.onload = function() {
             hitpoints   : 1,
             colissionFreedom : false,
             colided     : false,
+            text     : _texture,
             move        : moveFunc,
             texture     : new Image(),
             drawTexture : function(itt){
-                this.texture.src        = _texture;
+                this.texture.src        = this.text;
                 this.texture.posX       = this.currentPOS_X;
                 this.texture.posY       = this.currentPOS_Y;
                 this.texture.entityID   = itt;
@@ -53,7 +63,6 @@ window.onload = function() {
 
         })
     }
-
     function colorColission(x,y,xSize,ySize){
         for(var x = 0; x < entityContainer.length;x++){
             for(var j = 0; j < entityContainer.length;j++){
@@ -87,36 +96,50 @@ window.onload = function() {
             }                
         }
     }
+
+    var workaround = false;
+    
     function simpleColission(){
         var entityIDContainer = [];
         for(var i = 0; i < entityContainer.length;i++){
             for(var j = 0; j < entityContainer.length;j++){
                 if(!entityContainer[i].colissionFreedom && !entityContainer[j].colissionFreedom){
                     if(entityContainer[i].id != entityContainer[j].id){
-                        var element1_posX   = entityContainer[i].currentPOS_X;
-                        var element1_posY   = entityContainer[i].currentPOS_Y;
-                        var element1_width  = (entityContainer[i].d_width/2)-simpleColissionMargins;
-                        var element1_height = (entityContainer[i].d_height/2)-simpleColissionMargins;
-                        var element2_posX   = entityContainer[j].currentPOS_X;
-                        var element2_posY   = entityContainer[j].currentPOS_Y;
-                        var element2_width  = (entityContainer[j].d_width/2)-simpleColissionMargins;
-                        var element2_height = (entityContainer[j].d_height/2)-simpleColissionMargins;
+                        if(entityContainer[i].id >= 10 && entityContainer[j].id < 10){
+                            var element1_posX   = entityContainer[i].currentPOS_X;
+                            var element1_posY   = entityContainer[i].currentPOS_Y;
+                            var element1_width  = (entityContainer[i].d_width/2)-simpleColissionMargins;
+                            var element1_height = (entityContainer[i].d_height/2)-simpleColissionMargins;
+                            var element2_posX   = entityContainer[j].currentPOS_X;
+                            var element2_posY   = entityContainer[j].currentPOS_Y;
+                            var element2_width  = (entityContainer[j].d_width/2)-simpleColissionMargins;
+                            var element2_height = (entityContainer[j].d_height/2)-simpleColissionMargins;
+    
+                            var x_col1          = (element1_posX + element1_width/2) == (element2_posX - element2_width/2)   || (element1_posX + element1_width/2)  - (element2_posX - element2_width/2)   == -1;
+                            var x_col2          = (element1_posX - element1_width/2) == (element2_posX + element2_width/2)   || (element1_posX - element1_width/2)  - (element2_posX + element2_width/2)   == +1;
+                            var y_col1          = (element1_posY + element1_height/2) == (element2_posY - element2_height/2) || (element1_posY + element1_height/2) - (element2_posY - element2_height/2)  == -1;
+                            var y_col2          = (element1_posY - element1_height/2) == (element2_posY + element2_height/2) || (element1_posY - element1_height/2) - (element2_posY + element2_height/2)  == +1;
+                            if(debugTextures){
+                                context.fillRect(element1_posX-element1_width,element1_posY - element1_height,element1_width*2,element1_height*2);                            
+                            }
+                            
+                            if(    element1_posX < element2_posX + (element2_width + element1_width) //element2_width*2 // x2 of (element2_width + element1_width) not sure..
+                                && element1_posX + (element2_width + element1_width) > element2_posX
+                                && element1_posY < element2_posY + (element1_height+element2_height)
+                                && element1_posY + (element1_height+element2_height) > element2_posY
+                            ){
+                                if(workaround == false){
+                                    entityContainer[i].colided = true;  
+                                    // replaceContainer(entityContainer[i]) 
+                                    entityContainer[j].id = j*2523
+                                    entityContainer[j].colissionFreedom = true;
+                                    entityContainer[j].text = "./bub_copy.png";   
+                                    workaround = true;
+                                }
 
-                        var x_col1          = (element1_posX + element1_width/2) == (element2_posX - element2_width/2)   || (element1_posX + element1_width/2)  - (element2_posX - element2_width/2)   == -1;
-                        var x_col2          = (element1_posX - element1_width/2) == (element2_posX + element2_width/2)   || (element1_posX - element1_width/2)  - (element2_posX + element2_width/2)   == +1;
-                        var y_col1          = (element1_posY + element1_height/2) == (element2_posY - element2_height/2) || (element1_posY + element1_height/2) - (element2_posY - element2_height/2)  == -1;
-                        var y_col2          = (element1_posY - element1_height/2) == (element2_posY + element2_height/2) || (element1_posY - element1_height/2) - (element2_posY + element2_height/2)  == +1;
-                        if(debugTextures){
-                            context.fillRect(element1_posX-element1_width,element1_posY - element1_height,element1_width*2,element1_height*2);                            
+                            }
                         }
-                        
-                        if(    element1_posX < element2_posX + (element2_width + element1_width) //element2_width*2 // x2 of (element2_width + element1_width) not sure..
-                            && element1_posX + (element2_width + element1_width) > element2_posX
-                            && element1_posY < element2_posY + (element1_height+element2_height)
-                            && element1_posY + (element1_height+element2_height) > element2_posY
-                        ){
-                            entityContainer[i].colided = true;   
-                        }
+
                     }
                 }
             }
@@ -174,12 +197,13 @@ window.onload = function() {
             //            
             for(var i = 0; i < entityContainer.length;i++){
                 if(entityContainer[i].colided){
-                    entityContainer[i].currentPOS_Y = entityContainer[i].startPOS_Y
-                    entityContainer[i].currentPOS_X = entityContainer[i].startPOS_X
-                    entityContainer[i].colided = false;
+                    entityContainer[i].currentPOS_Y = -500
+                    entityContainer[i].currentPOS_X = -500
+                    // entityContainer[i].colided = false;
+                }else{
+                    entityContainer[i].drawTexture(i);
                 }
-                entityContainer[i].move();
-                entityContainer[i].drawTexture(i);
+
             }
             // setup roster for texture debugging (helps with colission checking)
             if(debugTextures){
@@ -218,40 +242,64 @@ window.onload = function() {
         animate(canvas, context, startTime);
     }, waitForAnim);
 
-
+    var touching = false;
+    var pickedUp = false;
     canvas.addEventListener("touchmove", function(e){
-        if (e.target == canvas) {
-            e.preventDefault();
-        }
-        var touch = e.touches[0];
-        var mouseEvent = new MouseEvent("mousemove", {
-            clientX: touch.clientX,
-            clientY: touch.clientY
-        });
-        for(var i = 0; i< entityContainer.length;i++){
-            if(entityContainer[i].id >= 10){
-                var clientX = entityContainer[i].currentPOS_X;
-                var clientY = entityContainer[i].currentPOS_Y;
+        if (touching){
+            console.log(movingBubble)
+            if (e.target == canvas) {
+                e.preventDefault();
+            }
+            var touch = e.touches[0];
+            var mouseEvent = new MouseEvent("mousemove", {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            if(movingBubble != -1 && entityContainer[movingBubble].id >=10 && entityContainer[movingBubble].id <30){
+                    entityContainer[movingBubble].currentPOS_X = touch.clientX
+                    entityContainer[movingBubble].currentPOS_Y = touch.clientY
                 
-                if(touch.clientX > (clientX - entityContainer[i].d_width/2)&&
-                  touch.clientX < (clientX + entityContainer[i].d_width/2)&&
-                  touch.clientY > (clientY - entityContainer[i].d_height/2)&&
-                  touch.clientY < (clientY + entityContainer[i].d_height/2)){
-                    entityContainer[i].currentPOS_X = touch.clientX
-                    entityContainer[i].currentPOS_Y = touch.clientY
+            }else{
+                for(var i = 0; i< entityContainer.length;i++){
+                    if(entityContainer[i].id >= 10){
+                        var clientX = entityContainer[i].currentPOS_X;
+                        var clientY = entityContainer[i].currentPOS_Y;
+                        
+                        if(touch.clientX > (clientX - entityContainer[i].d_width/2)&&
+                            touch.clientX < (clientX + entityContainer[i].d_width/2)&&
+                            touch.clientY > (clientY - entityContainer[i].d_height/2)&&
+                            touch.clientY < (clientY + entityContainer[i].d_height/2)){
+                                movingBubble = i;
+                        }
+                    }
                 }
             }
 
+
+            // entityContainer[0].currentPOS_X = touch.clientX-25;
+              
+            canvas.dispatchEvent(mouseEvent);
         }
-        // entityContainer[0].currentPOS_X = touch.clientX-25;
-          
-        canvas.dispatchEvent(mouseEvent);
     }, false);
 
     canvas.addEventListener("touchend", function(e){
         if (e.target == canvas) {
           e.preventDefault();
         }
+        touching = false;
+        pickedUp = false;
+        movingBubble = -1
+        workaround = false;
+
+        
+
+    }, false);
+
+    canvas.addEventListener("touchstart", function(e){
+        if (e.target == canvas) {
+          e.preventDefault();
+        }
+        touching = true;
 
 
     }, false);

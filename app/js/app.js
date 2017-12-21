@@ -387,7 +387,7 @@ $(function() {
         // workaround to start stuff based on who you click
         if(selectedCharREF == "moana"){
             console.log("starting g1")
-            location.href = './proj/g1/index.html';
+            location.href = './proj/g1/new.html';
         }else if(selectedCharREF == "moanaguy"){
             console.log("starting g2")
             location.href = './proj/g2/game2.html';
