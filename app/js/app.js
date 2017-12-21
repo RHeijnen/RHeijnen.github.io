@@ -230,6 +230,18 @@ $(function() {
 
     var backgroundTransition = function(page){
         // replace by adding and removing css classes that set the opacity
+        for(var i = 0; i < 3;i++){
+            var bg = $("#bg"+i)
+            if(i == page){
+                bg.css({
+                    'opacity': '1'
+                })
+            }else{
+                bg.css({
+                    'opacity': '0'
+                })
+            }
+        }
         console.log("bg"+page)
         for(var i = 0; i <= maxPage;i ++ ){
             if( i == page){
@@ -378,15 +390,19 @@ $(function() {
             location.href = './proj/g1/index.html';
         }else if(selectedCharREF == "moanaguy"){
             console.log("starting g2")
+            location.href = './proj/g2/game2.html';
 
         }else if(selectedCharREF == "moanagranny"){
             console.log("starting g3")
+            location.href = './proj/g3/game3.html';
 
         }else if(selectedCharREF == "moanapig"){
             console.log("starting g4")
+            location.href = './proj/g4/game4.html';
 
         }else if(selectedCharREF == "frozen1"){
             console.log("starting g5")
+            location.href = './proj/g1/game5.html';
 
         }else if(selectedCharREF === "dory"){
 

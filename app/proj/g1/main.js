@@ -10,9 +10,7 @@ window.addEventListener('load', function(){ // on page load
     var bubbles = [[270,65],[115,370],[325,420],[500,85],[690,145],[900,85],[820,460]];
     var darBub = [[135,210],[265,200],[395,240],[525,290],[655,320],[785,310],[915,280]];
     var snap = 20; //Pixels to snap
-    var bgroundImg = "./G1_03_BG.png"
-
-    var touchPoints = [];
+    var debug = false;
     var touchInitiated  = false;
     var touchCounter    = 0;
     var prevX;
@@ -63,6 +61,8 @@ window.addEventListener('load', function(){ // on page load
 
     });
         
+
+    
     var doneChecker = function(){
         var anwser = true;
         canvas.forEachObject(function(o){
@@ -81,9 +81,9 @@ window.addEventListener('load', function(){ // on page load
             canvas.add(oImg);
             oImg.originX= 'center'
             oImg.originY= 'center'
-            oImg.selectable= false
-            oImg.hasControls= false
-            oImg.hasBorders= false
+            oImg.selectable= debug
+            oImg.hasControls= debug
+            oImg.hasBorders= debug
         });
         fabric.Image.fromURL('dub_copy.png', function(oImg) {
             oImg.left = darBub[1][0];
@@ -154,19 +154,17 @@ window.addEventListener('load', function(){ // on page load
         fabric.Image.fromURL('bub_copy.png', function(oImg) {
             oImg.left = bubbles[0][0];
             oImg.top  = bubbles[0][1];
-            oImg.selectable = false;
             canvas.add(oImg);
             // animate(oImg,hookCoords[0][1],15)
             oImg.originX= 'center'
             oImg.originY= 'center'
             oImg.selectable= true
-            oImg.hasControls= false
-            oImg.hasBorders= false
+            oImg.hasControls= debug
+            oImg.hasBorders= debug
         });
         fabric.Image.fromURL('bub_copy.png', function(oImg) {
             oImg.left = bubbles[1][0];
             oImg.top  = bubbles[1][1];
-            oImg.selectable = false;
             canvas.add(oImg);
             // animate(oImg,hookCoords[0][1],15)
             oImg.originX= 'center'
@@ -178,68 +176,64 @@ window.addEventListener('load', function(){ // on page load
         fabric.Image.fromURL('bub_copy.png', function(oImg) {
             oImg.left = bubbles[2][0];
             oImg.top  = bubbles[2][1];
-            oImg.selectable = false;
+            oImg.selectable = true;
             canvas.add(oImg);
             // animate(oImg,hookCoords[0][1],15)
             oImg.originX= 'center'
             oImg.originY= 'center'
-            oImg.selectable= true
-            oImg.hasControls= false
-            oImg.hasBorders= false
+            oImg.hasControls= debug
+            oImg.hasBorders= debug
         });
         fabric.Image.fromURL('bub_copy.png', function(oImg) {
             oImg.left = bubbles[3][0];
             oImg.top  = bubbles[3][1];
-            oImg.selectable = false;
             canvas.add(oImg);
             // animate(oImg,hookCoords[0][1],15)
             oImg.originX= 'center'
             oImg.originY= 'center'
             oImg.selectable= true
-            oImg.hasControls= false
-            oImg.hasBorders= false
+            oImg.hasControls= debug
+            oImg.hasBorders= debug
         });
         fabric.Image.fromURL('bub_copy.png', function(oImg) {
             oImg.left = bubbles[4][0];
             oImg.top  = bubbles[4][1];
-            oImg.selectable = false;
             canvas.add(oImg);
             // animate(oImg,hookCoords[0][1],15)
             oImg.originX= 'center'
             oImg.originY= 'center'
             oImg.selectable= true
-            oImg.hasControls= false
-            oImg.hasBorders= false
+            oImg.hasControls= debug
+            oImg.hasBorders= debug
         });
+
         fabric.Image.fromURL('bub_copy.png', function(oImg) {
             oImg.left = bubbles[6][0];
             oImg.top  = bubbles[6][1];
-            oImg.selectable = false;
             canvas.add(oImg);
             // animate(oImg,hookCoords[0][1],15)
             oImg.originX= 'center'
             oImg.originY= 'center'
             oImg.selectable= true
-            oImg.hasControls= false
-            oImg.hasBorders= false
+            oImg.hasControls= debug
+            oImg.hasBorders= debug
+            oImg.hoverCursor ='pointer'
         });
         fabric.Image.fromURL('bub_copy.png', function(oImg) {
             oImg.left = bubbles[5][0];
             oImg.top  = bubbles[5][1];
-            oImg.selectable = false;
             canvas.add(oImg);
             // animate(oImg,hookCoords[0][1],15)
             oImg.originX= 'center'
             oImg.originY= 'center'
             oImg.selectable= true
-            oImg.hasControls= false
-            oImg.hasBorders= false
+            oImg.hasControls= debug
+            oImg.hasBorders= debug
         });
 
         fabric.Image.fromURL('dory.png', function(oImg) {
             oImg.left = 15;
             oImg.top  = canvasHeight/2 - 50;
-            oImg.selectable = false;
             canvas.add(oImg);
             oImg.originX= 'center'
             oImg.originY= 'center'
@@ -248,6 +242,7 @@ window.addEventListener('load', function(){ // on page load
             oImg.hasBorders= false
             oImg.done = true;
         });
+        
 
     function canvasReset(){
       canvas.clear(); 
@@ -261,132 +256,27 @@ window.addEventListener('load', function(){ // on page load
         originY : 'top',
       });
     }
-    canvasReset();
+    // canvasReset();
+
+      canvas.setBackgroundImage('G1_03_BG_copy.png', canvas.renderAll.bind(canvas), {
+        backgroundImageOpacity: 0.5,
+        backgroundImageStretch: false,
+        originX : 'left',
+        originY : 'top',
+      });
     function animateDory(){
-        
         canvas.forEachObject(function(o){ 
             var elementInfo = o._element.currentSrc
             if( elementInfo.indexOf("dory") !== -1){
-                o.animate('left', 135, {
+                o.animate('left', canvasWidth, {
                     duration: 2000,
                     onChange: canvas.renderAll.bind(canvas),
                     onComplete: function() {
                     },
                     easing: fabric.util.ease.easeOutCirc
                 }); 
-                o.animate('top', 210, {
-                    duration: 1000,
-                    onChange: canvas.renderAll.bind(canvas),
-                    onComplete: function() {
-                    },
-                    easing: fabric.util.ease.easeOutCirc
-                }); 
-                //
-                o.animate('left', 265, {
-                    duration: 2000,
-                    onChange: canvas.renderAll.bind(canvas),
-                    onComplete: function() {
-                    },
-                    easing: fabric.util.ease.easeOutCirc
-                }); 
-                o.animate('top', 200, {
-                    duration: 1000,
-                    onChange: canvas.renderAll.bind(canvas),
-                    onComplete: function() {
-                    },
-                    easing: fabric.util.ease.easeOutCirc
-                }); 
-                //
-                o.animate('left', 395, {
-                    duration: 2000,
-                    onChange: canvas.renderAll.bind(canvas),
-                    onComplete: function() {
-                    },
-                    easing: fabric.util.ease.easeOutCirc
-                }); 
-                o.animate('top', 240, {
-                    duration: 1000,
-                    onChange: canvas.renderAll.bind(canvas),
-                    onComplete: function() {
-                    },
-                    easing: fabric.util.ease.easeOutCirc
-                }); 
-                //
-                o.animate('left', 525, {
-                    duration: 2000,
-                    onChange: canvas.renderAll.bind(canvas),
-                    onComplete: function() {
-                    },
-                    easing: fabric.util.ease.easeOutCirc
-                }); 
-                o.animate('top', 290, {
-                    duration: 1000,
-                    onChange: canvas.renderAll.bind(canvas),
-                    onComplete: function() {
-                    },
-                    easing: fabric.util.ease.easeOutCirc
-                }); 
-                //
-                o.animate('left', 655, {
-                    duration: 2000,
-                    onChange: canvas.renderAll.bind(canvas),
-                    onComplete: function() {
-                    },
-                    easing: fabric.util.ease.easeOutCirc
-                }); 
-                o.animate('top', 320, {
-                    duration: 1000,
-                    onChange: canvas.renderAll.bind(canvas),
-                    onComplete: function() {
-                    },
-                    easing: fabric.util.ease.easeOutCirc
-                }); 
-                //
-                o.animate('left', 785, {
-                    duration: 2000,
-                    onChange: canvas.renderAll.bind(canvas),
-                    onComplete: function() {
-                    },
-                    easing: fabric.util.ease.easeOutCirc
-                }); 
-                o.animate('top', 310, {
-                    duration: 1000,
-                    onChange: canvas.renderAll.bind(canvas),
-                    onComplete: function() {
-                    },
-                    easing: fabric.util.ease.easeOutCirc
-                }); 
-                //
-                o.animate('left', 915, {
-                    duration: 2000,
-                    onChange: canvas.renderAll.bind(canvas),
-                    onComplete: function() {
-                    },
-                    easing: fabric.util.ease.easeOutCirc
-                }); 
-                o.animate('top', 280, {
-                    duration: 1000,
-                    onChange: canvas.renderAll.bind(canvas),
-                    onComplete: function() {
-                    },
-                    easing: fabric.util.ease.easeOutCirc
-                }); 
-                // o.animate('left', 915, {
-                //     duration: 2000,
-                //     onChange: canvas.renderAll.bind(canvas),
-                //     onComplete: function() {
-                //     },
-                //     easing: fabric.util.ease.easeOutCirc
-                // }); 
             }
         });
-        // element.animate('left', 500, {
-        //     duration: 2000,
-        //     onChange: canvas.renderAll.bind(canvas),
-        //     onComplete: function() {
-        //     },
-        //     easing: fabric.util.ease.easeOutCirc
-        // });
     }
     function animate(element1,element2){
         var x1 = element1.getLeft();
@@ -400,7 +290,6 @@ window.addEventListener('load', function(){ // on page load
             onComplete: function() {
             // sparkle()..
                 element1.selectable = false;
-                animateDory();
                 if(doneChecker()){
                     alert("done!")
                     animateDory();
