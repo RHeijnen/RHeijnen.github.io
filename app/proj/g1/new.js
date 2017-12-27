@@ -234,7 +234,9 @@ window.onload = function() {
     }
 
 
-
+    var doneEvent = function(){
+            location.href  = "../9.html"       
+    }
       
     // wait {waitForAnim} ms before starting animation
     setTimeout(function() {
@@ -246,7 +248,6 @@ window.onload = function() {
     var pickedUp = false;
     canvas.addEventListener("touchmove", function(e){
         if (touching){
-            console.log(movingBubble)
             if (e.target == canvas) {
                 e.preventDefault();
             }
@@ -290,8 +291,15 @@ window.onload = function() {
         pickedUp = false;
         movingBubble = -1
         workaround = false;
-
-        
+        var colCheck = 0;
+        for(var i = 0 ;i < entityContainer.length;i++){
+            if(entityContainer[i].colided == true){
+                colCheck = colCheck+1;
+            }
+        }
+        if(colCheck == 7){
+            doneEvent();
+        }        
 
     }, false);
 
@@ -303,5 +311,7 @@ window.onload = function() {
 
 
     }, false);
-
+  $('#startButton').click(function(e){
+    document.getElementById("explain-overlay").style.height = "0%";
+  });
 }

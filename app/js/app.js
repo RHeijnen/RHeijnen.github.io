@@ -225,7 +225,7 @@ $(function() {
     var playBtn = $("#playInfo")
     playBtn.click(function(){
         console.log("launching the story of: "+selectedCharacter+ " || playID: "+selectedCharacterID)
-        var stringBuilderUrl = $(location).attr('href').replace("index.html","stories/"+selectedCharacter+"/index.html")
+        var stringBuilderUrl = $(location).attr('href').replace("index.html","stories/"+selectedCharacter+"/0.html")
         window.location.href = stringBuilderUrl;
     });
 

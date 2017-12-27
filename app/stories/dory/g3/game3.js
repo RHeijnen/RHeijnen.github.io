@@ -1,6 +1,6 @@
 window.addEventListener('load', function(){ // on page load
     var direction = 'r'
-    var canvas = new fabric.Canvas('sig-canvas3');
+    var canvas = new fabric.Canvas('sig-canvas');
     canvas.setHeight(window.innerHeight);
     canvas.setWidth(window.innerWidth);
     canvas.selection = false; // disable group selection
@@ -204,6 +204,9 @@ document.body.addEventListener("touchend", function (e) {
       location.reload();
     }else{
       //winstate
+            location.href  = "../14A.html"       
+
+
     }
   }
   

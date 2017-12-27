@@ -76,7 +76,9 @@ window.onload = function(){
     if(checkCombination()){
       $('#bodyContainer').css('background','transparent');
       setInterval(function(){
-        document.getElementById("finish-overlay").style.height = "100%";
+        // document.getElementById("finish-overlay").style.height = "100%";
+            location.href  = "../16.html"       
+
       },2000);
     }
   }

@@ -15,7 +15,7 @@ html, body {
     display:inline-block;
     height:100%;
     width:100%;
-    background-image: url("dory1.png");
+    /*background-image: url("dory1.png");*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -45,6 +45,7 @@ html, body {
     right: 0px;
     z-index: 5;
     top: -50%;
+    -webkit-transform: scaleX(-1);
 }
 #text{
     width:40%;
@@ -70,7 +71,15 @@ html, body {
 }
 #splashModal{
     display: block;
-    background-image: url("splash.png");
+    background-image: url("./img/splash.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#endModal{
+    display: block;
+    background-image: url("./img/endsplash.png");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -79,13 +88,17 @@ html, body {
 
 
 #game1modal{
-
     width: 100%;
     height: 100%;
     background: white;
 }
 #decisionModal{
-    background-image: url("dorysplit.png");
+    position: fixed; /* Stay in place */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-image: url("./img/dorysplit.png");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

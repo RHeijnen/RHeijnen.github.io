@@ -1,5 +1,5 @@
 window.onload = function(){ // on page load
-    var canvas                  = document.getElementById("sig-canvas5");
+    var canvas                  = document.getElementById("sig-canvas");
     var context                 = canvas.getContext("2d");
     canvas.width                = window.innerWidth
     canvas.height               = window.innerHeight  
@@ -111,6 +111,9 @@ window.onload = function(){ // on page load
     });
 
     function endOverlay(){
-        document.getElementById("my-overlay").style.height = "100%";
+        // Uncaught TypeError: Cannot read property 'style' of null  
+        //document.getElementById("my-overlay").style.height = "100%";
+            location.href  = "../14B.html"       
+
     }
 }

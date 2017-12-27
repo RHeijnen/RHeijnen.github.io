@@ -133,7 +133,7 @@ window.onload = function() {
                                     // replaceContainer(entityContainer[i]) 
                                     entityContainer[j].id = j*2523
                                     entityContainer[j].colissionFreedom = true;
-                                    entityContainer[j].text = "./g1/bub_copy.png";   
+                                    entityContainer[j].text = "./bub_copy.png";   
                                     workaround = true;
                                 }
 
@@ -155,21 +155,21 @@ window.onload = function() {
     }
 
     function setUp(){
-        createEntity(0,darBub[0][0],darBub[0][1],moveZ,"./g1/dub_copy.png")        
-        createEntity(1,darBub[1][0],darBub[1][1],moveZ,"./g1/dub_copy.png")        
-        createEntity(2,darBub[2][0],darBub[2][1],moveZ,"./g1/dub_copy.png")        
-        createEntity(3,darBub[3][0],darBub[3][1],moveZ,"./g1/dub_copy.png")        
-        createEntity(4,darBub[4][0],darBub[4][1],moveZ,"./g1/dub_copy.png")        
-        createEntity(5,darBub[5][0],darBub[5][1],moveZ,"./g1/dub_copy.png")        
-        createEntity(6,darBub[6][0],darBub[6][1],moveZ,"./g1/dub_copy.png")        
+        createEntity(0,darBub[0][0],darBub[0][1],moveZ,"./dub_copy.png")        
+        createEntity(1,darBub[1][0],darBub[1][1],moveZ,"./dub_copy.png")        
+        createEntity(2,darBub[2][0],darBub[2][1],moveZ,"./dub_copy.png")        
+        createEntity(3,darBub[3][0],darBub[3][1],moveZ,"./dub_copy.png")        
+        createEntity(4,darBub[4][0],darBub[4][1],moveZ,"./dub_copy.png")        
+        createEntity(5,darBub[5][0],darBub[5][1],moveZ,"./dub_copy.png")        
+        createEntity(6,darBub[6][0],darBub[6][1],moveZ,"./dub_copy.png")        
 
-        createEntity(10,bubbles[0][0],bubbles[0][1],moveZ,"./g1/bub_copy.png")
-        createEntity(11,bubbles[1][0],bubbles[1][1],moveZ,"./g1/bub_copy.png")
-        createEntity(12,bubbles[2][0],bubbles[2][1],moveZ,"./g1/bub_copy.png")        
-        createEntity(13,bubbles[3][0],bubbles[3][1],moveZ,"./g1/bub_copy.png")        
-        createEntity(14,bubbles[4][0],bubbles[4][1],moveZ,"./g1/bub_copy.png")        
-        createEntity(15,bubbles[5][0],bubbles[5][1],moveZ,"./g1/bub_copy.png")        
-        createEntity(16,bubbles[6][0],bubbles[6][1],moveZ,"./g1/bub_copy.png")        
+        createEntity(10,bubbles[0][0],bubbles[0][1],moveZ,"./bub_copy.png")
+        createEntity(11,bubbles[1][0],bubbles[1][1],moveZ,"./bub_copy.png")
+        createEntity(12,bubbles[2][0],bubbles[2][1],moveZ,"./bub_copy.png")        
+        createEntity(13,bubbles[3][0],bubbles[3][1],moveZ,"./bub_copy.png")        
+        createEntity(14,bubbles[4][0],bubbles[4][1],moveZ,"./bub_copy.png")        
+        createEntity(15,bubbles[5][0],bubbles[5][1],moveZ,"./bub_copy.png")        
+        createEntity(16,bubbles[6][0],bubbles[6][1],moveZ,"./bub_copy.png")        
 
         
     }setUp(); // run once initialy to setup entities
@@ -234,7 +234,9 @@ window.onload = function() {
     }
 
 
-
+    var doneEvent = function(){
+            location.href  = "../9.html"       
+    }
       
     // wait {waitForAnim} ms before starting animation
     setTimeout(function() {
@@ -246,7 +248,6 @@ window.onload = function() {
     var pickedUp = false;
     canvas.addEventListener("touchmove", function(e){
         if (touching){
-            console.log(movingBubble)
             if (e.target == canvas) {
                 e.preventDefault();
             }
@@ -290,8 +291,15 @@ window.onload = function() {
         pickedUp = false;
         movingBubble = -1
         workaround = false;
-
-        
+        var colCheck = 0;
+        for(var i = 0 ;i < entityContainer.length;i++){
+            if(entityContainer[i].colided == true){
+                colCheck = colCheck+1;
+            }
+        }
+        if(colCheck == 7){
+            doneEvent();
+        }        
 
     }, false);
 
@@ -303,5 +311,7 @@ window.onload = function() {
 
 
     }, false);
-
+  $('#startButton').click(function(e){
+    document.getElementById("explain-overlay").style.height = "0%";
+  });
 }
