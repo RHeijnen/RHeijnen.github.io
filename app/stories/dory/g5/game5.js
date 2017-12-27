@@ -111,9 +111,11 @@ window.onload = function(){ // on page load
     });
 
     function endOverlay(){
-        // Uncaught TypeError: Cannot read property 'style' of null  
-        //document.getElementById("my-overlay").style.height = "100%";
-            location.href  = "../14B.html"       
-
+        document.getElementById("finish-overlay").style.height = "100%";              
     }
+
+    $("#continueButton").click(function(){
+        location.href  = "../14B.html"   
+    });
+
 }

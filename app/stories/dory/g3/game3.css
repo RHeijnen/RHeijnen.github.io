@@ -31,6 +31,7 @@ html, body {
     top: 25%; /* 25% from the top */
     width: 100%; /* 100% width */
     text-align: center; /* Centered text/links */
+    transform: scale(0.5);
   }
   
   .overlay-content-explain{
@@ -39,6 +40,7 @@ html, body {
     top: 25%; /* 25% from the top */
     width: 100%; /* 100% width */
     text-align: center; /* Centered text/links */
+    transform: scale(0.5);
   }
   
   .overlay-content-finish h2 {
@@ -86,6 +88,7 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
+    transform: scale(0.7);
 }
 
 .glyphicon.glyphicon-home {
@@ -106,6 +109,7 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
+    transform: scale(0.7);
 }
 
 .back-arrow{

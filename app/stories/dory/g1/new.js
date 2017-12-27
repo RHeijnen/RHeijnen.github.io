@@ -235,7 +235,7 @@ window.onload = function() {
 
 
     var doneEvent = function(){
-            location.href  = "../9.html"       
+        endOverlay()       
     }
       
     // wait {waitForAnim} ms before starting animation
@@ -311,7 +311,19 @@ window.onload = function() {
 
 
     }, false);
-  $('#startButton').click(function(e){
-    document.getElementById("explain-overlay").style.height = "0%";
-  });
+
+
+    function endOverlay(){
+        document.getElementById("finish-overlay").style.height = "100%";              
+    }
+  
+    $("#continueButton").click(function(){
+        location.href  = "../9.html"       
+    });
+
+    $('#startButton').click(function(e){
+        document.getElementById("explain-overlay").style.height = "0%";
+    });
+
+    
 }

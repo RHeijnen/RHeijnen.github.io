@@ -203,8 +203,8 @@ document.body.addEventListener("touchend", function (e) {
       // console.log(touchPoints[touchPoints.length-1][0])
       location.reload();
     }else{
-      //winstate
-            location.href  = "../14A.html"       
+      //winstate  
+      endOverlay();  
 
 
     }
@@ -237,7 +237,20 @@ document.body.addEventListener("touchmove", function (e) {
     });
 
     function endOverlay(){
-      document.getElementById("my-overlay").style.height = "100%";
+      document.getElementById("finish-overlay").style.height = "100%";              
     }
+
+    $("#continueButton").click(function(){
+        location.href  = "../14A.html"    
+    });
+
+    
+    $(".home-button").click(function(){
+      console.log("TODO: home func")
+    });
+
+    $(".back-button").click(function(){
+      console.log("TODO: back func")
+    });
 
 });

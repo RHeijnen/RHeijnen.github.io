@@ -22,29 +22,44 @@ html, body {
     overflow-x: hidden; /* Disable horizontal scroll */
     transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
 }
-/* Position the content inside the overlay */
-.overlay-content {
+#explain-overlay{
+    height: 100%;
+  }
+  /* Position the content inside the overlay */
+  .overlay-content-finish {
     z-index: 4;
     position: absolute;
     top: 25%; /* 25% from the top */
     width: 100%; /* 100% width */
     text-align: center; /* Centered text/links */
-}
-
-.overlay-content h2 {
+  }
+  
+  .overlay-content-explain{
+    z-index: 4;
+    position: absolute;
+    top: 25%; /* 25% from the top */
+    width: 100%; /* 100% width */
+    text-align: center; /* Centered text/links */
+  }
+  
+  .overlay-content-finish h2 {
     color: rgb(1, 177, 1);
-}
-
-.overlay-text{
+  }
+  
+  .overlay-content-explain h2 {
+    color: rgb(14, 72, 180);
+  }
+  
+  .overlay-text{
     color: white;
     /* font-size: 1.5em; */
     font-size: 22px;
     width: 70%;
     margin: auto;
     
-}
-
-.overlay-continue{
+  }
+  
+  .overlay-button{
     width: 20%;
     background-color: white;
     color: black;
@@ -56,10 +71,8 @@ html, body {
     margin-left: auto;
     margin-right: auto;
     padding: 15px;
-    border-radius: 30px;
-    
-}
-
+    border-radius: 30px; 
+  }
 
 .home-button{
     z-index: 5;
@@ -106,21 +119,4 @@ html, body {
     font-size: 22px;
     color: black;
     /* padding-right: 2px; */
-}
-
-.score-counter{
-    z-index: 2;       
-    position: absolute;
-    height: 60px;
-    width: 60px;
-    right: 25px;
-    top: 25px;
-    color: white;
-    border-radius: 30px;
-    background-color: rgba(0, 0, 0, 0.6);
-    font-size: 22px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }

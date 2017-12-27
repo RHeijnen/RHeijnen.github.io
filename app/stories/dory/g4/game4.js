@@ -406,10 +406,12 @@ window.onload = function() {
     }, waitForAnim);
 
     function endOverlay(){
-        // Uncaught TypeError: Cannot read property 'style' of null  
-        //document.getElementById("my-overlay").style.height = "100%";
-            location.href  = "../15.html"      
-        }
+        document.getElementById("finish-overlay").style.height = "100%";              
+    }
+
+    $("#continueButton").click(function(){
+        location.href  = "../15.html" 
+    });
 
     $(".home-button").click(function(){
         console.log("TODO: home func")
@@ -417,10 +419,6 @@ window.onload = function() {
 
     $(".back-button").click(function(){
         console.log("TODO: back func")
-    });
-
-    $(".overlay-continue").click(function(){
-        console.log("TODO: continue func")
     });
 
     function setScore(){

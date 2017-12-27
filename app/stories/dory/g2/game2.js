@@ -76,13 +76,14 @@ window.onload = function(){
     if(checkCombination()){
       $('#bodyContainer').css('background','transparent');
       setInterval(function(){
-        // document.getElementById("finish-overlay").style.height = "100%";
-            location.href  = "../16.html"       
-
+        document.getElementById("finish-overlay").style.height = "100%";
       },2000);
     }
   }
 
+  $("#continueButton").click(function(){
+    location.href  = "../16.html"  
+  });
   
   $('#startButton').click(function(e){
     document.getElementById("explain-overlay").style.height = "0%";
