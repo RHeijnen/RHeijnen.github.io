@@ -39,13 +39,22 @@ html, body {
     
 }
 #next{
-    margin-left: 50%;
-    margin-top: 50%;
+    margin-right: 3%;
+    margin-top: 77%;    
     position: fixed;
     right: 0px;
     z-index: 5;
     top: -50%;
     -webkit-transform: scaleX(-1);
+}
+
+#back{
+    margin-right: 93%;    
+    margin-top: 77%;    
+    position: fixed;
+    right: 0px;
+    z-index: 5;
+    top: -50%;
 }
 #text{
     width:40%;

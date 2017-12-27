@@ -139,6 +139,7 @@ html, body {
 }
 #infoModal{
     /*background-color: rgba(0, 0, 0, 0.5);*/
+    background-image: url("../resources/infoscreen.png");
 }
 #cameraModal{
     /*background-color: rgba(0, 0, 0, 0.5);*/
@@ -165,53 +166,58 @@ html, body {
         background: url("../resources/dorybg.png");
         background-size: 100%;
         background-repeat: no-repeat;
-        -webkit-transition: zoom 1s ease;
-        -moz-transition: 1s ease;
-        transition: 1s ease;
-        -webkit-transition: all 2000ms ease-in;
-        -ms-transition: all 2000ms ease-in;
-        -moz-transition: all 2000ms ease-in;
-        transition: all 2000 ease-in;
+        transition: all 100ms ease-in;
 }
 #section1{
     background: url("../resources/moanaB.png");
     background-size: 100%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
+        transition: all 250ms ease-in-out;
+
 }
 #section2{
         background: url("../resources/frozenB.png");
         background-size: 100%;
-        background-repeat: no-repeat
+        background-repeat: no-repeat;
+        transition: all 100ms ease-in;
+
 }
 #section3{
         background: url("../resources/incrediB.png");
         background-size: 100%;
-        background-repeat: no-repeat
+        background-repeat: no-repeat;
+                transition: all 100ms ease-in;
+
 }
 #section4{
         background: url("../resources/toyB.png");
         background-size: 100%;
-        background-repeat: no-repeat
+        background-repeat: no-repeat;
+                transition: all 100ms ease-in;
 }
 #section5{
     background: url("../resources/carsB.png");
     background-size: 100%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
+                transition: all 100ms ease-in;
 }
 #section6{
     background: url("../resources/donaldB.png");
     background-size: 100%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
+                transition: all 100ms ease-in;
 }
 #section7{
     background: url("../resources/cocoB.png");
     background-size: 100%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
+                transition: all 100ms ease-in;
 }
 #section8{
     background: url("../resources/ralphB.png");
     background-size: 100%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
+                transition: all 100ms ease-in;
 }
 /* #section8{
     background: url("../resources/01_B_Moana.png");
@@ -235,7 +241,7 @@ html, body {
 #modalL{
     float:left;
     margin-left:-50%;
-    transition: margin 1500ms;
+    transition: margin 1000ms;
     background-image: url("../resources/dorybground.png");
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -245,20 +251,20 @@ html, body {
 #modalR{    
     float:right;
     margin-right:-50%;
-    transition: margin 1500ms;
+    transition: margin 1000ms;
     
 }
 #charLogo{
     margin-left:25%;
-    margin-top:35%;
+    margin-top:29%;
 }
 #selectedChar{
-    margin-left:29%;
-    padding-top: 20%;    
+    margin-left:19%;
+    padding-top: 7%;    
     
 }
 #charDescription{
-    margin-left:50%;
+    margin-left:45%;
     margin-top: 15%; 
 }
 #others{

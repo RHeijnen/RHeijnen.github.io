@@ -11,6 +11,7 @@ $(function() {
     var image = document.getElementById('imgWorkaround');
     var video = document.querySelector('video');
     var image = document.querySelector('img');
+    var currentPage = 0;
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
     window.URL = window.URL || window.webkitURL;
 
@@ -230,6 +231,7 @@ $(function() {
     });
 
     var backgroundTransition = function(page){
+        currentPage = page;
         // replace by adding and removing css classes that set the opacity
         for(var i = 0; i < 3;i++){
             var bg = $("#bg"+i)
@@ -282,11 +284,16 @@ $(function() {
             case 1: scrollpoint = defaultPos+(margins*page)       ;break;
             case 2: scrollpoint = defaultPos+(margins*page)       ;break;
             case 3: scrollpoint = defaultPos+(margins*page)       ;break;
+            case 4: scrollpoint = defaultPos+(margins*page)       ;break;
+            case 5: scrollpoint = defaultPos+(margins*page)       ;break;
+            case 6: scrollpoint = defaultPos+(margins*page)       ;break;
+            case 7: scrollpoint = defaultPos+(margins*page)       ;break;
+            case 8: scrollpoint = defaultPos+(margins*page)       ;break;
         }
 
-        // $('#slideshow').stop().animate({
-        //     scrollLeft: scrollpoint
-        // }, 1000,'easeInOutExpo'); 
+        $('#slideshow').stop().animate({
+            scrollLeft: scrollpoint
+        }, 1000,'easeInOutExpo'); 
 
         //if you want to use one of the easing effects:
         // $('html, body').stop().animate({
@@ -324,12 +331,14 @@ $(function() {
     }
 
     // $('*').bind('touchmove', false);
-    $(document).bind('touchmove',function(e){
+    $('#container').bind('touchmove',function(e){
         // todo make better navigation logic
+        e.preventDefault();
+
     });
 
     // ^ removes touching alltogether
-    $(document).bind('touchend', function (e){
+    $('#container').bind('touchend', function (e){
         var new_xCoord = e.originalEvent.changedTouches[0].clientX;
         if(xCoord > new_xCoord+15){
             slide_right();
@@ -338,15 +347,20 @@ $(function() {
             slide_left();
             return
         }
+
         // event.preventDefault();
         // return false;
     });
 
-    $(document).bind('touchstart', function (e){
+    $('#container').bind('touchstart', function (e){
         xCoord = e.originalEvent.touches[0].clientX;
         // event.preventDefault();
         // return false;
+
     });
+
+
+
         var helpModal = document.getElementById('infoModal');
         var cameraModal = document.getElementById('cameraModal');
 
@@ -429,7 +443,10 @@ $(function() {
                 });
     
             }, 100);
-
+            $("#section"+(currentPage+1)).css({
+                    'transition':' all 100ms ease-in',
+                    'opacity': '0'
+            });
 
             $("#slideshow").css({
                 // "margin-right": '2.5%',
@@ -452,6 +469,10 @@ $(function() {
                 $("#modalR").css({
                     "margin-right": '-90%',
                 });
+                $("#section"+(currentPage+1)).css({
+                    'transition':' all 100ms ease-in',
+                    'opacity': '1'
+                });
                 $("#slideshow").css({
                     // "margin-right": '2.5%',
                     // "margin-top": '2%',
@@ -460,6 +481,7 @@ $(function() {
                     "-moz-transform": "scale(1)",
                     "transform": "scale(1)"
                 });
+
                 setTimeout(function(){ 
                     modal.style.display = "none";
                 }, 1000);
