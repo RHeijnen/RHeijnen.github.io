@@ -69,7 +69,7 @@ window.addEventListener('load', function(){ // on page load
       });
       
     
-      fabric.Image.fromURL('Fishing-hook.png', function(oImg) {
+      fabric.Image.fromURL('hook.png', function(oImg) {
         oImg.left = hookCoords[0][0];
         oImg.top  = hookCoords[0][1];
         oImg.selectable = false;
@@ -77,7 +77,7 @@ window.addEventListener('load', function(){ // on page load
         animate(oImg,hookCoords[0][1],15)
       });
 
-      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+      fabric.Image.fromURL('hook.png', function(oImg) {
         oImg.left = hookCoords[1][0];
         oImg.top  = hookCoords[1][1]
         oImg.selectable = false;
@@ -85,14 +85,14 @@ window.addEventListener('load', function(){ // on page load
         animate(oImg,hookCoords[1][1],35)
       });
 
-      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+      fabric.Image.fromURL('hook.png', function(oImg) {
         oImg.left = hookCoords[2][0];
         oImg.top  = hookCoords[2][1]
         oImg.selectable = false;
         canvas.add(oImg);
         animate(oImg,hookCoords[2][1],60)
       });
-      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+      fabric.Image.fromURL('hook.png', function(oImg) {
         oImg.left = hookCoords[3][0];
         oImg.top  = hookCoords[3][1]
         oImg.selectable = false;
@@ -100,7 +100,7 @@ window.addEventListener('load', function(){ // on page load
         animate(oImg,hookCoords[3][1],150)
       });
       
-      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+      fabric.Image.fromURL('hook.png', function(oImg) {
         oImg.left = hookCoords[4][0];
         oImg.top  = hookCoords[4][1]
         oImg.selectable = false;
@@ -108,7 +108,7 @@ window.addEventListener('load', function(){ // on page load
         animate(oImg,hookCoords[4][1],250)
       });
 
-      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+      fabric.Image.fromURL('hook.png', function(oImg) {
         oImg.left = hookCoords[5][0];
         oImg.top  = hookCoords[5][1]
         oImg.selectable = false;
@@ -116,21 +116,21 @@ window.addEventListener('load', function(){ // on page load
         animate(oImg,hookCoords[5][1],500)
       });
       
-      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+      fabric.Image.fromURL('hook.png', function(oImg) {
         oImg.left = hookCoords[6][0];
         oImg.top  = hookCoords[6][1]
         oImg.selectable = false;
         canvas.add(oImg);
         animate(oImg,hookCoords[6][1],500)
       });
-      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+      fabric.Image.fromURL('hook.png', function(oImg) {
         oImg.left = hookCoords[7][0];
         oImg.top  = hookCoords[7][1]
         oImg.selectable = false;
         canvas.add(oImg);
         animate(oImg,hookCoords[7][1],250)
       });
-      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+      fabric.Image.fromURL('hook.png', function(oImg) {
         oImg.left = hookCoords[8][0];
         oImg.top  = hookCoords[8][1]
         oImg.selectable = false;      
