@@ -69,7 +69,7 @@ window.addEventListener('load', function(){ // on page load
       });
       
     
-      fabric.Image.fromURL('fishing-hook.png', function(oImg) {
+      fabric.Image.fromURL('Fishing-hook.png', function(oImg) {
         oImg.left = hookCoords[0][0];
         oImg.top  = hookCoords[0][1];
         oImg.selectable = false;
