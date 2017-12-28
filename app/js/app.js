@@ -400,23 +400,14 @@ $(function() {
 
         // workaround to start stuff based on who you click
         if(selectedCharREF == "moana"){
-            console.log("starting g1")
-            location.href = './proj/g1/new.html';
+
         }else if(selectedCharREF == "moanaguy"){
-            console.log("starting g2")
-            location.href = './proj/g2/game2.html';
 
         }else if(selectedCharREF == "moanagranny"){
-            console.log("starting g3")
-            location.href = './proj/g3/game3.html';
 
         }else if(selectedCharREF == "moanapig"){
-            console.log("starting g4")
-            location.href = './proj/g4/game4.html';
 
         }else if(selectedCharREF == "frozen1"){
-            console.log("starting g5")
-            location.href = './proj/g1/game5.html';
 
         }else if(selectedCharREF === "dory"){
 

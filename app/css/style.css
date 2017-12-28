@@ -513,4 +513,6 @@ html, body {
     text-decoration: none;
     cursor: pointer;
 }
-
+.w3-green{
+    background-color :#00AAFF !important;
+}
