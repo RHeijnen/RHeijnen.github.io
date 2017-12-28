@@ -172,14 +172,14 @@ html, body {
     background: url("../resources/moanaB.png");
     background-size: 100%;
     background-repeat: no-repeat;
-        transition: all 250ms ease-in-out;
+        transition: all 2500ms ease-in-out;
 
 }
 #section2{
         background: url("../resources/frozenB.png");
         background-size: 100%;
         background-repeat: no-repeat;
-        transition: all 100ms ease-in;
+        transition: all 200ms ease-in;
 
 }
 #section3{

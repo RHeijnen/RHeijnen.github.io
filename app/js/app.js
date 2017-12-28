@@ -435,7 +435,7 @@ $(function() {
     
             }, 100);
             $("#section"+(currentPage+1)).css({
-                    'transition':' all 100ms ease-in',
+                    'transition':' all 100ms cubic-bezier(0.77, 0, 0.175, 1)',
                     'opacity': '0'
             });
 
@@ -461,7 +461,7 @@ $(function() {
                     "margin-right": '-90%',
                 });
                 $("#section"+(currentPage+1)).css({
-                    'transition':' all 100ms ease-in',
+                    'transition':' all 2000ms cubic-bezier(0.77, 0, 0.175, 1)',
                     'opacity': '1'
                 });
                 $("#slideshow").css({
