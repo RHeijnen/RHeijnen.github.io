@@ -447,8 +447,8 @@ html, body {
 }
 
 #myBar{
-    margin-left:40%;
-    margin-right:40%;
+    /* margin-left:40%;
+    margin-right:40%; */
     border-radius:16px
     
     
@@ -515,4 +515,11 @@ html, body {
 }
 .w3-green{
     background-color :#00AAFF !important;
+}
+#myProgress {
+    width: 100%;
+    background-color: grey;
+    margin-left:40%;
+    margin-right:40%;
+    border-radius:16px
 }
