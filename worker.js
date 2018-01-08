@@ -1,7 +1,34 @@
 var cacheName = 'v1'
 var urlsToCache = [
         '/',
-        'index.html'
+        '/index.html',
+        '/stories/dory/img/Background-hooks.jpg',
+        '/stories/dory/img/dory1.png',
+        '/stories/dory/img/dory2.png',
+        '/stories/dory/img/dory3.png',
+        '/stories/dory/img/dory4.png',
+        '/stories/dory/img/dory5.png',
+        '/stories/dory/img/dory6.png',
+        '/stories/dory/img/dory7.png',
+        '/stories/dory/img/dory8.png',
+        '/stories/dory/img/dory9.png',
+        '/stories/dory/img/dory10.png',
+        '/stories/dory/img/dory11A.png',
+        '/stories/dory/img/dory11B.png',
+        '/stories/dory/img/dory12B.png',
+        '/stories/dory/img/dory13B.png',
+        '/stories/dory/img/dory14.png',
+        '/stories/dory/img/dory14A.png',
+        '/stories/dory/img/dory14B.png',
+        '/stories/dory/img/dory15.png',
+        '/stories/dory/img/dory16.png',
+        '/stories/dory/img/dorybground.png',
+        '/stories/dory/img/dorysplash.png',
+        '/stories/dory/img/dorysplit.png',
+        '/stories/dory/img/endsplash.png',
+        '/stories/dory/img/fishing-hook.png',
+        '/stories/dory/img/nextIcon.png',
+        '/stories/dory/img/splash.png',
     ];
 
 self.addEventListener('install' , function(event){
