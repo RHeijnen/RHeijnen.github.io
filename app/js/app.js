@@ -83,7 +83,8 @@ $(function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     try{
                         var response = JSON.parse(xhr.responseText);
-                        console.log(response);
+                        // console.log(response);
+                        verifyResponse(response);
                     }catch(e){
                         console.log(xhr.responseText)
                     }
@@ -328,7 +329,11 @@ $(function() {
         // $("#bg2").animate({ opacity: 1 }, { duration: 1000 });
         // $("#bg1").animate({ opacity: 0 }, { duration: 1000 });
 
+
     }
+
+
+    
 
     // $('*').bind('touchmove', false);
     $('#container').bind('touchmove',function(e){
@@ -359,10 +364,9 @@ $(function() {
 
     });
 
+    var helpModal = document.getElementById('infoModal');
+    var cameraModal = document.getElementById('cameraModal');
 
-
-        var helpModal = document.getElementById('infoModal');
-        var cameraModal = document.getElementById('cameraModal');
 
     $("#infoBtn").click(function(e){
         helpModal.style.display = 'block'
@@ -370,24 +374,28 @@ $(function() {
             'opacity': 0
         });
     })
+
     $("#cameraBtn").click(function(e){
         cameraModal.style.display = 'block'
         $("#slideshow").css({
             'opacity': 0
         });
     })
+
     $("#closeInfo").click(function(e){
         helpModal.style.display = 'none'
         $("#slideshow").css({
             'opacity': 1
         });
     })
+
     $("#closeCamera").click(function(e){
         cameraModal.style.display = 'none'
         $("#slideshow").css({
             'opacity': 1
         });
     })
+
     $(".charIcon").click(function(e){
         var imgRef = e.target.currentSrc;
         imgRef = imgRef.replace(/(.+\/)/g," ")
@@ -449,7 +457,41 @@ $(function() {
             });
         }
     })
+    var verifyResponse = function(input){
+        var type    = input.best_label.label_name
+        var percent = input.best_label.probability_percentage
+        console.log(type)
+        console.log(percent)
+        if(type == "Other"){
+            var cardElement = document.getElementById("scanCard")
+            cardElement.style.display = "block"
+            setTimeout(function(){ 
+                $("#scanCard").css({
+                    "margin-left": '80%',
+                    "transform": "scale(0.1)",
+                    "top": '-25%'
+                })
+                setTimeout(function(){ 
+                    cardElement.style.display = "none"
+                    $("#scanCard").css({
+                        'margin-left': '36%',
+                        /* z-index: 5; */
+                        'position': 'fixed',
+                        'right': '50',
+                        'z-index': '5',
+                        'top': '50%',
+                        /* -webkit-transform: scaleX(-1); */
+                        'transform': 'translateY(-50%)',
+                        'transition': 'all 1250ms',
+                        'display':'none',
+                    })
 
+                }, 1000);                
+            }, 750);
+
+            
+        }
+    }
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == modal) {

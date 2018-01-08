@@ -523,3 +523,19 @@ html, body {
     margin-right:40%;
     border-radius:16px
 }
+
+
+#scanCard{
+    /* position: fixed; */
+    margin-left: 36%;
+    /* z-index: 5; */
+    position: fixed;
+    right: 50;
+    z-index: 5;
+    top: 50%;
+    /* -webkit-transform: scaleX(-1); */
+    transform: translateY(-50%);
+    transition: all 1250ms;
+    display:none;
+
+}
