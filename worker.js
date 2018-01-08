@@ -1,7 +1,7 @@
-var cacheName = 'v1'
+var cacheName = 'v1';
 var urlsToCache = [
         '/',
-        '/index.html',
+        'index.html',
         '/stories/dory/img/Background-hooks.jpg',
         '/stories/dory/img/dory1.png',
         '/stories/dory/img/dory2.png',
