@@ -10,6 +10,7 @@ html, body {
     width  :100%;
     overflow-y: hidden; 
     overflow-x: hidden; 
+    
 }   
 #container{
     display:inline-block;
@@ -57,12 +58,13 @@ html, body {
     top: -50%;
 }
 #text{
+    font-size: 1.5em;
     width:40%;
-    margin-top: 60%;
-    position: fixed;
+    position: absolute;
     right: 1%;
     z-index: 5;
-    top: -50%;
+    top: 50%;
+    transform: translateY(-50%);
 }
 #overlay{
 
