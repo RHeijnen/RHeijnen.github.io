@@ -2,7 +2,7 @@ var cacheName = 'v1';
 var urlsToCache = [
         '/',
         'index.html',
-        'stories/dory/img/Background-hooks.jpg',
+        'app/stories/dory/img/Background-hooks.jpg',
     ];
 
 self.addEventListener('install' , function(event){
