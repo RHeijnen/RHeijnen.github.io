@@ -13,16 +13,22 @@ window.onload = function(){ // on page load
     var duration                = 20 //countdown timer in seconds
     var tapCount                = 0;
     var start                   = false;
+    var enemyContainer          = [];
+    var img                     = new Image();
+    img.src                     = "./img/G4_02_Shark_V2.png";
+    Image.prototype.redraw      = function(){
+        scale = 1 - (distance / 100)
+        var scaleHeight = canvas.height * scale
+        var scaleWidth = canvas.width * scale
 
+        var ratios = calculateAspectRatioFit(img.width, img.height, scaleWidth, scaleHeight)
+        var maxRatios = calculateAspectRatioFit(img.width, img.height, canvas.width, canvas.height)
+        var paddingWidth = ratios.width /2
+        var paddingHeight = ratios.height / 2
+        context.drawImage(img, middleOfScreenWidth - paddingWidth, middleOfScreenHeight - paddingHeight, ratios.width, ratios.height); 
+    }
+   
     draw();
-  
-
-    // window.requestAnimFrame = (function(callback) {
-    //     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
-    //     function(callback) {
-    //       window.setTimeout(callback, 1000 / 60);
-    //     };
-    // })();
 
     canvas.addEventListener("touchstart", function (e) {  
         //increase distance by tapping
@@ -31,6 +37,7 @@ window.onload = function(){ // on page load
     });
 
     function draw(){
+        //img.redraw doesn't work, so fuck it drawEnemy
         drawEnemy()
         drawControls()
     }
@@ -48,6 +55,7 @@ window.onload = function(){ // on page load
 
     function drawEnemy(){
         var img = new Image();
+        img.src = "./img/G4_02_Shark_V2.png";
         img.onload = function () {
             // context.drawImage(img, canvas.width/2 , canvas.height/3, img.width, img.height); 
             scale = 1 - (distance / 100)
@@ -58,11 +66,8 @@ window.onload = function(){ // on page load
             var maxRatios = calculateAspectRatioFit(img.width, img.height, canvas.width, canvas.height)
             var paddingWidth = ratios.width /2
             var paddingHeight = ratios.height / 2
-            context.drawImage(img, middleOfScreenWidth - paddingWidth, middleOfScreenHeight - paddingHeight, ratios.width, ratios.height); 
-            
-        }
-        img.src = "./img/G4_02_Shark_V2.png";
-        
+            context.drawImage(img, middleOfScreenWidth - paddingWidth, middleOfScreenHeight - paddingHeight, ratios.width, ratios.height);         
+        }       
     } 
 
     function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
@@ -71,13 +76,13 @@ window.onload = function(){ // on page load
         
         return { width: srcWidth*ratio, height: srcHeight*ratio };
     }
-
+    
     function startCountdowns(duration){
         
         var timer = duration
         var myTimer = setInterval(function(){
             context.clearRect(0, 0, canvas.width, canvas.height);
-            drawEnemy()
+            img.redraw();
             drawControls()
             scale = scale + 0.1
 
@@ -86,7 +91,7 @@ window.onload = function(){ // on page load
             
             //distance will decrease every second
             if(distance > -30){
-                distance = distance - 10          
+                distance = distance - (10/60)          
             }
 
             //distance = 0, you got caught, you lose
@@ -102,7 +107,7 @@ window.onload = function(){ // on page load
                 clearInterval(myTimer)
                 endOverlay()
             }
-        }, 1000)
+        }, 1000/60)
     }
 
     $('#startButton').click(function(e){
