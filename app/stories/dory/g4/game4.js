@@ -12,7 +12,7 @@ window.onload = function() {
     var entityContainer         = [];
     var debugTextures           = false;
     var animSpeed               = 1;
-    var movement                = 2;
+    var movement                = 3;
     var colorColissionData;
     var simpleColissionMargins  = 0;
     var score                   = 0;

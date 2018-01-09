@@ -26,7 +26,7 @@ window.onload = function(){ // on page load
 
     canvas.addEventListener("touchstart", function (e) {  
         //increase distance by tapping
-        distance = distance + 5
+        distance = distance + 2
         tapCount++
     });
 
