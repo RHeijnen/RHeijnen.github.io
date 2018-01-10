@@ -77,6 +77,14 @@ window.addEventListener('load', function(){ // on page load
         animate(oImg,hookCoords[0][1],15)
       });
 
+      fabric.Image.fromURL('line.png', function(oImg) {
+        oImg.left = hookCoords[0][0] + 40;
+        oImg.top  = hookCoords[0][1] - 1115;
+        oImg.selectable = false;
+        canvas.add(oImg);
+        animate(oImg,hookCoords[0][1] - 1115,15)
+      });
+
       fabric.Image.fromURL('hook.png', function(oImg) {
         oImg.left = hookCoords[1][0];
         oImg.top  = hookCoords[1][1]
@@ -84,13 +92,26 @@ window.addEventListener('load', function(){ // on page load
         canvas.add(oImg);
         animate(oImg,hookCoords[1][1],35)
       });
-
+      fabric.Image.fromURL('line.png', function(oImg) {
+        oImg.left = hookCoords[1][0] + 40;
+        oImg.top  = hookCoords[1][1] - 1115;
+        oImg.selectable = false;
+        canvas.add(oImg);
+        animate(oImg,hookCoords[1][1] - 1115,15)
+      });
       fabric.Image.fromURL('hook.png', function(oImg) {
         oImg.left = hookCoords[2][0];
         oImg.top  = hookCoords[2][1]
         oImg.selectable = false;
         canvas.add(oImg);
         animate(oImg,hookCoords[2][1],60)
+      });
+      fabric.Image.fromURL('line.png', function(oImg) {
+        oImg.left = hookCoords[2][0] + 40;
+        oImg.top  = hookCoords[2][1] - 1115;
+        oImg.selectable = false;
+        canvas.add(oImg);
+        animate(oImg,hookCoords[2][1] - 1115,15)
       });
       fabric.Image.fromURL('hook.png', function(oImg) {
         oImg.left = hookCoords[3][0];
@@ -99,7 +120,13 @@ window.addEventListener('load', function(){ // on page load
         canvas.add(oImg);
         animate(oImg,hookCoords[3][1],150)
       });
-      
+      fabric.Image.fromURL('line.png', function(oImg) {
+        oImg.left = hookCoords[3][0] + 40;
+        oImg.top  = hookCoords[3][1] - 1115;
+        oImg.selectable = false;
+        canvas.add(oImg);
+        animate(oImg,hookCoords[3][1] - 1115,15)
+      });
       fabric.Image.fromURL('hook.png', function(oImg) {
         oImg.left = hookCoords[4][0];
         oImg.top  = hookCoords[4][1]
@@ -107,7 +134,13 @@ window.addEventListener('load', function(){ // on page load
         canvas.add(oImg);
         animate(oImg,hookCoords[4][1],250)
       });
-
+      fabric.Image.fromURL('line.png', function(oImg) {
+        oImg.left = hookCoords[4][0] + 40;
+        oImg.top  = hookCoords[4][1] - 1115;
+        oImg.selectable = false;
+        canvas.add(oImg);
+        animate(oImg,hookCoords[4][1] - 1115,15)
+      });
       fabric.Image.fromURL('hook.png', function(oImg) {
         oImg.left = hookCoords[5][0];
         oImg.top  = hookCoords[5][1]
@@ -115,13 +148,26 @@ window.addEventListener('load', function(){ // on page load
         canvas.add(oImg);
         animate(oImg,hookCoords[5][1],500)
       });
-      
+      fabric.Image.fromURL('line.png', function(oImg) {
+        oImg.left = hookCoords[5][0] + 40;
+        oImg.top  = hookCoords[5][1] - 1115;
+        oImg.selectable = false;
+        canvas.add(oImg);
+        animate(oImg,hookCoords[5][1] - 1115,15)
+      });
       fabric.Image.fromURL('hook.png', function(oImg) {
         oImg.left = hookCoords[6][0];
         oImg.top  = hookCoords[6][1]
         oImg.selectable = false;
         canvas.add(oImg);
         animate(oImg,hookCoords[6][1],500)
+      });
+      fabric.Image.fromURL('line.png', function(oImg) {
+        oImg.left = hookCoords[6][0] + 40;
+        oImg.top  = hookCoords[6][1] - 1115;
+        oImg.selectable = false;
+        canvas.add(oImg);
+        animate(oImg,hookCoords[6][1] - 1115,15)
       });
       fabric.Image.fromURL('hook.png', function(oImg) {
         oImg.left = hookCoords[7][0];
@@ -130,29 +176,46 @@ window.addEventListener('load', function(){ // on page load
         canvas.add(oImg);
         animate(oImg,hookCoords[7][1],250)
       });
+      fabric.Image.fromURL('line.png', function(oImg) {
+        oImg.left = hookCoords[7][0] + 40;
+        oImg.top  = hookCoords[7][1] - 1115;
+        oImg.selectable = false;
+        canvas.add(oImg);
+        animate(oImg,hookCoords[7][1] - 1115,15)
+      });
       fabric.Image.fromURL('hook.png', function(oImg) {
         oImg.left = hookCoords[8][0];
         oImg.top  = hookCoords[8][1]
         oImg.selectable = false;      
         canvas.add(oImg);
-        animate(oImg,hookCoords[8][1],4000)
+        animate(oImg,hookCoords[8][1],15)
       });
-  
+      fabric.Image.fromURL('line.png', function(oImg) {
+        oImg.left = hookCoords[8][0] + 40;
+        oImg.top  = hookCoords[8][1] - 1115;
+        oImg.selectable = false;
+        canvas.add(oImg);
+        animate(oImg,hookCoords[8][1] - 1115,15)
+      });
     }
     canvasReset();
     function onChange(baseline) {
       // options.target.setCoords();
       canvas.forEachObject(function(obj) {
         if(!obj.stroke){ // checks if object contains .stroke -> img objects do not have it, so we skip the lines
-          if(baseline.intersectsWithObject(obj)){
-            canvas.forEachObject(function(obj){
-              if(obj.stroke){
-                  // shake mobile
-                  location.reload();
-              } 
-            });
-            obj.set('opacity' ,baseline.intersectsWithObject(obj) ? 0.5 : 1);            
+          var texturename = obj._element.currentSrc
+          if(!texturename.includes("line")){
+            if(baseline.intersectsWithObject(obj)){
+              canvas.forEachObject(function(obj){
+                if(obj.stroke){
+                    // shake mobile
+                    location.reload();
+                } 
+              });
+              obj.set('opacity' ,baseline.intersectsWithObject(obj) ? 0.5 : 1);            
+            }
           }
+
         }
       });
     }
