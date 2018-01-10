@@ -115,7 +115,7 @@ html, body {
 .back-arrow{
     height: 22px;
     width: 22px;
-    margin: auto;
+    margin-right: 0.5vw;
 }
 
 .glyphicon.glyphicon-chevron-left{
