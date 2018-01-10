@@ -89,6 +89,14 @@ window.onload = function(){
     document.getElementById("explain-overlay").style.height = "0%";
   });
 
+  $(".home-button").click(function(){
+    location.href  = "../../../index.html" 
+  });
+
+  $(".back-button").click(function(){
+    location.href = "../15.html"
+  });
+
   function checkCombination(){
     var currentCombination = [number1Value, number2Value, number3Value]
     var i = targetCombination.length;

@@ -325,5 +325,12 @@ window.onload = function() {
         document.getElementById("explain-overlay").style.height = "0%";
     });
 
+    $(".home-button").click(function(){
+        location.href  = "../../../index.html" 
+    });
+
+    $(".back-button").click(function(){
+        location.href = "../8.html"
+    });
     
 }

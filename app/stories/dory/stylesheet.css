@@ -55,6 +55,12 @@ html, body {
     justify-content: center;
 }
 
+.glyphicon.glyphicon-home {
+    font-size: 22px;
+    color: black;
+    padding-right: 2px;
+}
+
 #next{
     margin-right: 3%;
     margin-top: 77%;    
@@ -178,6 +184,8 @@ html, body {
     position:absolute;
     width:100%;
     height:50%;
+    border-color:#0093FF;   
+    border-bottom-style: dashed;
 }
 #decisionB{
     position:absolute;

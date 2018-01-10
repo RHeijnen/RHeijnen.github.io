@@ -47,7 +47,7 @@ html, body {
   }
   
   .overlay-content-explain h2 {
-    color: rgb(14, 72, 180);
+    color: #00a1fb;
   }
   
   .overlay-text{
@@ -96,7 +96,7 @@ html, body {
 }
 
 .back-button{
-    z-index: 2;
+    z-index: 5;
     position: absolute;
     left: 25px;
     bottom: 25px;

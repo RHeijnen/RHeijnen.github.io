@@ -120,7 +120,15 @@ window.onload = function(){ // on page load
     }
 
     $("#continueButton").click(function(){
-        location.href  = "../14B.html"   
+        location.href  = "../14A.html"   
+    });
+
+    $(".home-button").click(function(){
+        location.href  = "../../../index.html" 
+    });
+
+    $(".back-button").click(function(){
+        location.href = "../13B.html"
     });
 
 }

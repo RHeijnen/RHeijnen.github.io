@@ -414,11 +414,11 @@ window.onload = function() {
     });
 
     $(".home-button").click(function(){
-        console.log("TODO: home func")
+        location.href  = "../../../index.html" 
     });
 
     $(".back-button").click(function(){
-        console.log("TODO: back func")
+        location.href = "../14A.html"
     });
 
     function setScore(){
