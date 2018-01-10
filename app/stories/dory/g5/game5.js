@@ -43,8 +43,12 @@ window.onload = function(){ // on page load
     }
 
     function drawControls(){
-        var left = document.getElementById('leftTap');
-        var right = document.getElementById('rightTap');
+        var left = new Image();
+        left.src = './img/G4_03_Left.png';
+        var right = new Image();
+        right.src = './img/G4_04_Right.png';
+        // var left = document.getElementById('leftTap');
+        // var right = document.getElementById('rightTap');
 
         var imgWidth = left.width / 2
         var padding = 50
