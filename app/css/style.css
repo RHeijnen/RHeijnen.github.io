@@ -55,7 +55,6 @@ html, body {
 }
 .charIcon{
     display:inline-block;
-    margin-left:15px
     
 }
 .bg{
@@ -128,6 +127,11 @@ html, body {
 }
 #cameraicon{
     width: 90%;
+}
+#cameraicon2{
+    width: 105%;
+    margin-top: -4%;
+    margin-left: -20px;
 }
 #infoBtn{
     position:absolute;
@@ -451,7 +455,7 @@ html, body {
     /* margin-left:40%;
     margin-right:40%; */
     border-radius:16px;
-    height:10px;
+    height:9px;
     
     
 }
@@ -459,11 +463,14 @@ html, body {
 #loadinglogo{
     /* background: url("../../_resources/Disney_Logo.png"); */
     margin-top:-33%;
-    margin-left:77%;
+    margin-left:81%;
     width:50%;  
+    margin-bottom:40px
 }
 #logo{
-
+    width: 75%;
+    margin-top: 8%;
+    margin-left: 19%;
 }
 #closemodal{
     position: absolute;
@@ -536,7 +543,7 @@ html, body {
 #myProgress {
     width: 100%;
     background-color: grey;
-    margin-left:40%;
+    margin-left:47%;
     margin-right:40%;
     border-radius:16px;
     height:10px
@@ -559,7 +566,21 @@ html, body {
 }
 
 #d15{
-    margin-left:10px
+    margin-left:-1px
 
-    
+
+}
+#d15Toy{
+    margin-left:-1px;
+    margin-top:15px
+
+
+}
+
+#d15Kwik{
+    margin-left:-5px
+}
+
+#d15Ra{
+    margin-left: -22px;
 }

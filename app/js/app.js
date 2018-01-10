@@ -1,7 +1,7 @@
 $(function() {
     var screenHeight = 0;
     var screenWidth  = 0;
-    var currentPage = 0;
+    var currentPage  = 0;
     var maxPage;
     var scrollable;
     var xCoord;
@@ -30,6 +30,7 @@ $(function() {
     } else {
        console.log("getUserMedia not supported");
     }
+
     $("#snapshot").click(function(){
         var cw = 200;
         var ch = 200;
@@ -39,6 +40,7 @@ $(function() {
         image.width = cw;
         sendPic(image.src)
     });
+
 
     var sendPic = function(_input){
         function b64toBlob(dataURI) {
@@ -124,10 +126,10 @@ $(function() {
         })
 
         $(".section").css({
-            "height" : (screenHeight/100)*70,
-            "width"  : (screenWidth/100)*80,
-            "margin-top":(screenHeight/100)*20,
-            "margin-left":(screenWidth/100)*5,
+            "height" : (screenHeight/100)*80,
+            "width"  : (screenWidth/100)*72,
+            "margin-top":(screenHeight/100)*25,
+            "margin-left":(screenWidth/100)*11,
         })
         $("#fillerL").css({
             "height" : (screenHeight/100)*70,
@@ -142,25 +144,25 @@ $(function() {
             "margin-left": (screenWidth/100)*15,
         })
         $("#cameraBtn").css({
-            "height" : (screenHeight/100)*10,
+            "height" : (screenHeight/100)*12,
             "width"  : (screenWidth/100)*15,
-            "margin-top":(screenHeight/100)*5,
+            "margin-top":(screenHeight/100)*6,
             "margin-left": (screenWidth/100)*84,
         })
         $("#infoBtn").css({
-            "height" : (screenHeight/100)*10,
-            "width"  : (screenHeight/100)*10,
+            "height" : (screenHeight/100)*13,
+            "width"  : (screenHeight/100)*13,
             "margin-top":(screenHeight/100)*5,
             "margin-left": (screenWidth/100)*3,
         })
         $("#closeInfo").css({
-            "height" : (screenHeight/100)*10,
+            "height" : (screenHeight/100)*12,
             "width"  : (screenHeight/100)*10,
             "margin-top":(screenHeight/100)*5,
             "margin-left": (screenWidth/100)*3,
         })
         $("#closeCamera").css({
-            "height" : (screenHeight/100)*10,
+            "height" : (screenHeight/100)*12,
             "width"  : (screenHeight/100)*10,
             "margin-top":(screenHeight/100)*5,
             "margin-left": (screenWidth/100)*3,
@@ -203,10 +205,11 @@ $(function() {
                 function frame() {
                   if (width >= 100) {
                     clearInterval(id);
+
                     // callback;
                     loadingElement.hide();
                     $('#slideshow').stop().animate({
-                        scrollLeft: ((screenWidth/100)*60) - (screenWidth/100)*15
+                        scrollLeft: ((screenWidth/100)*62) - (screenWidth/100)*15
                     }, 1000,'easeInOutExpo');
     
                     // $(".subsection:first").css({
@@ -215,7 +218,7 @@ $(function() {
                   }else {
                     width++; 
                     elem.style.width = width + '%'; 
-                    elem.style.height = 10 + 'px'; 
+                    elem.style.height = 9 + 'px'; 
                     elem.innerHTML = '&nbsp;';
                   }
                 }
@@ -278,8 +281,9 @@ $(function() {
             }
         }
         var scrollpoint = 0;
-        var margins = ((configObject.screenWidth/100)*80)     + ((configObject.screenWidth/100)*5);
-        var defaultPos = (((configObject.screenWidth/100)*60) - ((configObject.screenWidth/100)*15));
+        var margins =    ((configObject.screenWidth/100)*72)     + ((configObject.screenWidth/100)*11);
+        var defaultPos = (((configObject.screenWidth/100)*62)    - ((configObject.screenWidth/100)*15));
+
         switch(page) {
             case 0: scrollpoint = defaultPos                      ;break;
             case 1: scrollpoint = defaultPos+(margins*page)       ;break;
@@ -290,6 +294,7 @@ $(function() {
             case 6: scrollpoint = defaultPos+(margins*page)       ;break;
             case 7: scrollpoint = defaultPos+(margins*page)       ;break;
             case 8: scrollpoint = defaultPos+(margins*page)       ;break;
+
         }
 
         $('#slideshow').stop().animate({
@@ -535,3 +540,10 @@ $(function() {
 
 
 });
+
+
+/*
+
+hij loopt express te fucken ofzo i dnno
+
+**/
