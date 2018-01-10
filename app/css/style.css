@@ -54,7 +54,8 @@ html, body {
 
 }
 .charIcon{
-    display:inline-block
+    display:inline-block;
+    margin-left:15px
     
 }
 .bg{
@@ -66,55 +67,55 @@ html, body {
     z-index: -1;
     background: url("../resources/02_BG_Dory.png");
     opacity: 1;
-    transition: all 1000ms ease-in;
+    transition: all 250ms ease-in;
 }
 #bg1{
     z-index: -1;
     background: url("../resources/01_BG_Moana.png");
     opacity: 0;
-    transition: all 1000ms ease-in;
+    transition: all 250ms ease-in;
 }
 #bg2{
     z-index: -1;
     background: url("../resources/03_BG_Frozen.png");
     opacity: 0;
-    transition: all 1000ms ease-in;
+    transition: all 250ms ease-in;
 }
 #bg3{
     z-index: -1;
     background: url("../resources/04_BG_Incredibles.png");
     opacity: 0;
-    transition: all 1000ms ease-in;
+    transition: all 250ms ease-in;
 }
 #bg4{
     z-index: -1;
     background: url("../resources/05_BG_ToyStory.png");
     opacity: 0;
-    transition: all 1000ms ease-in;
+    transition: all 250ms ease-in;
 }
 #bg5{
     z-index: -1;
     background: url("../resources/06_BG_Cars.png");
     opacity: 0;
-    transition: all 1000ms ease-in;
+    transition: all 250ms ease-in;
 }
 #bg6{
     z-index: -1;
     background: url("../resources/07_BG_DonaldDuck.png");
     opacity: 0;
-    transition: all 1000ms ease-in;
+    transition: all 250ms ease-in;
 }
 #bg7{
     z-index: -1;
     background: url("../resources/08_BG_Coco.png");
     opacity: 0;
-    transition: all 1000ms ease-in;
+    transition: all 250ms ease-in;
 }
 #bg8{
     z-index: -1;
     background: url("../resources/09_BG_WreckItRalph.png");
     opacity: 0;
-    transition: all 1000ms ease-in;
+    transition: all 250ms ease-in;
 }
 
 #cameraBtn{
@@ -449,16 +450,31 @@ html, body {
 #myBar{
     /* margin-left:40%;
     margin-right:40%; */
-    border-radius:16px
+    border-radius:16px;
+    height:10px;
     
     
 }
 
-#logo{
+#loadinglogo{
     /* background: url("../../_resources/Disney_Logo.png"); */
-    margin-top:-60%;
-    margin-left:40%;
-    width:50%;
+    margin-top:-33%;
+    margin-left:77%;
+    width:50%;  
+}
+#logo{
+
+}
+#closemodal{
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+#logoContainer{
+    position: absolute;
+    margin-left: 40%;
+    margin-top: 2%;
+
 }
 .w3-green, .w3-hover-green:hover {
     color: #fff!important;
@@ -471,6 +487,7 @@ html, body {
 
 .w3-container, .w3-panel {
     padding: 0.01em 16px;
+    height:10%;
 }
 
 
@@ -521,7 +538,8 @@ html, body {
     background-color: grey;
     margin-left:40%;
     margin-right:40%;
-    border-radius:16px
+    border-radius:16px;
+    height:10px
 }
 
 
@@ -538,4 +556,8 @@ html, body {
     transition: all 1250ms;
     display:none;
 
+}
+
+#d15{
+    margin-left:10px
 }

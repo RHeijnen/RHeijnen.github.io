@@ -144,25 +144,25 @@ $(function() {
         $("#cameraBtn").css({
             "height" : (screenHeight/100)*10,
             "width"  : (screenWidth/100)*15,
-            "margin-top":(screenHeight/100)*3,
-            "margin-left": (screenWidth/100)*85,
+            "margin-top":(screenHeight/100)*5,
+            "margin-left": (screenWidth/100)*84,
         })
         $("#infoBtn").css({
             "height" : (screenHeight/100)*10,
             "width"  : (screenHeight/100)*10,
-            "margin-top":(screenHeight/100)*3,
+            "margin-top":(screenHeight/100)*5,
             "margin-left": (screenWidth/100)*3,
         })
         $("#closeInfo").css({
             "height" : (screenHeight/100)*10,
             "width"  : (screenHeight/100)*10,
-            "margin-top":(screenHeight/100)*3,
+            "margin-top":(screenHeight/100)*5,
             "margin-left": (screenWidth/100)*3,
         })
         $("#closeCamera").css({
             "height" : (screenHeight/100)*10,
             "width"  : (screenHeight/100)*10,
-            "margin-top":(screenHeight/100)*3,
+            "margin-top":(screenHeight/100)*5,
             "margin-left": (screenWidth/100)*3,
         })
         // $(".subsection").css({
@@ -215,7 +215,7 @@ $(function() {
                   }else {
                     width++; 
                     elem.style.width = width + '%'; 
-                    elem.style.height = 15 + '%'; 
+                    elem.style.height = 10 + 'px'; 
                     elem.innerHTML = '&nbsp;';
                   }
                 }
@@ -337,12 +337,11 @@ $(function() {
 
     // $('*').bind('touchmove', false);
     $('#container').bind('touchmove',function(e){
-        // todo make better navigation logic
         e.preventDefault();
-
     });
 
     // ^ removes touching alltogether
+
     $('#container').bind('touchend', function (e){
         var new_xCoord = e.originalEvent.changedTouches[0].clientX;
         if(xCoord > new_xCoord+15){
@@ -457,11 +456,12 @@ $(function() {
             });
         }
     })
+
+
     var verifyResponse = function(input){
         var type    = input.best_label.label_name
         var percent = input.best_label.probability_percentage
-        console.log(type)
-        console.log(percent)
+
         if(type == "Other"){
             var cardElement = document.getElementById("scanCard")
             cardElement.style.display = "block"
@@ -485,16 +485,15 @@ $(function() {
                         'transition': 'all 1250ms',
                         'display':'none',
                     })
-
                 }, 1000);                
             }, 750);
-
-            
         }
     }
+
     // When the user clicks anywhere outside of the modal, close it
+    var closeBtn = document.getElementById("closemodal")
     window.onclick = function(event) {
-        if (event.target == modal) {
+        if (event.target == modal || event.target == closemodal) {
                 $("#modalL").css({
                     "margin-left": '-90%',
                 });
@@ -522,15 +521,17 @@ $(function() {
         }
     }
 
-// used for camera data encoding
-function b64EncodeUnicode(str) {
-    // first we use encodeURIComponent to get percent-encoded UTF-8,
-    // then we convert the percent encodings into raw bytes which
-    // can be fed into btoa.
-    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
-        function toSolidBytes(match, p1) {
-            return String.fromCharCode('0x' + p1);
-    }));
-}
+    // used for camera data encoding
+    function b64EncodeUnicode(str) {
+        // first we use encodeURIComponent to get percent-encoded UTF-8,
+        // then we convert the percent encodings into raw bytes which
+        // can be fed into btoa.
+        return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+            function toSolidBytes(match, p1) {
+                return String.fromCharCode('0x' + p1);
+        }));
+    }
+
+
 
 });
