@@ -56,11 +56,10 @@ html, body {
   
   .overlay-text{
     color: white;
-    /* font-size: 1.5em; */
-    font-size: 22px;
+    font-size: 1.4em;
     width: 70%;
     margin: auto;
-    
+    line-height: 1.7em;  
   }
   
   .overlay-button{
@@ -136,7 +135,8 @@ html, body {
     color: white;
     border-radius: 30px;
     background-color: rgba(0, 0, 0, 0.6);
-    font-size: 22px;
+    font-size: 19px;
+    letter-spacing: 1px;
     font-weight: bold;
     display: flex;
     align-items: center;
