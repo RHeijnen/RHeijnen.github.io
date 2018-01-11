@@ -9,7 +9,8 @@ $(function() {
     var cameraCanvas = document.getElementById("cameraCanvas")
     var ctx = cameraCanvas.getContext('2d');
     var image = document.getElementById('imgWorkaround');
-    var video = document.querySelector('video');
+    var video1 = document.getElementById('cameraBackground');
+    var video2 = document.getElementById('cameraFeedback');
     var image = document.querySelector('img');
     var currentPage = 0;
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -18,10 +19,14 @@ $(function() {
     if (navigator.getUserMedia) {
         navigator.getUserMedia({ video: true,audio:false},
           function(stream) {
-             video.src = window.URL.createObjectURL(stream);
-             video.onloadedmetadata = function(e) {
-               video.play();
+            video1.src = window.URL.createObjectURL(stream);
+            video2.src = window.URL.createObjectURL(stream);
+            video1.onloadedmetadata = function(e) {
+               video1.play();
              };
+             video2.onloadedmetadata = function(e) {
+                video2.play();
+              };
           },
           function(err) {
              console.log("The following error occured: " + err.name);
@@ -131,12 +136,14 @@ $(function() {
             "margin-top":(screenHeight/100)*25,
             "margin-left":(screenWidth/100)*11,
         })
+
         $("#fillerL").css({
             "height" : (screenHeight/100)*70,
             "width"  : ((screenWidth/100)*50), 
             "margin-top":(screenHeight/100)*15,
             "margin-left": 0,
         })
+
         $("#fillerR").css({
             "height" : (screenHeight/100)*70,
             "width"  : (screenWidth/100)*60,
@@ -187,7 +194,7 @@ $(function() {
             "height"     : (screenHeight/100) *100,
         });
         $("#cameraFeedback").css({
-            "width"      : (screenWidth/100) * 50,
+            "width"      : (screenWidth/100) * 40,
             "margin-left": (screenWidth/100) * 5,
             "border-radius": "25px"
         })
@@ -251,9 +258,9 @@ $(function() {
         }
         for(var i = 0; i <= maxPage;i ++ ){
             if( i == page){
-                $("#bg"+i).animate({ opacity: 1 }, { duration: 1000 });
+                $("#bg"+i).animate({ opacity: 1 }, { duration: 100 });
             }else{
-                $("#bg"+i).animate({ opacity: 0 }, { duration: 1000 });
+                $("#bg"+i).animate({ opacity: 0 }, { duration: 100 });
             }
         }
     }
@@ -544,6 +551,5 @@ $(function() {
 
 /*
 
-hij loopt express te fucken ofzo i dnno
 
 **/

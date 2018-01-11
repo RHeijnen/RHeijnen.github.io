@@ -172,28 +172,25 @@
         </div>
         <!-- The camera Modal -->
         <div id="cameraModal" class="modal">
-                <div id="closeCamera"> 
-                        <img id="cameraicon" src="./resources/backIcon.png">
-                </div>
-
-                <video id="cameraFeedback" autoplay></video>
-                <img id="snapshot" src="./resources/snapshoticon.png" style="display: block;margin-left: 19%;"/>
-
-                 <!-- workaround with some hiden elements -->
-                <img id="imgWorkaround" src="" style="display:none">
-                <canvas id="cameraCanvas" style="display:none"></canvas>
-                <!-- <input type="file" id="files" name="files[]" accept="image/*" capture="camera" />
-                <output id="list"></output> -->
-
-            <script>
- 
-                </script>
-            
-            
-
-
-
+                <video id="cameraBackground">
+                </video>
+                <div id="cameraFilter"></div>
+                <div id="cameraOverlay"></div>
+                       <div id="closeCamera"> 
+                            <img id="cameraicon" src="./resources/backIcon.png">
+                        </div>
+        
+                        <video id="cameraFeedback" autoplay></video>
+                        <img id="snapshot" src="./resources/snapshoticon.png" style="display: block;margin-left: 19%;"/>
+        
+                        <img id="imgWorkaround" src="" style="display:none">
+                        <canvas id="cameraCanvas" style="display:none"></canvas>
+        
         </div>
+
+
+
+
         <img src="./resources/kaart.png" id="scanCard"/>
         <!-- JavaScript -->
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>		
