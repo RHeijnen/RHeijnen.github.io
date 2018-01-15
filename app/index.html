@@ -7,6 +7,7 @@
         <meta name="keywords" content="jquery, horizontal, scrolling, scroll, smooth"/>
         <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"/>
         <link rel="stylesheet" href="css/ds3.css" type="text/css" media="screen"/>
+        <link href="https://fonts.googleapis.com/css?family=Poppins:400,500" rel="stylesheet">
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>		
 
 
@@ -176,15 +177,20 @@
                 </video>
                 <div id="cameraFilter"></div>
                 <div id="cameraOverlay"></div>
-                       <div id="closeCamera"> 
-                            <img id="cameraicon" src="./resources/backIcon.png">
-                        </div>
+                    <div id="closeCamera"> 
+                        <img id="cameraicon" src="./resources/backIcon.png">
+                    </div>
+            <div id="videoScreen">
+                    <video id="cameraFeedback" autoplay style="margin:0 auto; width:auto; height:100%"></video>
+            </div>
+            <div id="takePicture">
+                <img id="cameraIcon" src="./resources/01_Icon_Camera.svg">
+                <p id="cameraText">Scan kaart</p>
+            </div>        
+                    <!-- <img id="snapshot" src="./resources/snapshoticon.png" style="display: block;margin: 0 auto;"/> -->
         
-                        <video id="cameraFeedback" autoplay></video>
-                        <img id="snapshot" src="./resources/snapshoticon.png" style="display: block;margin-left: 19%;"/>
-        
-                        <img id="imgWorkaround" src="" style="display:none">
-                        <canvas id="cameraCanvas" style="display:none"></canvas>
+                    <img id="imgWorkaround" src="" style="display:none">
+                    <canvas id="cameraCanvas" style="display:none"></canvas>
         
         </div>
 

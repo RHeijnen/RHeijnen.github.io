@@ -36,7 +36,7 @@ $(function() {
        console.log("getUserMedia not supported");
     }
 
-    $("#snapshot").click(function(){
+    $("#takePicture").click(function(){
         var cw = 200;
         var ch = 200;
         ctx.drawImage(video, 0, 0, cw, ch, 0, 0, cw / 2, ch / 3);
@@ -193,10 +193,15 @@ $(function() {
             "width"      : (screenHeight/100) * 75,
             "height"     : (screenHeight/100) *100,
         });
-        $("#cameraFeedback").css({
-            "width"      : (screenWidth/100) * 40,
-            "margin-left": (screenWidth/100) * 5,
-            "border-radius": "25px"
+        $("#videoScreen").css({
+            "width"         : (screenWidth/100) * 43,  
+            "height"        : (screenWidth/100) * 43,   
+            "margin-left"   : (screenWidth/100) * 28.5,
+            "border-radius" : "25px",
+            "position"      : "absolute",
+            "bottom"        : "11%",
+            "overflow"      : "hidden"
+
         })
 
         setTimeout(function(){ 

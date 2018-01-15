@@ -1,6 +1,7 @@
 *{
     margin:0;
     padding:0;
+    font-family: 'Poppins', sans-serif; 
 }
  /* with asbulote on body */
 
@@ -146,6 +147,46 @@ html, body {
     /*background-color: rgba(0, 0, 0, 0.5);*/
     background-image: url("../resources/infoscreen.png");
 }
+
+#takePicture{
+    width: 205px;
+    height: 66px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 3%;
+    background-color: white;
+    border-radius: 35px;
+}
+
+#cameraIcon{
+    float:left;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 26px;
+    width: 26px;
+    margin-left: 20px;
+}
+
+#cameraText{
+    float:left;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 10%;
+    font-size: 1.15em;
+    font-weight: 500;
+}
+
+#cameraFeedback{
+    margin: 0 auto;
+    width: auto;
+    height: 100%;
+    position: absolute;
+    left: -80px;
+}
+
 #cameraBackground{
     background-color: rgba(0, 0, 0, 0.5); 
     object-fit: cover;
@@ -166,11 +207,16 @@ html, body {
 }
 
 #cameraOverlay{
-    z-index:-1;
+    z-index: 5;
     position:absolute;
     border-radius:15px;
-    background-color: white;
-    width:150px
+    /* background-color: white; */
+    width:20%;
+    height: 53%;
+    top:24%;
+    left: 40%;
+    margin: auto;
+    border: 2px solid white;
 }
 #closeInfo{
     position:absolute;
