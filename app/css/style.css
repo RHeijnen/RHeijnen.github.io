@@ -147,6 +147,16 @@ html, body {
     /*background-color: rgba(0, 0, 0, 0.5);*/
     background-image: url("../resources/infoscreen.png");
 }
+#cardStatus{
+    width: 170px;
+    height: 66px;
+    position: absolute;
+    top:5%;
+    right: 3%;
+    background-color: rgba(0, 0, 0, 0.4);
+    color:white;
+    border-radius: 35px;
+}
 
 #takePicture{
     width: 205px;
@@ -157,6 +167,26 @@ html, body {
     right: 3%;
     background-color: white;
     border-radius: 35px;
+}
+
+#statusText{
+    float:left;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 10%;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+#cardIcon{
+    float:left;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 26px;
+    width: 26px;
+    margin-left: 20px;
 }
 
 #cameraIcon{
@@ -187,6 +217,10 @@ html, body {
     left: -80px;
 }
 
+#cameraModal{
+    overflow: hidden;
+}
+
 #cameraBackground{
     background-color: rgba(0, 0, 0, 0.5); 
     object-fit: cover;
@@ -195,6 +229,7 @@ html, body {
     height: 552px;
     z-index:-3;
     filter: blur(30px);
+    transform: scale(1.08);    
 }
 
 #cameraFilter{

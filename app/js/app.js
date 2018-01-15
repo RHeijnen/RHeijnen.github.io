@@ -175,8 +175,8 @@ $(function() {
             "margin-left": (screenWidth/100)*3,
         })
         $("#closeCamera").css({
-            "height" : (screenHeight/100)*12,
-            "width"  : (screenHeight/100)*10,
+            "height" : (screenHeight/100)*13,
+            "width"  : (screenHeight/100)*13,
             "margin-top":(screenHeight/100)*5,
             "margin-left": (screenWidth/100)*3,
         })

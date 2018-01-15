@@ -1,19 +1,19 @@
 {
-    "short_name": "Appie",
-    "name": "Test appie",
+    "short_name": "Bedtime Stories",
+    "name": "Bedtime Stories",
     "icons": [
       {
-        "src": "freepik.jpg",
+        "src": "app-icon.jpg",
         "sizes": "96x96",
         "type": "image/png"
       },
       {
-        "src": "freepik.jpg",
+        "src": "app-icon.jpg",
         "sizes": "144x144",
         "type": "image/png"
       },
       { 
-        "src": "freepik.jpg",
+        "src": "app-icon.jpg",
         "sizes": "192x192",
         "type": "image/png"
       }
