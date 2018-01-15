@@ -39,7 +39,7 @@ $(function() {
     $("#takePicture").click(function(){
         var cw = 200;
         var ch = 200;
-        ctx.drawImage(video, 0, 0, cw, ch, 0, 0, cw / 2, ch / 3);
+        ctx.drawImage(video2, 0, 0, cw, ch, 0, 0, cw / 2, ch / 3);
         image.src = cameraCanvas.toDataURL();
         image.height = ch;
         image.width = cw;
