@@ -22,8 +22,8 @@ $(function() {
                 facingMode: "environment"
             }]
         };
-
-        navigator.getUserMedia({ video: constraints,audio:false},
+        
+        navigator.getUserMedia({video: { facingMode: "environment" }},
           function(stream) {
             video1.src = window.URL.createObjectURL(stream);
             video2.src = window.URL.createObjectURL(stream);
@@ -36,8 +36,8 @@ $(function() {
           },
           function(err) {
              console.log("The following error occured: " + err.name);
-          }
-       );
+          });
+       
     } else {
        console.log("getUserMedia not supported");
     }
