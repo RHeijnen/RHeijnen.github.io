@@ -17,7 +17,13 @@ $(function() {
     window.URL = window.URL || window.webkitURL;
 
     if (navigator.getUserMedia) {
-        navigator.getUserMedia({ video: true,audio:false},
+        const constraints = {
+            advanced: [{
+                facingMode: "environment"
+            }]
+        };
+
+        navigator.getUserMedia({ video: constraints,audio:false},
           function(stream) {
             video1.src = window.URL.createObjectURL(stream);
             video2.src = window.URL.createObjectURL(stream);
