@@ -179,6 +179,15 @@ html, body {
     font-weight: 500;
 }
 
+#closeIcon{
+    float:left;
+    position: relative;
+    height: 60px;
+    width: 60px;
+    margin-top: 2px;
+    margin-left: 2px;
+}
+
 #cardIcon{
     float:left;
     position: relative;
