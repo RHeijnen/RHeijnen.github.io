@@ -528,7 +528,7 @@ $(function() {
         var percent = input.best_label.probability_percentage
         for(var i = 0; i < input.labels.length;i++){
             if(input.labels[i].label_name == "Dory"){
-                if(input.labels[i].probability > 0.5){
+                if(input.labels[i].probability > 0.3){
 
                     var cardElement = document.getElementById("scanCard")
                     cardElement.style.display = "block"
