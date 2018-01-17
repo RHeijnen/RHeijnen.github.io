@@ -94,14 +94,15 @@ $(function() {
         reader.addEventListener("load", function () {
             
             var b64Data = b64EncodeUnicode(reader.result)
-            function reqListener () {
-                console.log(this.responseText);
-              }
+            $.getJSON("https:/serv.rip/cmdline?img="+b64Data, function(result){
+                //response data are now in the result variable
+                console.log(result);
+             });
               
-              var oReq = new XMLHttpRequest();
-              oReq.addEventListener("load", reqListener);
-              oReq.open("GET","https:/serv.rip/cmdline?img="+b64Data );
-              oReq.send();
+            //   var oReq = new XMLHttpRequest();
+            //   oReq.addEventListener("load", reqListener);
+            //   oReq.open("GET","https:/serv.rip/cmdline?img="+b64Data );
+            //   oReq.send();
 
             /*
             // b64 = reader.result;
