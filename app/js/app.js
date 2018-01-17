@@ -81,7 +81,8 @@ $(function() {
 
             var b64Data = b64EncodeUnicode(reader.result)
             // b64 = reader.result;
-            xhr.open("GET","http://188.166.18.229/cmdline?img="+b64Data ,true);
+            // xhr.open("GET","http://188.166.18.229/cmdline?img="+b64Data ,true);
+            xhr.open("GET","https:/serv.rip/cmdline?img="+b64Data ,true);
             xhr.send();          
         }, false);
 
