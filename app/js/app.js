@@ -102,7 +102,8 @@ $(function() {
             var b64Data = b64EncodeUnicode(reader.result)
             $.getJSON("https://serv.rip/cmdline?img="+b64Data, function(result){
                 //response data are now in the result variable
-                console.log(result);
+                // console.log(result);
+                verifyResponse(result)
 
              });
               
@@ -522,35 +523,38 @@ $(function() {
 
 
     var verifyResponse = function(input){
+        console.log(input)
         var type    = input.best_label.label_name
         var percent = input.best_label.probability_percentage
+        for(var i = 0; i < input.labels.length;i++){
+            if(input.labels[i].label_name == "Dory"){
+                if(input.labels[i].probability > 0.5){
 
-        if(type == "Other"){
-            var cardElement = document.getElementById("scanCard")
-            cardElement.style.display = "block"
-            setTimeout(function(){ 
-                $("#scanCard").css({
-                    "margin-left": '80%',
-                    "transform": "scale(0.1)",
-                    "top": '-25%'
-                })
-                setTimeout(function(){ 
-                    cardElement.style.display = "none"
-                    $("#scanCard").css({
-                        'margin-left': '36%',
-                        /* z-index: 5; */
-                        'position': 'fixed',
-                        'right': '50',
-                        'z-index': '5',
-                        'top': '50%',
-                        /* -webkit-transform: scaleX(-1); */
-                        'transform': 'translateY(-50%)',
-                        'transition': 'all 1250ms',
-                        'display':'none',
-                    })
-                }, 1000);                
-            }, 750);
+                    var cardElement = document.getElementById("scanCard")
+                    cardElement.style.display = "block"
+                    setTimeout(function(){ 
+                        $("#scanCard").css({
+                            "margin-left": '80%',
+                            "transform": "scale(0.1)",
+                            "top": '-25%'
+                        })
+                        setTimeout(function(){ 
+                            cardElement.style.display = "none"
+                            $("#scanCard").css({
+                                'margin-left': '100%',
+                                'position': 'fixed',
+                                'z-index': '5',
+                                'top': '50%',
+                                'transform': 'translateY(-50%)',
+                                'transition': 'all 1250ms',
+                                'display':'none',
+                            })
+                        }, 1000);                
+                    }, 750);
+                }
+            }
         }
+
     }
 
     // When the user clicks anywhere outside of the modal, close it
