@@ -11,7 +11,7 @@ $(function() {
     var image = document.getElementById('imgWorkaround');
     var video1 = document.getElementById('cameraBackground');
     var video2 = document.getElementById('cameraFeedback');
-    var image = document.querySelector('img');
+    // var image = document.querySelector('img');
     var currentPage = 0;
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
     window.URL = window.URL || window.webkitURL;
@@ -43,12 +43,9 @@ $(function() {
     }
 
     $("#takePicture").click(function(){
-        var cw = 200;
-        var ch = 200;
-        ctx.drawImage(video2, 0, 0, cw, ch, 0, 0, cw / 2, ch / 3);
+
+        ctx.drawImage(video2, 350, 350, 150, 150);
         image.src = cameraCanvas.toDataURL();
-        image.height = ch;
-        image.width = cw;
         sendPic(image.src)
     });
 
@@ -123,8 +120,8 @@ $(function() {
         // workaround fullscreen method with extreme width to setup horizontal page
         var screenHeight = $( window ).height();
         var screenWidth  = $( window ).width();
-        cameraCanvas.width  = screenHeight/3
-        cameraCanvas.height = screenWidth/3
+        // cameraCanvas.width  = screenHeight/3
+        // cameraCanvas.height = screenWidth/3
 
         configObject.screenHeight = screenHeight;
         configObject.screenWidth = screenWidth;
