@@ -74,6 +74,7 @@ $(function() {
         var reader = new FileReader();
         var getJSON = function(url) {
             return new Promise(function(resolve, reject) {
+              console.log(url)
               xhr.open('get', url, true);
               xhr.responseType = 'json';
               xhr.onload = function() {
@@ -84,6 +85,7 @@ $(function() {
                   reject(status);
                 }
               };
+              
               xhr.send();
             });
           };
@@ -92,6 +94,15 @@ $(function() {
         reader.addEventListener("load", function () {
             
             var b64Data = b64EncodeUnicode(reader.result)
+            function reqListener () {
+                console.log(this.responseText);
+              }
+              
+              var oReq = new XMLHttpRequest();
+              oReq.addEventListener("load", reqListener);
+              oReq.open("GET","https:/serv.rip/cmdline?img="+b64Data );
+              oReq.send();
+
             /*
             // b64 = reader.result;
             // xhr.open("GET","http://188.166.18.229/cmdline?img="+b64Data ,true);
@@ -100,11 +111,11 @@ $(function() {
             xhr.send();      
 
             */
-            getJSON("https:/serv.rip/cmdline?img="+b64Data).then(function(data) {
+            // getJSON("https:/serv.rip/cmdline?img="+b64Data).then(function(data) {
 
-            }, function(status) { //error detection....
+            // }, function(status) { //error detection....
 
-            });            
+            // });            
         }, false);
 
 
@@ -112,23 +123,19 @@ $(function() {
 
 
     
-            xhr.addEventListener("readystatechange", processRequest, false);
+            // xhr.addEventListener("readystatechange", processRequest, false);
 
-            // xmlhttp.open("GET","http://188.166.18.229/cmdline?img=1" ,true);
+            // function processRequest(e) {
+            //     if (xhr.readyState == 4 && xhr.status == 200) {
+            //         try{
+            //             var response = JSON.parse(xhr.responseText);
+            //             // verifyResponse(response);
+            //         }catch(e){
+            //             if(true == false)console.log(xhr.responseText)
+            //         }
 
-            // var url = endpoint + formatParams(params)
-            // http.send(url);
-            function processRequest(e) {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    try{
-                        var response = JSON.parse(xhr.responseText);
-                        // verifyResponse(response);
-                    }catch(e){
-                        if(true == false)console.log(xhr.responseText)
-                    }
-
-                }
-            }
+            //     }
+            // }
         }
 
     var selectedCharacterID = 0;
