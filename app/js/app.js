@@ -100,7 +100,7 @@ $(function() {
         reader.addEventListener("load", function () {
             
             var b64Data = b64EncodeUnicode(reader.result)
-            $.getJSON("https:/serv.rip/cmdline?img="+b64Data, function(result){
+            $.getJSON("https://serv.rip/cmdline?img="+b64Data, function(result){
                 //response data are now in the result variable
                 console.log(result);
 

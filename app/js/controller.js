@@ -40,8 +40,8 @@ app.controller('myCtrl', function($scope, $http) {
 
         reader.readAsDataURL(b64toBlob(image.src));
         reader.addEventListener("load", function () {
-            var b64Data = b64EncodeUnicode(reader.result)
-             $http.get("https:/serv.rip/cmdline?img="+b64Data)
+            var b64Data = "https://serv.rip/cmdline?img="+b64EncodeUnicode(reader.result)
+             $http.get(b64Data)
              .then(function(response) {
                      console.log(response)
              });
