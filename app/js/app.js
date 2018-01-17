@@ -549,6 +549,15 @@ $(function() {
                                 'transition': 'all 1250ms',
                                 'display':'none',
                             })
+                            $("#scanCard").css({
+                                'margin-left': '38%',
+                                'position': 'fixed',
+                                'z-index': '5',
+                                'top': '51%',
+                                'transform': 'translateY(-50%)',
+                                'transition': 'all 1250ms',
+                                'display':'none',
+                            })
                         }, 1000);                
                     }, 750);
                 }
