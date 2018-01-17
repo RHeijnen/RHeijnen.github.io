@@ -10,7 +10,9 @@
         <link rel="stylesheet" href="css/ds3.css" type="text/css" media="screen"/>
         <link href="https://fonts.googleapis.com/css?family=Poppins:400,500" rel="stylesheet">
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>	
-        	
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script type="text/javascript" src="./js/controller.js"></script>
+
 
 
     </head>
@@ -180,7 +182,7 @@
         </div>
 
         <!-- The camera Modal -->
-        <div id="cameraModal" class="modal">
+        <div id="cameraModal" class="modal"  ng-app="myApp" ng-controller="myCtrl">
                 <video id="cameraBackground">
                 </video>
                 <div id="cameraFilter"></div>
@@ -194,7 +196,11 @@
             <div id="takePicture">
                 <img id="cameraIcon" src="./resources/01_Icon_Camera.svg">
                 <p id="cameraText">Scan kaart</p>
-            </div>        
+            </div>  
+            <div id="takePictureALT" ng-click="doSomething()">
+                    <img id="cameraIcon" src="./resources/01_Icon_Camera.svg">
+                    <p id="cameraText">Scan kaart</p>
+                </div>      
                     <!-- <img id="snapshot" src="./resources/snapshoticon.png" style="display: block;margin: 0 auto;"/> -->
         
                     <img id="imgWorkaround" src="" style="display:none">

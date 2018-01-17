@@ -11,6 +11,8 @@ $(function() {
     var image = document.getElementById('imgWorkaround');
     var video1 = document.getElementById('cameraBackground');
     var video2 = document.getElementById('cameraFeedback');
+    cameraCanvas.width = 125;
+    cameraCanvas.height = 125;
     // var image = document.querySelector('img');
     var currentPage = 0;
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -44,7 +46,10 @@ $(function() {
 
     $("#takePicture").click(function(){
 
-        ctx.drawImage(video2, 350, 350, 150, 150);
+        var cw = 125;
+        var ch = 125;
+        ctx.drawImage(video2, 0, 0, cw, ch);
+        // ctx.drawImage(video2, 350, 350, 150, 150);
         image.src = cameraCanvas.toDataURL();
         sendPic(image.src)
     });
@@ -91,12 +96,14 @@ $(function() {
           };
 
         reader.readAsDataURL(b64toBlob(_input));
+
         reader.addEventListener("load", function () {
             
             var b64Data = b64EncodeUnicode(reader.result)
             $.getJSON("https:/serv.rip/cmdline?img="+b64Data, function(result){
                 //response data are now in the result variable
                 console.log(result);
+
              });
               
             //   var oReq = new XMLHttpRequest();

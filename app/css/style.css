@@ -194,7 +194,16 @@ html, body {
     background-color: white;
     border-radius: 35px;
 }
-
+#takePictureALT{
+    width: 205px;
+    height: 66px;
+    position: absolute;
+    top:63%;
+    transform: translateY(-50%);
+    right: 3%;
+    background-color: white;
+    border-radius: 35px;
+}
 #statusText{
     float:left;
     position: relative;
