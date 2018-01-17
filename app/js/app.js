@@ -70,18 +70,46 @@ $(function() {
             var bb = new Blob([ab]);
             return bb;
         }
-
+        var xhr = new XMLHttpRequest();
         var reader = new FileReader();
-        var xhr = new XMLHttpRequest();           
+        var getJSON = function(url) {
+            return new Promise(function(resolve, reject) {
+              xhr.open('get', url, true);
+              xhr.responseType = 'json';
+              xhr.onload = function() {
+                var status = xhr.status;
+                if (status == 200) {
+                    verifyResponse(xhr.response);
+                } else {
+                  reject(status);
+                }
+              };
+              xhr.send();
+            });
+          };
+
         reader.readAsDataURL(b64toBlob(_input));
         reader.addEventListener("load", function () {
-
+            
             var b64Data = b64EncodeUnicode(reader.result)
+            /*
             // b64 = reader.result;
             // xhr.open("GET","http://188.166.18.229/cmdline?img="+b64Data ,true);
+
             xhr.open("GET","https:/serv.rip/cmdline?img="+b64Data ,true);
-            xhr.send();          
+            xhr.send();      
+
+            */
+            getJSON("https:/serv.rip/cmdline?img="+b64Data).then(function(data) {
+
+            }, function(status) { //error detection....
+
+            });            
         }, false);
+
+
+          
+
 
     
             xhr.addEventListener("readystatechange", processRequest, false);
@@ -94,10 +122,9 @@ $(function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     try{
                         var response = JSON.parse(xhr.responseText);
-                        // console.log(response);
-                        verifyResponse(response);
+                        // verifyResponse(response);
                     }catch(e){
-                        console.log(xhr.responseText)
+                        if(true == false)console.log(xhr.responseText)
                     }
 
                 }
