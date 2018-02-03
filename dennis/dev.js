@@ -7,7 +7,7 @@ app.controller('myCtrl', function($scope, $http) {
     for(var i = 0; i < 2; i ++){
 
     }
-    $http.get("https://api.instagram.com/v1/users/self/media/recent/?access_token=5935115898.1677ed0.59cb564761f4461ebd600348a2bc4f24")
+    $http.get("https://api.instagram.com/v1/users/self/media/recent/?access_token=5935115898.1677ed0.3d56dbc6bf924369ba74e1d9be3c762e")
     .then(function(response) {
         var httpResponse = response.data.data;
         for(var i = 0; i < httpResponse.length;i++){
