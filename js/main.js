@@ -44,7 +44,7 @@ function controller($scope,$window){
             description : "The importance of challenging yourself.",
             d  : "09",
             my : "September 19",
-            image : "/blog/media/10minutepixelart.PNG",
+            image : "/blog/media/10minutepixelart.png",
             url   : " "
         },
         {
