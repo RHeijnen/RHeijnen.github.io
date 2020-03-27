@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="/blog/css/blog.css">
   <title>
-    ✨ Blog |  ✨
+    ✨ Blog |  Anti aliassing✨
   </title>
 
 </head>
@@ -14,74 +14,74 @@
 <body>
   <article class="post">
     <blockquote>
-      <h1>Anti aliassing</h1>
+      <h1>Anti-aliassing</h1>
     </blockquote>
     <p>What is it, what does it do, why do I need it.</p>
-    <p>First paragrapgh</p>
+    <p>I think a lot of people know that it exists, but not what it actually does. Untill recently I was one of those people, I decided to do a writeup of my experiences studying anti aliasing.</p>
     <div class="tip tip-right">
       <p>
-        See also:       
+        Linus explaining it better     
       </p>
       <p>
-        <a class="" href="/blog/2020/somethingelse/index.html">Something else</a> 
+        <a class="" href="https://www.youtube.com/watch?v=hqi0114mwtY">Youtube - Techquickie</a> 
       </p>
     </div>
 
 
-    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-    
-    <blockquote>
-      <p>"The standard Lorem Ipsum passage, used since the 1500s"</p>
-    </blockquote>
-
-    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-
+    <p>Antialiassing(Anti-aliassing ? Anti Alliasing? AA.) AA is a technique used to smooth out rough edges. Since the rendering of graphics is done with SQUARE pixels, things can end up looking kinda "jagged" Jaggies anyone?</p>
     <figure>
-      <img src="https://via.placeholder.com/1000x300" alt="Big Ass Image">
-      <figcaption>caption/credit</figcaption>
+      <img src="/blog/2020/antialias/resources/aaexample.png" alt="Big Ass Image">
+      <figcaption>- codinghorror.com</figcaption>
     </figure>
+    <p>So the rightside obviously looks smoother, but why is that ? </p>
+    <p>When we apply AA, rough edges get smoothed out, by adding transition colors. Take a look at this simple example down below:</p>
+    <figure class="center">
+        <img src="/blog/2020/antialias/resources/lineexample.png" alt="Big Ass Image">
+        <figcaption>Look at those jaggies!</figcaption>
+      </figure>
+      <p>When we look at the big picture, it does not look great eitherway yet, but it is obvious that the bottom one is smoother. So by adding color transitions to corners we can smooth them out. Lets zoom out.</p>
+      <figure class="center">
+        <img src="/blog/2020/antialias/resources/lineexample-zoomed.png" alt="Big Ass Image">
+        <figcaption>Much better</figcaption>
+      </figure>
+      <p>And zoomed out it looks much smoother - and that is a simple form of antialias.</p>
+
+      <blockquote>
+        <h6>Jaggies and Pixel art</h6>
+      </blockquote>
+      <p>Jaggies in pixel art are easily described as unncessary/accidental corners. When you free hand draw something you will easily get these jagged looking corners. In pixel art we should remove these and smooth out our shape before we even start thinking of anti aliasing.</p>
+      <figure class="center">
+        <img src="/blog/2020/antialias/resources/jaggedcorner.gif" alt="Big Ass Image">
+        <figcaption> Noticed how (rounded) corners follow a mirrored pattern? </figcaption>
+      </figure>
+      <p>It is easier if you practise a long, draw a cury line and remove the jaggies like so:</p>
+      <figure class="center">
+        <img src="/blog/2020/antialias/resources/jaggedfix.png" alt="Big Ass Image">
+        <figcaption> Left: Free hand curvy line | Right: removed jaggies </figcaption>
+      </figure>
+      <p>See how after cleaning up the line it already becomes more rounded in places ? No more sharp edges, child proof!</p>
 
 
-    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+      <p>In pixelart we do not want to apply any (post) anti aliasing at all, it will make your sprites look fuzzy. So for anyone reading this wondering why their sprites look fuzzy in Unity, thats why. </p>
 
-
-
-    <blockquote>
-      <p>"The standard Lorem Ipsum passage, used since the 1500s"</p>
-    </blockquote>
-
-    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-
-
-    <div class="tip tip-left">
-      <p>Lorum ipsum generated on: https://www.lipsum.com/</p>
-      <p>"The standard Lorem Ipsum passage, used since the 1500s"</p>
-      <p>"The standard Lorem Ipsum passage, used since the 1500s"</p>
-      <p>"The standard Lorem Ipsum passage, used since the 1500s"</p>
-      <p>"The standard Lorem Ipsum passage, used since the 1500s"</p>
-    </div>
-
-    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-
-    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-
-
-    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-
-
-    <div class="tip tip-right">
-      <img src="https://via.placeholder.com/300" alt="tip-right image">
-
-      <p>"The standard Lorem Ipsum passage, used since the 1500s"</p>
-      <p>"The standard Lorem Ipsum passage, used since the 1500s"</p>
-      <p>"The standard Lorem Ipsum passage, used since the 1500s"</p>
-      <p>"The standard Lorem Ipsum passage, used since the 1500s"</p>
-
-    </div>
-    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-
-
-
+        <p>We do however want to apply it ourselves. look at this artwork from Pedro Medeiros one of the creators of Celeste.</p>
+        <figure class="center">
+          <img src="/blog/2020/antialias/resources/pedroalias.png" alt="Big Ass Image">
+          <figcaption> https://medium.com/pixel-grimoire/how-to-start-making-pixel-art-4-ff4bfcd2d085  </figcaption>
+        </figure>
+        <p> Notice on the left the image is aliased - on the right he applied some manual anti-aliasing. I find it adds more character and gives the subject more depth, the left image looks to 'pop out' more in comparison.</p>
+      
+      <blockquote>
+        <h6>Resources</h6>
+      </blockquote>
+      <p>
+       Words can not describe how helpfull these guys are. <br>
+       <a href="https://www.youtube.com/watch?v=UN-m3o9V7kk"> Mort Mort - Anti Aliasing for beginners</a> <br>
+       <a href="https://www.youtube.com/watch?v=gW1G_FLsuEs"> Mort Mort - 3 PixelArt Techniques/Common Mistakes (Doubles, Jaggies & Outline)</a> <br>
+       <a href="https://blog.studiominiboss.com/pixelart"> Pedro Medeiros and everyone @studiominiboss</a> <br>
+        
+  
+      </p>
 
 
    

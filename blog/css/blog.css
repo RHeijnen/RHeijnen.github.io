@@ -85,6 +85,7 @@ figcaption {
 }
 figure.center{
     grid-column: 2;
+    text-align: center;
   }
 
   img.force-width {

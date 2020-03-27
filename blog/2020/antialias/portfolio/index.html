@@ -1,0 +1,222 @@
+
+<html>
+    <head>
+        <title>
+            ✨ Pew Pew ✨
+        </title>
+        <!-- Required for non-UTF encodings -->
+        <!-- https://github.com/inexorabletash/text-encoding -->
+        <script src="https://kit.fontawesome.com/5212751a96.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>        
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+        <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+        <script src="./js/main.js"></script>
+        <link href="./css/main.css" rel="stylesheet">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    </head>
+
+    <body ng-app="app" ng-controller="controller as c">
+        <header>
+            <div class="header-container">
+                <div class="row justify-content-center header-anchor-image">                
+                    <a class="anchor_link anchor_link_intro" data-scroll="aboutanchor" href="#home"><img src="Sprite-0004.png"> </img></a>
+                </div>
+                <img class="responsive-image"src="headerimg.png"> </img>
+
+            </div>
+        </header>
+        <div id="navbar">
+            <a class="anchor_link" data-scroll="aboutanchor" href="#home">About me</a>
+            <a class="anchor_link" data-scroll="bloganchor" href="#contact">Blog</a>
+            <a class="anchor_link" data-scroll="skillsanchor" href="#news">Skills</a> 
+            <a class="anchor_link" data-scroll="contactanchor" href="#contact">Contact</a> 
+        </div> 
+        <img class="header-footer-image"src="headerfooter.png"> </img>
+
+        <div class="container">
+
+            <div id="aboutanchor" class="row mb-3">
+                <div class="col-md-12">
+                    <h1>About me</h1>
+                    <p>
+                        Heyoo, I am a Dutch software developer from the Rotterdam area. 
+                    </p>
+                    <h2>Interests</h2>
+                    <p>
+                        I've got a passion for learning, I'm always learning something/working on projects. I love working with javascript and prototyping with new technologies. In my personal time, I'll often be playing classical guitar or working on improving my pixel art for game development. I love a good roguelike game and I've seen Snatch a hundred times.  
+                    </p>
+                </div> 
+            </div>
+            
+            <div id="bloganchor" class="row"> 
+                <div class="col-md-12">
+                    <h1>Blog</h1>
+                    <p>Here you can find some of my thoughts and many unfinished projects.</p>
+                    <p> </p>
+                    <!-- Slider main container -->
+                    <div class="slider-wrapper">            
+                        <div class="news-slider blog-slider">
+                        <div class="news-slider__wrp swiper-wrapper">
+                            <div class="news-slider__item swiper-slide"  ng-repeat="x in blogPosts track by $index">
+                                <a href="{{x.url}}" class="news__item">
+                                    <div class="news-date">
+                                        <span class="news-date__title">{{x.d}}</span>
+                                        <span class="news-date__txt">{{x.my}}</span>
+                                    </div>
+                                    <div class="news__title">
+                                        {{x.title}}
+                                    </div>
+                                    <p class="news__txt">
+                                        {{x.description}}                    
+                                    </p>
+                                    <div class="news__img">
+                                        <img ng-src="{{x.image}}" alt="Description" />
+                                    </div> 
+                                </a>
+                            </div> 
+                        </div>
+                        <div class="news-slider__ctr">
+                            <div class="news-slider__arrows">
+                            <button class="news-slider__arrow news-slider-prev">
+                                <span class="icon-font">
+                                <svg class="icon icon-arrow-left"><use xlink:href="#icon-arrow-left"></use></svg>
+                                </span>
+                            </button>
+                            <button class="news-slider__arrow news-slider-next">
+                                <span class="icon-font">
+                                <svg class="icon icon-arrow-right"><use xlink:href="#icon-arrow-right"></use></svg>
+                                </span>
+                            </button>
+                            </div>
+                            <div class="news-slider__pagination"></div>
+                    
+                        </div>
+                    </div>
+            
+            
+   
+        </div>
+            <svg hidden="hidden">
+                <defs>
+                <symbol id="icon-arrow-left" viewBox="0 0 32 32">
+                    <title>arrow-left</title>
+                    <path d="M0.704 17.696l9.856 9.856c0.896 0.896 2.432 0.896 3.328 0s0.896-2.432 0-3.328l-5.792-5.856h21.568c1.312 0 2.368-1.056 2.368-2.368s-1.056-2.368-2.368-2.368h-21.568l5.824-5.824c0.896-0.896 0.896-2.432 0-3.328-0.48-0.48-1.088-0.704-1.696-0.704s-1.216 0.224-1.696 0.704l-9.824 9.824c-0.448 0.448-0.704 1.056-0.704 1.696s0.224 1.248 0.704 1.696z"></path>
+                </symbol>
+                <symbol id="icon-arrow-right" viewBox="0 0 32 32">
+                    <title>arrow-right</title>
+                    <path d="M31.296 14.336l-9.888-9.888c-0.896-0.896-2.432-0.896-3.328 0s-0.896 2.432 0 3.328l5.824 5.856h-21.536c-1.312 0-2.368 1.056-2.368 2.368s1.056 2.368 2.368 2.368h21.568l-5.856 5.824c-0.896 0.896-0.896 2.432 0 3.328 0.48 0.48 1.088 0.704 1.696 0.704s1.216-0.224 1.696-0.704l9.824-9.824c0.448-0.448 0.704-1.056 0.704-1.696s-0.224-1.248-0.704-1.664z"></path>
+                </symbol>
+                </defs>
+            </svg>
+    
+                </div>
+            </div>
+ 
+            <div id="skillsanchor" class="row">
+                <div class="col-md-12">
+                    <h1>Skills</h1>
+                    <div class="skill-filter-container">
+                        <div ng-repeat="x in skillOptions track by $index">
+                            <button  ng-if="$index == 0" ng-click="setActiveSkillFilter(x)" data-value="{{x}}" class="btn active"> {{x}}</button>
+                            <button  ng-if="$index != 0" ng-click="setActiveSkillFilter(x)" data-value="{{x}}" class="btn"> {{x}}</button>
+                        </div>
+                    </div>       
+                    <div class="progress-container" data-ng-init="init()">
+                        <div ng-repeat="x in skills"  ng-show="filterSkillCheck(x)" class="progress-bar" data-effect="1" data-value="{{x.progress}}" data-skill="{{x.name}}"></div>
+                    </div>
+                    <h2>Past Experiences</h2>
+                    <p>
+                        I went from building computers to networking engineer to software engineer. For the past 3-4 years I've been working for Bright Answers in the Netherlands as medior full stack developer. Here i've been responsible for development and maintenance of our housing corporation software stack, aswell as development and maintenance for the city of Rotterdam and ADP payrolling worldwide stack.
+                    </p>      
+                    <p>
+                        Here I've been working mostly with XSLT within the roxen CMS structure supported with javascript solutions to build generic websites and portals.
+                    </p> 
+                    
+                    <p>
+                        Before I became a software developer I was a network/systems engineer for a non profit organisation in Rotterdam, in charge of network security and responsible for the day to day activities.
+                    </p> 
+
+
+                </div>        
+            </div>
+        
+            <div id="contactanchor" class="row">
+                <div class="col-md-12">
+                    <h1>Contact</h1>
+
+                    <p>
+                        <!-- <i class="fab fa-github fa-5x"></i>
+                        github:
+                        All snippets from blog posts can be found here -->
+                        <img class=""src="/media/github.png"> </img>
+
+                    </p>
+
+                    <p>
+                        <!-- <i class="fab fa-codepen fa-5x"></i>
+                        codepen:
+                        All snippets from blog posts can be found here -->
+                        <img class=""src="/media/codepen.png"> </img>
+
+                    </p>
+
+                    <p>
+                        <!-- <i class="fab fa-linkedin-in fa-5x"></i>
+                        LinkedIn:  -->
+                        <img class=""src="/media/Linkedin.png"> </img>
+
+                    </p>
+                    <p>
+                        <!-- <i class="fab fa-twitter fa-5x"></i>                        
+                        Twitter: 
+                        Nothing to see here. -->
+                        <img class=""src="/media/twitter.png"> </img>
+
+                    </p>
+                    <p>
+                        <!-- <i class="fas fa-at fa-5x"></i>
+                        Email: heijnendev@gmail.com
+                        You can contact me on this mail adress -->
+                        <img class=""src="/media/gmail.png"> </img>
+
+                    </p>
+                    <p>
+                        <!-- <i class="fas fa-file fa-5x"></i> -->
+                        <!-- Download a copy of my resume -->
+                        <img class=""src="/media/resume.png"> </img>
+
+                    </p>
+                </div>        
+            </div>
+            
+          </div>
+
+
+        </div>
+
+        <footer class="footer">
+            <img class="footer-image"src="footer.png"> </img>
+
+            <div class="copyright"> <!-- lol -->
+
+                Rene Heijnen | 2018
+                <script>
+                    new Date().getFullYear() > 2018 && document.write(" - " + new Date().getFullYear());
+                </script>
+            </div>
+    
+        </footer>
+
+    </body>
+    
+
+</html>
+
+

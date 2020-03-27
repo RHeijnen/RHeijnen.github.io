@@ -58,16 +58,16 @@
             <div id="bloganchor" class="row"> 
                 <div class="col-md-12">
                     <h1>Blog</h1>
-                    <p>Here you can find some of my thoughts and many unfinished projects.</p>
+                    <p>Here you can find some of my thoughts and unfinished projects.</p>
                     <p> </p>
                     <!-- Slider main container -->
                     <div class="slider-wrapper">            
                         <div class="news-slider blog-slider">
                         <div class="news-slider__wrp swiper-wrapper">
                             <div class="news-slider__item swiper-slide"  ng-repeat="x in blogPosts track by $index">
-                                <a href="{{x.url}}" class="news__item">
+                                <a target ="_blank" href="{{x.url}}" class="news__item">
                                     <div class="news-date">
-                                        <span class="news-date__title">{{x.d}}</span>
+                                        <span class="news-date__title">{{x.d}}</span> 
                                         <span class="news-date__txt">{{x.my}}</span>
                                     </div>
                                     <div class="news__title">

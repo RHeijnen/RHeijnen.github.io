@@ -23,21 +23,21 @@ controller.$inject = ['$scope','$window'];
 
 function controller($scope,$window){
     $scope.blogPosts = [
-        {
-            title: "Collecting your data",
-            description : "bla bla bla bla asd asd asd asd asd ads asd asd asd asd",
-            d  : "09",
-            my : "September 19",
-            image : "/blog/media/code.png",
-            url   : " "
-        },
+        // {
+        //     title: "Collecting your data",
+        //     description : "bla bla bla bla asd asd asd asd asd ads asd asd asd asd",
+        //     d  : "09",
+        //     my : "September 19",
+        //     image : "/blog/media/code.png",
+        //     url   : " "
+        // },
         {
             title: "Dithering is amazing",
             description : "A study in dithering",
             d  : "09",
             my : "September 19",
             image : "/blog/media/ditheringmac.gif",
-            url   : " "
+            url   : "/blog/2020/dithering/index.html"
         },
         {
             title: "'developers writers block?'",
@@ -45,7 +45,7 @@ function controller($scope,$window){
             d  : "09",
             my : "September 19",
             image : "/blog/media/10minutepixelart.png",
-            url   : " "
+            url   : "/blog/2020/challenges/index.html"
         },
         {
             title: "Pixel art portfolio",
@@ -53,15 +53,15 @@ function controller($scope,$window){
             d  : "09",
             my : "September 19",
             image : "/blog/media/pixelartportfolio.png",
-            url   : " "
+            url   : "/blog/2020/pixelportfolio/index.html"
         },
         {
             title: "Anti aliasing",
             description : "What even is it ?",
             d  : "09",
             my : "September 19",
-            image : "/blog/2020/antialias/resources/lineexample.png",
-            url   : " "
+            image : "/blog/2020/antialias/resources/aaexample.png",
+            url   : "/blog/2020/antialias/index.html"
         },
         // {
         //     title: "Online Mercenaries for hire",
@@ -77,40 +77,40 @@ function controller($scope,$window){
             d  : "09",
             my : "September 19",
             image : "/blog/media/roguelikecollection.png",
-            url   : "/blog/media/roguelikecollection.png"
+            url   : "/blog/2019/roguelikes/index.html"
         },
-        {
-            title: "Offline websites",
-            description : "My experience with progressive webapps and service workers",
-            d  : "09",
-            my : "September 19",
-            image : "/blog/media/code.png",
-            url   : "/blog/media/code.png"
-        },
+        // {
+        //     title: "Offline websites",
+        //     description : "My experience with progressive webapps and service workers",
+        //     d  : "09",
+        //     my : "September 19",
+        //     image : "/blog/media/code.png",
+        //     url   : "/blog/media/code.png"
+        // },
         {
             title: "Scroll Anchors",
             description : "Make your website go scrolly scroll",
             d  : "09",
             my : "September 19",
             image : "/blog/media/code.png",
-            url   : "/blog/media/code.png"
+            url   : "/blog/2020/scrollanchors/index.html"
         },
-        {
-            title: "Unity tilesets",
-            description : "Simple tileset tutorial",
-            d  : "09",
-            my : "September 19",
-            image : "/blog/media/code.png",
-            url   : "/blog/media/code.png"
-        },
-        {
-            title: "Digital Story Collections",
-            description : "My minor project",
-            d  : "09",
-            my : "September 19",
-            image : "/blog/media/code.png",
-            url   : "/blog/media/code.png"
-        },
+        // {
+        //     title: "Unity tilesets",
+        //     description : "Simple tileset tutorial",
+        //     d  : "09",
+        //     my : "September 19",
+        //     image : "/blog/media/code.png",
+        //     url   : "/blog/media/code.png"
+        // },
+        // {
+        //     title: "Digital Story Collections",
+        //     description : "My minor project",
+        //     d  : "09",
+        //     my : "September 19",
+        //     image : "/blog/media/code.png",
+        //     url   : "/blog/media/code.png"
+        // },
     ]
     $scope.skills = [
         {name: "Javascript",progress: 83,type: ["Professional","Web-development","Programming"]},
