@@ -1,0 +1,16 @@
+.c {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+body{
+    background: #ddd;
+}
+
+html, body {
+  margin: 0;
+}

@@ -1,0 +1,142 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/blog/css/blog.css">
+  <title>
+    ✨ Blog | Dithering  ✨
+  </title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <article class="post">
+    <blockquote>
+      <h1>Dithering</h1>
+    </blockquote>
+    <p>Lets start with the definition: </p>
+    <p>"Add white noise to (a digital recording) to reduce distortion of low-amplitude signals."</p>
+    <p>Ok.. that didnt help what about wikipedia:</p>
+    <p>"Dither is an intentionally applied form of noise used to randomize quantization error, preventing large-scale patterns such as color banding in images. Dither is routinely used in processing of both digital audio and video data, and is often one of the last stages of mastering audio to a CD."</p>
+
+    <p>Ok well a picture speaks a thousand words.  </p>
+    <figure class="center">
+      <img src="/blog/2020/dithering/resources/pixelbanding.png" alt="Big Ass Image">
+      <figcaption>wiki https://en.wikipedia.org/wiki/Colour_banding</figcaption>
+    </figure>
+    <p>Here we can see that the dithering option obviously has a smoother transition in colors. See it as a way to smooth out your song/image, this is often used in media processing to reduce errors/faults.  </p>
+
+
+
+    
+    <blockquote>
+      <h6>Ok cool, so what ?</h6>
+    </blockquote>
+
+    <p>Well, it is very usefull in pixel art!</p>
+    <p>Not only can we use it to smooth out some colors, introduce cool patterns to make transitions more interesting and even 'fake' some extra colors!</p>
+    <blockquote>
+      <h6>Faking colors</h6>
+    </blockquote>
+    <p>Take a look at this picture, I believe it was made somewhere in the 90's on a old Mac machine, with no access to dithering tools. How many colors do you see here ?</p>
+    <figure class="center">
+      <img class="force-width" src="/blog/2020/dithering/resources/martinmerlin.gif" alt="Big Ass Image">
+      <figcaption>- Martin Merlin at one point in time</figcaption>
+    </figure>
+    <p>It is just black and white, dithering gives us the ability to fake some colors by having two different colors close together that they look like a third color, in this case grey. Older hardware like CRT screens had this effect where 2 colors would bleed over into a new one. </p>
+    <blockquote>
+      <h6>Applications troughout history</h6>
+    </blockquote>
+    <div class="tip tip-right">
+      <p>
+        If you are interested in knowing more about historical hardware limitations, I suggest watching The 8-bit guy on Youtube: 
+      </p>
+      <p>
+        <a class="" href="https://www.youtube.com/watch?v=Tfh0ytz8S0k">How "oldschool" graphics worked Part 1</a> 
+      </p>
+    </div>
+    <figure class="center">
+      <img src="/blog/2020/dithering/resources/Policenauts.png" alt="Big Ass Image">
+      <figcaption>Policenauts - Konami 1994</figcaption>
+    </figure>
+    <p>Dithering is not as important as it used to be, most our machines can display plenty of colors so 
+      there is no need to fake the pressence of additional colors anymore, but there was a time where this was not the case. 
+      Back when game developers had limited tools to work with, they had to get creative. When you only had 8 colors to play with, 
+      a trick to display a 9th color was a pretty cool trick!
+     </p>
+
+    
+    <blockquote>
+      <h6>Cool transitions</h6>
+    </blockquote>
+    <p>Dithering as a style has become a staple in parts of the pixelart community, below are some great applications.</p>
+
+    <figure>
+      <img src="/blog/2020/dithering/resources/ditheringexample.png" alt="Big Ass Image">
+      <figcaption>Ek_Vitki - https://www.reddit.com/user/Ek_Vitki/</figcaption>
+    </figure>
+
+    <figure>
+      <img src="/blog/2020/dithering/resources/bobross.gif" alt="Big Ass Image">
+      <figcaption>Unknown artist - I would love to know who made this</figcaption>
+    </figure>
+    <figure>
+      <img class="force-width" src="/blog/2020/dithering/resources/clouds.png" alt="Big Ass Image">
+      <figcaption>SoloSalsero -  http://pixeljoint.com/p/117026.html</figcaption>
+    </figure>
+    <figure>
+      <img class="force-width" src="/blog/2020/dithering/resources/sunrise.png" alt="Big Ass Image">
+      <figcaption>Burning_Sunrise -  http://pixeljoint.com/pixelart/23563.htm</figcaption>
+    </figure>
+
+
+
+    <blockquote>
+      <h6>Stylised applications</h6>
+    </blockquote>
+
+    <p>Some artists have been geting creative with their dithering patterns</p>
+
+    <figure class="center">
+      <img  src="/blog/2020/dithering/resources/ditheringstyle.png" alt="Big Ass Image">
+      <figcaption>Unknown artist</figcaption>
+    </figure>
+    <figure class="center">
+      <img  src="/blog/2020/dithering/resources/ditheringstyle2.png" alt="Big Ass Image">
+      <figcaption>Unknown artist</figcaption>
+    </figure>
+
+    <p>Thats it for now, more to follow.</p>
+
+
+
+  </article>
+  <div id="disqus_thread"></div>
+
+  <script>
+   
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://heijnendev.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <script id="dsq-count-scr" src="//heijnendev.disqus.com/count.js" async></script>       
+</body>
+
+</html>
