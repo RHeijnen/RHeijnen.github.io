@@ -57,7 +57,7 @@ function controller($scope,$window){
         },
         {
             title: "Anti aliasing",
-            description : "What even is it ?",
+            description : "A study in aliasing",
             d  : "09",
             my : "September 19",
             image : "/blog/2020/antialias/resources/aaexample.png",
@@ -95,14 +95,14 @@ function controller($scope,$window){
             image : "/blog/media/code.png",
             url   : "/blog/2020/scrollanchors/index.html"
         },
-        // {
-        //     title: "Unity tilesets",
-        //     description : "Simple tileset tutorial",
-        //     d  : "09",
-        //     my : "September 19",
-        //     image : "/blog/media/code.png",
-        //     url   : "/blog/media/code.png"
-        // },
+        {
+            title: "Unity tilesets",
+            description : "Simple tileset tutorial",
+            d  : "09",
+            my : "September 19",
+            image : "/blog/2019/unitytilesetsP1/resources/tilesetexample.jpg",
+            url   : "/blog/2019/unitytilesetsP1/index.html"
+        },
         // {
         //     title: "Digital Story Collections",
         //     description : "My minor project",

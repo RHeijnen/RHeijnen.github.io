@@ -1,0 +1,147 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/blog/css/blog.css">
+  <title>
+    ✨ Blog | Unity Tilesets ✨
+  </title>
+
+</head>
+
+<body>
+  <article class="post">
+    <blockquote>
+      <h1>Tilesets in unity.</h1>
+    </blockquote>
+    <figure class="center">
+      <img src="/blog/2019/unitytilesetsP1/resources/tilesetexample.jpg" alt="Big Ass Image">
+      <figcaption>Download these assets: https://free-game-assets.itch.io/free-swamp-2d-tileset-pixel-art</figcaption>
+    </figure>
+     
+
+
+    <h4>What is a tileset?</h4>
+    <p>A simple tileset usualy exists of a grid of 9 blocks. They are often 16x16 of 32x32 pixels per block in pixelart. But there are no set rules for the size.</p>
+    <p>The point of these 9 blocks is that they can be repeated to make any simple shapes</p>
+    <figure class="center">
+      <img src="/blog/2019/unitytilesetsP1/resources/block.png" alt="Big Ass Image">
+      <figcaption>The basic shape for tiling</figcaption>
+
+    </figure>
+    <figure class="center">
+      <img src="/blog/2019/unitytilesetsP1/resources/blocksplit.png" alt="Big Ass Image">
+      <figcaption>Made from these 9 tiles</figcaption>
+
+    </figure>
+    <figure class="center">
+      <img src="/blog/2019/unitytilesetsP1/resources/blocksplit_inner.png" alt="Big Ass Image">
+      <figcaption>Together with these tiles we should be able to make most simple shapes</figcaption>
+
+    </figure>
+    <h4>How to make them?</h4>
+    <div class="tip tip-right">
+      <p>
+        Trouble making tilesets? <br>
+        <a href="https://www.youtube.com/watch?v=btnH0x7_1g8">Mort Mort: Tileset Workflow/Tutorial</a>
+      </p>
+    </div>
+    <p>Now that you have a basic understanding what a tileset is, how do you go about making them ? </p>
+    <p>Well there are specific tools you can use to create tilesets, it is important to keep in mind that you want your 
+      tiles to seemlessly go together to make one big object that does not look like it consists of smaller parts, well - unless you want to ofcourse!</p>
+      <p>To help us do that we can use some programs like Aseprite - I am sure photoshop and others work just aswell but my experience is in Aseprite</p>
+    <figure class="center">
+      <img src="/blog/2019/unitytilesetsP1/resources/tiledmode.gif" alt="Big Ass Image">
+      <figcaption>See how in the end the blue lines represent 1 tile and how it blends together seemlessly ?</figcaption>
+    </figure>    
+    <p>Here you can see a simple example of tiledmode in Aseprite - where you can draw multiple tiles at the same time to see how they blend together.</p>
+    
+    <figure class="center">
+      <img src="/blog/2019/unitytilesetsP1/resources/tiledmodebricks.gif" alt="Big Ass Image">
+      <figcaption>Simple brick pattern useing tiled in both X and Y axis.</figcaption>
+    </figure> 
+    <p>You can even use symmetry tools to draw symmetrically at the same time!</p>
+
+    <p>Sounds stupid but try and have fun while creating your tiles, you are gonna be doing it for a while.</p>
+
+
+    <h4>How to use them in Unity?</h4>
+    <p>For the tutorial on how to use tilesets in unity I've chosen to use this free asset pack so you can work along with the same assets. Note: If you end up useing this for a commercial project - please consider donating to the author(s).</p>
+    <div class="tip tip-right">
+      <p>Assets: <br>
+        <a class="" href="https://free-game-assets.itch.io/free-swamp-2d-tileset-pixel-art">Download here</a> 
+      </p>
+    </div>
+    <p>Unity introduced support for tilesets a while ago, so I am going to assume the version you are useing has it supported.</p>
+
+    <p>Open your project, or start a new one - I've decided to start a new one. Make sure you have the assets downloaded - you should have a folder called "1 Tiles" somewhere on your computer, locate it and import them into unity (drag and drop on the assets part)</p>
+    <p>Now you might notice that the folder comes with 'precut' tiles, you can use them but for learning sake - lets learn how to use the tilesheet - the big image containing every tile. Select it in Unity like so:</p>
+    <figure class="center">
+      <img src="/blog/2019/unitytilesetsP1/resources/tut1.PNG" alt="Big Ass Image">
+      <figcaption>Select the tilesheet in the asset window and then we should configure the asset correctly</figcaption>
+    </figure> 
+      <p>Make sure you configure the asset as follows:
+        Change pixels per unit to 32 - this asset pack uses 32x32 pixel tiles. <br>
+        Change filter mode to point (disabled it)<br>
+        Change Compression to none (we do not want to compress our images)<br>
+        Change Sprite mode to multiple
+      </p>
+      <figure class="center">
+        <img src="/blog/2019/unitytilesetsP1/resources/tut2.PNG" alt="Big Ass Image">
+      </figure> 
+      <p>Now we are ready to cut it up in 32 by 32 pixel tiles, open the sprite editor from the assets configuration(inspector) </p>
+        <figure class="center">
+          <img src="/blog/2019/unitytilesetsP1/resources/tut3.PNG" alt="Big Ass Image">
+          <figcaption>If all went well we should see this screen now</figcaption>
+        </figure>      
+
+      <p>Open the Slice menu (found at the top of the window) and change type from "Automatic" to "Grid By Cell Size" and set the X and Y width to 32 pixels and press slice - you should now see this</p>
+      <figure class="center">
+        <img src="/blog/2019/unitytilesetsP1/resources/tut4.PNG" alt="Big Ass Image">
+        <figcaption>If all went well we should see this screen now</figcaption>
+      </figure>  
+      <p>Now apply the slicing by hitting "apply" in the righthand corner (top of the window). You just imported your first tilesheet into unity!</p>
+
+
+      <p>Now to use it, I like to work in a grid based system so hitup GameObject -> 2D Object -> Tilemap. Now you should have a new gameobject named "Grid" with a child named "Tilemap" and we are ready to open the tile pallet. Window -> 2D -> tile pallet.  </p>
+      <p>Once open, in the tile pallet create a new empty pallet, it will ask you to designate a folder to save its assets into, unity will save your tiles there. Now you are ready to drag your tileset asset into the window and it should end up like this</p>
+      <figure class="center">
+        <img src="/blog/2019/unitytilesetsP1/resources/tut5.PNG" alt="Big Ass Image">
+      </figure> 
+      <p>Now we can select the tiles we want and literally draw on the grid inside the scene and creating platforming levels has never been so easy! </p>
+      <figure class="center">
+        <img src="/blog/2019/unitytilesetsP1/resources/tut6.PNG" alt="Big Ass Image">
+      </figure> 
+
+
+      <p>There is a lot more to say about the grid system in general and there are a lot of other cool things you can do with tiles in unity, like randomly changing tiles to make things more interesting, adding animations to tiles or adding logic to detect corners, so you do not even have to draw them yourself anymore. </p>
+
+      <p>But for now I've already spent to much time on this, untill next time</p>
+  </article>
+  <div id="disqus_thread"></div>
+
+  <script>
+   
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://heijnendev.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <script id="dsq-count-scr" src="//heijnendev.disqus.com/count.js" async></script>       
+</body>
+
+</html>
