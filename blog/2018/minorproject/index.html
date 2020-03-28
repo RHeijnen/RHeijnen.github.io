@@ -1,0 +1,93 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/blog/css/blog.css">
+  <title>
+    ✨ Blog | Tracking you ✨
+  </title>
+
+</head>
+
+<body>
+  <article class="post">
+    <blockquote>
+      <h1>Disney Bedtime Stories</h1>
+    </blockquote>
+    <figure class="center">
+      <img src="/blog/2018/minorproject/resources/screenshot.PNG" alt="Big Ass Image">
+      <figcaption>A digital story telling platform.</figcaption>
+    </figure> 
+
+    <p>During my minor studies me and a group of students got an assignment to create an loyalty program for supermarket chains. 
+       The company we were working for had full rights from Disney, so we were free to use disney trademarks to create a Proof of Concept for a supermarket 
+       loyalty program. </p>
+
+        <p>In those days supermarket chain Albert Heijn here in the Netherlands was HUGE with their loyalty programs. For every N euro's spend you get something 
+          your kids want. For years they have been going with soccer images but recently they have been going into other areas like 3D dinosaurs. 
+          I dont get it personally, but kids seem to go nuts over these, to the point where supermarkets had to take measures to prevent children from pestering adults
+          when they were done shopping.</p>
+
+        <p>
+          We went trough many, many itteration of ideas, trying to apply what we learned from our research into the psychology of loyalty programs 
+          and trying to create something we could present with pride to our customer. We wanted to include the fact that we could use Disneys
+           ever growing library of stories into our project, so we decided around a 'setting' before we got to our actual idea.</p>
+        <p>
+            We wanted to create a setting where child and parent together have an shared bed time experience. So we wanted individual stories to be the actual 'collectibles' 
+            from the supermarket, even possible to split up a story into multiple collectibles so you would need to collect something else to complete the story.
+        </p>
+
+        <p>
+          So I started to toy around with the idea to represent digital stories on a smartphone, where an adult could narate the story and the child could hold the phone and watch the story unfold.
+        </p>
+        <figure class="center">
+          <img src="/blog/2018/minorproject/resources/holopyramid.jpg" alt="Big Ass Image">
+          <figcaption>At one point we looked into the costs of mass producing these hologram pyramids to show these stories</figcaption>
+        </figure> 
+
+        <p> To add to the involvement with the story we decided to add very simple minigames that were part of the story and needed to be solved before the story could continue.</p>
+        <p> I decided to implement an image recognition algorithm to scan the phone camera for 'cards' see below, and if it found a valid one from its picture database that we set up, it would unlock the coresponding story.</p>
+
+        <figure class="center">
+          <img src="/blog/2018/minorproject/resources/scanout.jpg" alt="Big Ass Image">
+          <figcaption>For technical reasons you want these to be as small as possible.</figcaption>
+        </figure> 
+        <blockquote>
+          <h4>Result</h4>
+        </blockquote>
+        <p>So below is a proof of concept I made of that idea, besides it not being designed to work like this (it was supposed to be installed on a phone) it has many flaws like not having  mouse support (so.. navigation tip: small swipes, mouse down -> small move -> mouse up) and the asset sizes are handeld poorly, 
+          but hey I was a student and it was a quick and dirty proof of concept. This might also explain why this page is rendering poorly, I am loading the app in an IFrame with no regard for responsiveness. <br> 
+        There is one story worked out - Dory (the blue fish at the start.) But you will get stuck at the first minigame without touch.</p>
+        <iframe height="520" width="820"class="disney-iframe"src="/blog/2018/minorproject/backupproject/index.html"></iframe>
+
+        <p>Thats it for this one.</p>
+
+
+  </article>
+  <div id="disqus_thread"></div>
+
+  <script>
+   
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://heijnendev.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <script id="dsq-count-scr" src="//heijnendev.disqus.com/count.js" async></script>       
+</body>
+
+</html>

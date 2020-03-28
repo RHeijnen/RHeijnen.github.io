@@ -1,0 +1,742 @@
+*{
+    margin:0;
+    padding:0;
+    font-family: 'Poppins', sans-serif; 
+}
+ /* with asbulote on body */
+
+
+html, body {
+    height :100%;
+    width  :100%;
+    overflow-y: hidden; 
+    overflow-x: hidden; 
+}   
+
+#loadingScreen{
+    height :100%;
+    width  :100%;
+    background:white;
+    font-family:Georgia;
+    font-size: 34px;
+    font-style: italic;
+    letter-spacing:-1px;
+    background: url('../resources/02_BG_Dory.png');
+    overflow: hidden;
+
+}
+#fillerL{
+    margin:0px;
+    bottom:0px;
+    float:left;
+    height:100%;
+    /*border-style: solid;
+    border-color: coral;
+    border-radius: 0px 15px 15px 0px;
+    border-left : 0px*/
+}
+#fillerR{
+    margin:0px;
+    bottom:0px;
+    float:left;
+    height:100%;
+    /*border-style: solid;
+    border-color: coral;
+    border-radius: 15px;*/
+}
+#container{
+    height : 100%;
+    font-family:Georgia;
+    font-size: 34px;
+    font-style: italic;
+    letter-spacing:-1px;
+    overflow:hidden; 
+    /*position:absolute;*/
+
+}
+.charIcon{
+    display:inline-block;   
+}
+#itemDory{
+    position: absolute;
+    bottom: 144%;
+    left: 10%;
+}
+
+#itemMoana {
+    transform: scale(0.95);
+    position: absolute;
+    bottom: 71%;
+    right: -1%;
+}
+
+#itemFrozen {
+    transform: scale(0.93);
+    position: absolute;
+    bottom: 150%;
+    right: 23.5%;
+}
+
+#itemCars {
+    transform: scale(0.95);
+    position: absolute;
+    bottom: 135%;
+    left: -0.5%;
+}
+
+.bg{
+    width:100%;
+    height:100%;
+    position:absolute;
+}
+#bg0{
+    z-index: -1;
+    background: url("../resources/02_BG_Dory.png");
+    opacity: 1;
+    transition: all 100ms ease-in;
+}
+#bg1{
+    z-index: -1;
+    background: url("../resources/01_BG_Moana.png");
+    opacity: 0;
+    transition: all 100ms ease-in;
+}
+#bg2{
+    z-index: -1;
+    background: url("../resources/03_BG_Frozen.png");
+    opacity: 0;
+    transition: all 100ms ease-in;
+}
+#bg3{
+    z-index: -1;
+    background: url("../resources/04_BG_Incredibles.png");
+    opacity: 0;
+    transition: all 100ms ease-in;
+}
+#bg4{
+    z-index: -1;
+    background: url("../resources/05_BG_ToyStory.png");
+    opacity: 0;
+    transition: all 100ms ease-in;
+}
+#bg5{
+    z-index: -1;
+    background: url("../resources/06_BG_Cars.png");
+    opacity: 0;
+    transition: all 100ms ease-in;
+}
+#bg6{
+    z-index: -1;
+    background: url("../resources/07_BG_DonaldDuck.png");
+    opacity: 0;
+    transition: all 100ms ease-in;
+}
+#bg7{
+    z-index: -1;
+    background: url("../resources/08_BG_Coco.png");
+    opacity: 0;
+    transition: all 100ms ease-in;
+}
+#bg8{
+    z-index: -1;
+    background: url("../resources/09_BG_WreckItRalph.png");
+    opacity: 0;
+    transition: all 100ms ease-in;
+}
+
+#cameraBtn{
+    position:absolute;
+    z-index : 1;
+    font-family:Georgia;
+    font-size: 34px;
+    font-style: italic;
+    letter-spacing:-1px;
+}
+#cameraicon{
+    width: 90%;
+}
+#cameraicon2{
+    width: 105%;
+    margin-top: -4%;
+    margin-left: -20px;
+}
+#infoBtn{
+    position:absolute;
+    z-index : 1;
+    border-radius: 50%;
+    font-family:Georgia;
+    font-size: 34px;
+    font-style: italic;
+    letter-spacing:-1px;
+}
+#infoModal{
+    /*background-color: rgba(0, 0, 0, 0.5);*/
+    background-image: url("../resources/infoscreen.png");
+}
+#cardStatus{
+    width: 170px;
+    height: 66px;
+    position: absolute;
+    top:5%;
+    right: 3%;
+    background-color: rgba(0, 0, 0, 0.4);
+    color:white;
+    border-radius: 35px;
+}
+
+#takePicture{
+    width: 205px;
+    height: 66px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 3%;
+    background-color: white;
+    border-radius: 35px;
+}
+#takePictureALT{
+    width: 205px;
+    height: 66px;
+    position: absolute;
+    top:63%;
+    transform: translateY(-50%);
+    right: 3%;
+    background-color: white;
+    border-radius: 35px;
+}
+#statusText{
+    float:left;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 10%;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+#closeIcon{
+    float:left;
+    position: relative;
+    height: 60px;
+    width: 60px;
+    margin-top: 2px;
+    margin-left: 2px;
+}
+
+#cardIcon{
+    float:left;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 26px;
+    width: 26px;
+    margin-left: 20px;
+}
+
+#cameraIcon{
+    float:left;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 26px;
+    width: 26px;
+    margin-left: 20px;
+}
+
+#cameraText{
+    float:left;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 10%;
+    font-size: 1.15em;
+    font-weight: 500;
+}
+
+#cameraFeedback{
+    margin: 0 auto;
+    width: auto;
+    height: 100%;
+    position: absolute;
+    left: -80px;
+}
+
+#cameraModal{
+    overflow: hidden;
+}
+
+#cameraBackground{
+    background-color: rgba(0, 0, 0, 0.5); 
+    object-fit: cover;
+    position:absolute;
+    width: 980px;
+    height: 552px;
+    z-index:-3;
+    filter: blur(30px);
+    transform: scale(1.08);    
+}
+
+#cameraFilter{
+    background-color: rgba(0, 0, 0, 0.5); 
+    object-fit: cover;
+    position:absolute;
+    width: 980px;
+    height: 552px;
+    z-index:-2;
+}
+
+#cameraOverlay{
+    z-index: 5;
+    position:absolute;
+    border-radius:15px;
+    /* background-color: white; */
+    width:20%;
+    height: 53%;
+    top:24%;
+    left: 40%;
+    margin: auto;
+    border: 2px solid white;
+}
+#closeInfo{
+    position:absolute;
+    z-index : 1;
+    border-radius: 50%;
+    font-family:Georgia;
+    font-size: 34px;
+    font-style: italic;
+    letter-spacing:-1px;
+}
+#slideshow{
+    -moz-transition: 1s ease;
+    transition: 1s ease;
+    -webkit-transition: all 2000ms ease-in;
+    -ms-transition: all 2000ms ease-in;
+    -moz-transition: all 2000ms ease-in;
+    transition: all 1000ms ease-in;
+     
+}
+#section0{
+        background: url("../resources/dorybg.png");
+        background-size: 100%;
+        background-repeat: no-repeat;
+        transition: all 100ms ease-in;
+}
+#section1{
+    background: url("../resources/moanaB.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+        transition: all 2500ms ease-in-out;
+
+}
+#section2{
+        background: url("../resources/frozenB.png");
+        background-size: 100%;
+        background-repeat: no-repeat;
+        transition: all 200ms ease-in;
+
+}
+#section3{
+        background: url("../resources/incrediB.png");
+        background-size: 100%;
+        background-repeat: no-repeat;
+                transition: all 100ms ease-in;
+
+}
+#section4{
+        background: url("../resources/toyB.png");
+        background-size: 100%;
+        background-repeat: no-repeat;
+                transition: all 100ms ease-in;
+}
+#section5{
+    background: url("../resources/carsB.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+                transition: all 100ms ease-in;
+}
+#section6{
+    background: url("../resources/donaldB.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+                transition: all 100ms ease-in;
+}
+#section7{
+    background: url("../resources/cocoB.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+                transition: all 100ms ease-in;
+}
+#section8{
+    background: url("../resources/ralphB.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+                transition: all 100ms ease-in;
+}
+/* #section8{
+    background: url("../resources/01_B_Moana.png");
+    background-size: 100%;
+    background-repeat: no-repeat
+} */
+.section{   
+    margin:0px;
+    bottom:0px;
+    width:2000px;
+    float:left;
+    height:100%;
+    /*border-style: solid;
+    border-color: coral;
+    border-radius: 15px;*/
+}
+.modal{
+    width:100%;
+    height:100%;
+}
+#modalL{
+    float:left;
+    margin-left:-50%;
+    transition: margin 1000ms;
+    background-image: url("../resources/dorybground.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#modalR{    
+    float:right;
+    margin-right:-50%;
+    transition: margin 1000ms;
+    
+}
+#charLogo{
+    margin-left:25%;
+    margin-top:29%;
+}
+#selectedChar{
+    margin-left:19%;
+    padding-top: 7%;    
+    
+}
+#charDescription{
+    margin-left:45%;
+    margin-top: 15%; 
+}
+#others{
+
+    margin-top: 28%;
+    width: auto;
+    height: 69%;
+    margin-left: -52%;
+}
+#playInfo{
+    margin-left:25%;
+    margin-right:10%;
+    border-radius: 50px;
+    background: blue;
+    opacity: 1;
+    
+}
+
+.subsection{
+    /* margin-top:90%; */
+    position:relative;
+    transition: margin 2500ms;
+    width:100%;
+}
+#sub0{
+    margin-top:28% 
+}
+#sub1{
+    margin-top: 19%;
+}
+
+#sub2{
+    margin-top: 23%;
+}
+#sub3{
+    margin-top: 23%;
+
+}
+
+#sub4{
+    margin-top: 23%;
+
+}
+#sub5{
+    margin-top: 32%;
+
+}
+
+#sub6{
+    margin-top: 24%;
+
+}
+
+#sub7{
+    margin-top: 22%;
+
+}
+#sub8{
+    margin-top: 21%;
+
+}
+.section h2{
+    margin:50px 0px 30px 50px;
+}
+.section p{
+    margin:20px 0px 0px 50px;
+    width:600px;
+}
+.black{
+    color:#fff;
+    background:#000 url(../images/black.jpg) no-repeat top right;
+}
+.white{
+    color:#000;
+    background:#fff url(../images/white.jpg) no-repeat top right;
+}
+.blue1{
+    color:red;
+    /*background-image: url(../images/1.png) ;*/
+}
+.blue2{
+    color:#000;
+    /*background-image: url(../images/2.png) ;*/
+}
+
+.section ul{
+    list-style:none;
+    margin:20px 0px 0px 550px;
+}
+.black ul li{
+    float:left;
+    padding:5px;
+    margin:5px;
+    color:#aaa;
+}
+.black ul li a{
+    display:block;
+    color:#f0f0f0;
+}
+.black ul li a:hover{
+    text-decoration:none;
+    color:#fff;
+}
+.white ul li{
+    float:left;
+    padding:5px;
+    margin:5px;
+    color:#aaa;
+}
+.white ul li a{
+    display:block;
+    color:#222;
+}
+.white ul li a:hover{
+    text-decoration:none;
+    color:#000;
+}
+
+
+
+
+
+        a{
+            color:#fff;
+            text-decoration:none;
+        }
+        a:hover{
+            text-decoration:underline;
+        }
+        span.reference{
+            position:fixed;
+            left:10px;
+            bottom:10px;
+            font-size:13px;
+            font-weight:bold;
+        }
+        span.reference a{
+            color:#fff;
+            text-shadow:1px 1px 1px #000;
+            padding-right:20px;
+        }
+        span.reference a:hover{
+            color:#ddd;
+            text-decoration:none;
+        }
+
+.background_animation_element{
+
+    -webkit-transition: background 5s ;
+    -moz-transition: background 5s ;
+    -ms-transition: background 5s ;
+    -o-transition: background 5s ;
+    transition: background 5s ;
+
+    background: rgb(71,234,46);
+    background: -moz-linear-gradient(top,  rgba(71,234,46,1) 0%, rgba(63,63,63,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(71,234,46,1)), color-stop(100%,rgba(63,63,63,1)));
+    background: -webkit-linear-gradient(top,  rgba(71,234,46,1) 0%,rgba(63,63,63,1) 100%);
+    background: -o-linear-gradient(top,  rgba(71,234,46,1) 0%,rgba(63,63,63,1) 100%);
+    background: -ms-linear-gradient(top,  rgba(71,234,46,1) 0%,rgba(63,63,63,1) 100%);
+    background: linear-gradient(top,  rgba(71,234,46,1) 0%,rgba(63,63,63,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47ea2e', endColorstr='#3f3f3f',GradientType=2 );
+
+}
+
+.background_animation_element.yellow{
+
+    background: rgb(247,247,49);
+    background: -moz-linear-gradient(top,  rgba(247,247,49,1) 0%, rgba(63,63,63,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(247,247,49,1)), color-stop(100%,rgba(63,63,63,1)));
+    background: -webkit-linear-gradient(top,  rgba(247,247,49,1) 0%,rgba(63,63,63,1) 100%);
+    background: -o-linear-gradient(top,  rgba(247,247,49,1) 0%,rgba(63,63,63,1) 100%);
+    background: -ms-linear-gradient(top,  rgba(247,247,49,1) 0%,rgba(63,63,63,1) 100%);
+    background: linear-gradient(top,  rgba(247,247,49,1) 0%,rgba(63,63,63,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f731', endColorstr='#3f3f3f',GradientType=2 );
+
+}
+#loadingIconContainer{
+    width:50%;
+    margin-top:40%;
+}
+
+#myBar{
+    /* margin-left:40%;
+    margin-right:40%; */
+    border-radius:16px;
+    height:9px;
+    
+    
+}
+
+#loadinglogo{
+    /* background: url("../../_resources/Disney_Logo.png"); */
+    margin-top:-33%;
+    margin-left:81%;
+    width:50%;  
+    margin-bottom:40px
+}
+#logo{
+    width: 75%;
+    margin-top: 8%;
+    margin-left: 19%;
+}
+#closemodal{
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+#logoContainer{
+    position: absolute;
+    margin-left: 40%;
+    margin-top: 2%;
+
+}
+.w3-green, .w3-hover-green:hover {
+    color: #fff!important;
+    background-color: #4CAF50!important;
+}
+
+.w3-center {
+    text-align: center!important;
+}
+
+.w3-container, .w3-panel {
+    padding: 0.01em 16px;
+    height:10%;
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 5; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+.myModal{
+    display:inline-block
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.w3-green{
+    background-color :#00AAFF !important;
+}
+#myProgress {
+    width: 100%;
+    background-color: grey;
+    margin-left:47%;
+    margin-right:40%;
+    border-radius:16px;
+    height:10px
+}
+
+
+#scanCard{
+    /* position: fixed; */
+    margin-left: 38%;
+    /* z-index: 5; */
+    position: fixed;
+    /* right: 364px; */
+    z-index: 5;
+    top: 51%;
+    /* -webkit-transform: scaleX(-1); */
+    transform: translateY(-50%);
+    transition: all 1250ms;
+    display:none;
+
+}
+
+#d15{
+    margin-left:-1px
+
+
+}
+#d15Toy{
+    margin-left:-4px;
+    margin-top:15px
+
+
+}
+
+#d15Kwik{
+    margin-left:-5px
+}
+
+#d15Ra{
+    margin-left: -25px;
+}
+
+
+
+.charIcon {
+    width: 139px;
+}
+

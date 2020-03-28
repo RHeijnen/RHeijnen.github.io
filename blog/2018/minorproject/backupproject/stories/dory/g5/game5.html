@@ -1,0 +1,55 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta name="viewport" content="user-scalable=no" />
+    
+  <script src="game5.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="game5.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">  
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+  
+</head> 
+<body>
+  <canvas id="sig-canvas" tabindex="1">
+    Get a better browser, bro.
+  </canvas>
+
+  <!-- Navigation buttons etc -->
+  <div class="home-button">
+    <span class="glyphicon glyphicon-home"></span>
+  </div>
+
+  <div class="back-button">
+    <!-- <span class="glyphicon glyphicon-chevron-left"></span> -->
+    <img class="back-arrow" src="../img/02_Icon_Back.svg">
+  </div>
+
+  <!-- <img id="leftTap" src="./img/G4_03_Left.png" alt="Left">
+  <img id="rightTap" src="./img/G4_04_Right.png" alt="Right"> -->
+
+  <!-- Overlay content explaining game -->
+  <div id="explain-overlay" class="overlay">
+    <div class="overlay-content-explain">
+        <h2>Uitleg</h2></br>
+        <p class="overlay-text"> Oef, een grote haai. Het is hier de bedoeling zo snel mogelijk op het scherm
+          te tikken om te ontsnappen van de haai. Je kunt het!      
+        </p>
+        <div class="overlay-button" id="startButton">Start spel</div>
+    </div>
+  </div>
+  
+  <!-- Overlay content after completing game -->
+  <div id="finish-overlay" class="overlay">
+    <div class="overlay-content-finish">
+        <h2>Goed gedaan!</h2></br>
+        <p class="overlay-text">Goed gedaan, Je bent geen haaien tandenstoker geworden.
+          Ga snel door met je avontuur en vind het wrak.          
+        </p>
+        <div class="overlay-button" id="continueButton">Ga verder!</div>
+    </div>
+  </div>
+</html>

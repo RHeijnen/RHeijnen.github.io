@@ -78,7 +78,8 @@ figcaption {
 
 .codeblock{
     grid-column: 1 / -1;
-    font-size:15px
+    font-size:15px;
+    overflow-x: auto;
 }
 .custom-highlighter{
     background-color:#de7cd2
@@ -94,4 +95,26 @@ figure.center{
 .custom-bold{
     color:purple;
     font-weight: bold;
+}
+
+.disney-iframe{
+    max-width: 100vw;
+    max-height: 56.25vw; /* height/width ratio = 315/560 = .5625 */
+    overflow:hidden;
+}
+
+.console-output{
+    background-color: #212121;
+    border: 1px solid #212121;
+    color: #3498db;
+    padding: 8px;
+    font-family: 'Press Start 2P', cursive;
+    font-size:10px;
+    line-height: 1.8;
+    grid-column: 1 / -1;
+    overflow:hidden;
+    resize: none;
+    outline: none;
+    height:
+
 }

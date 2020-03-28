@@ -23,21 +23,29 @@ controller.$inject = ['$scope','$window'];
 
 function controller($scope,$window){
     $scope.blogPosts = [
-        // {
-        //     title: "Collecting your data",
-        //     description : "bla bla bla bla asd asd asd asd asd ads asd asd asd asd",
-        //     d  : "09",
-        //     my : "September 19",
-        //     image : "/blog/media/code.png",
-        //     url   : " "
-        // },
+        {
+            title: "Scroll Anchors",
+            description : "Make your website go scrolly scroll",
+            d  : "20",
+            my : "March 20",
+            image : "/blog/media/code.png",
+            url   : "/blog/2020/scrollanchors/index.html"
+        },
         {
             title: "Dithering is amazing",
             description : "A study in dithering",
-            d  : "09",
-            my : "September 19",
+            d  : "14",
+            my : "March 20",
             image : "/blog/media/ditheringmac.gif",
             url   : "/blog/2020/dithering/index.html"
+        },
+        {
+            title: "Pixel art portfolio",
+            description : "Interactive canvas",
+            d  : "09",
+            my : "February 20",
+            image : "/blog/media/pixelartportfolio.png",
+            url   : "/blog/2020/pixelportfolio/index.html"
         },
         {
             title: "'developers writers block?'",
@@ -47,14 +55,7 @@ function controller($scope,$window){
             image : "/blog/media/10minutepixelart.png",
             url   : "/blog/2020/challenges/index.html"
         },
-        {
-            title: "Pixel art portfolio",
-            description : "Interactive canvas",
-            d  : "09",
-            my : "September 19",
-            image : "/blog/media/pixelartportfolio.png",
-            url   : "/blog/2020/pixelportfolio/index.html"
-        },
+
         {
             title: "Anti aliasing",
             description : "A study in aliasing",
@@ -87,30 +88,31 @@ function controller($scope,$window){
         //     image : "/blog/media/code.png",
         //     url   : "/blog/media/code.png"
         // },
-        {
-            title: "Scroll Anchors",
-            description : "Make your website go scrolly scroll",
-            d  : "09",
-            my : "September 19",
-            image : "/blog/media/code.png",
-            url   : "/blog/2020/scrollanchors/index.html"
-        },
+
         {
             title: "Unity tilesets",
             description : "Simple tileset tutorial",
-            d  : "09",
-            my : "September 19",
+            d  : "02",
+            my : "January 19",
             image : "/blog/2019/unitytilesetsP1/resources/tilesetexample.jpg",
             url   : "/blog/2019/unitytilesetsP1/index.html"
+        }, 
+        {
+            title: "Digital Story Collections",
+            description : "My old minor project",
+            d  : "04",
+            my : "November 18",
+            image : "/blog/2018/minorproject/resources/screenshot.PNG",
+            url   : "/blog/2018/minorproject/index.html"
         },
-        // {
-        //     title: "Digital Story Collections",
-        //     description : "My minor project",
-        //     d  : "09",
-        //     my : "September 19",
-        //     image : "/blog/media/code.png",
-        //     url   : "/blog/media/code.png"
-        // },
+        {
+            title: "Collecting your data",
+            description : "What kind of data can we collect?",
+            d  : "10",
+            my : "December 18",
+            image : "/blog/media/code.png",
+            url   : "/blog/2018/tracking/index.html"
+        }
     ]
     $scope.skills = [
         {name: "Javascript",progress: 83,type: ["Professional","Web-development","Programming"]},
