@@ -388,9 +388,7 @@ a, a:hover {
 }
 
 
-.skill-filter-container{
-  display:flex;
-}
+
 .btn.active{
   border-color:#b747a9
 }

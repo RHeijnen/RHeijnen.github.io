@@ -24,18 +24,16 @@
       I spent some time researching what kind of data can, and can not be collected, aswell as the limitations set by law. </p>
 
       <p>Please note that all the code on this page was written in 2016/17 and might not be applicable anymore. 
-        You will find the full code as a download at the bottom of the page. For now, let start simple.</p>
+        You will find the full code as a download at the bottom of the page. For now, lets start simple.</p>
 
 
       <h4>Where are we and where did we come from</h4>
-      <figcaption>Input:</figcaption>
       <pre class="codeblock prettyprint">
         <code>
             var currentPage = window.location.href;
             var referPage   = document.referrer;
         </code>
       </pre>
-      <figcaption>Output:</figcaption>
       <textarea rows="1" class="console-output" id="output1" ></textarea>
       <div class="tip tip-right">
         <p>MDN <br>
@@ -63,7 +61,6 @@
             });
           </code>
         </pre>
-        <figcaption>Output:</figcaption>
         <textarea rows="1" class="console-output" id="output2" ></textarea>
         <h4>What kind of device is being used</h4>
         <p>
@@ -265,30 +262,56 @@
 
         <textarea rows="2" class="console-output" id="output6" ></textarea>
 
-        <h4>Keeping track of the user interaction - clicks on page</h4>
+        <h4>Keeping track of the user interaction - clicks ON the window</h4>
         <pre class="codeblock prettyprint">
           <code>
-            var coordContainer = [];
-            document.addEventListener("click", getCoordOnClick);
-            var getCoordOnClick = function(event){
-                coordContainer.push({
-                    "x": event.clientX,
-                    "y": event.clientY
-                });
-            };
+var coordContainer = [];
+document.addEventListener("click", getCoordOnClick);
+var getCoordOnClick = function(event){
+    coordContainer.push({
+        "x": event.clientX,
+        "y": event.clientY
+    });
+};
           </code>
         </pre>
         <figcaption>Simple but effective</figcaption>
         <textarea rows="2" class="console-output" id="output7" ></textarea>
+        <h4>Keeping track of the user interaction - clicks INSIDE the window</h4>
+        <pre class="codeblock prettyprint">
+          <code>
+
+          </code>
+        </pre>
+        <figcaption>Simple but effective</figcaption>
+        <textarea rows="2" class="console-output" id="output8" ></textarea>
+
+        <h4>Keeping track of the user interaction - clicks on Elements</h4>
+        <pre class="codeblock prettyprint">
+          <code>
+
+          </code>
+        </pre>
+        <figcaption>Simple but effective</figcaption>
+        <textarea rows="2" class="console-output" id="output9" ></textarea>
 
 
+
+        <h4>Identifying unique users</h4>
+        <pre class="codeblock prettyprint">
+          <code>
+
+          </code>
+        </pre>
+        <figcaption>Simple but effective</figcaption>
+        <textarea rows="2" class="console-output" id="output10" ></textarea>
 
 
                         <blockquote>
                           <h6></h6>
                         </blockquote>
                         <p>Work in Progress</p>
-                        <p>As usually you can find the fullcode linked at the end.</p>
+                        <p>Download code:</p>
 
 
                         
