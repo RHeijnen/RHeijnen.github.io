@@ -165,7 +165,7 @@ function controller($scope,$window){
             title: "Codepen Dive 1",
             description : "A look into a circle navigation from @bennettfeely",
             date : "4 Nov 2018",
-            image : "/media/blog/codepen-ring-nav.png",
+            image : "/media/blog/codepen-ring-nav.PNG",
             url   : "/blog/2018/codepen-dive-circle-navigation/index.html",
             tags  : ["Programming","Web-development","UX"],
             update: "4 Nov 2018"
