@@ -41,7 +41,7 @@ $( document ).ready(function() {
     $('.anchor_link').click(function(e) {
         e.preventDefault();
         $('html, body').animate({
-            scrollTop: $('#' + $(this).data('scroll')).offset().top //- $("#navbar").height()  
+            scrollTop: $('#' + $(this).data('scroll')).offset().top - $("#navbar").height()  
         }, '300');
 
     });
@@ -102,7 +102,7 @@ $( document ).ready(function() {
         }
         // scroll to the first occurence of our search phrase
         $('html, body').animate({
-            scrollTop: $(scrollElement).offset().top
+            scrollTop: $(scrollElement).offset().top  - $("#navbar").height()
         }, 1000);
     }
 });

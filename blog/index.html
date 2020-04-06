@@ -1,0 +1,154 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    
+    <script src="/js/archive.js"></script>
+
+    <script src="https://kit.fontawesome.com/5212751a96.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e84f07cb4e52f001290ee2e&product=inline-share-buttons&cms=website' async='async'></script>
+    <link rel="stylesheet" href="/css/blog.css">
+
+
+    
+
+
+
+    <!-- social sharing-->
+    <meta property="og:title" content="European Travel Destinations">
+    <meta property="og:description" content="Offering tour packages for individuals or groups.">
+    <meta property="og:image" content="http://euro-travel-example.com/thumbnail.jpg">
+    <meta property="og:url" content="http://euro-travel-example.com/index.htm">
+    <meta property="og:site_name" content="European Travel, Inc.">
+
+    <!-- social sharing-->
+    <meta name="twitter:title" content="European Travel Destinations ">
+    <meta name="twitter:description" content=" Offering tour packages for individuals or groups.">
+    <meta name="twitter:image" content=" http://euro-travel-example.com/thumbnail.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="Alt text for image">
+
+    
+    <title>
+        ✨ Blog | Archive ✨
+    </title>
+
+</head>
+    <body ng-app="app" ng-controller="controller as c">
+        <header>
+            <div class="header-container">
+                <img class="responsive-image"src="/media/images/blogheader.png"> </img>
+            </div>
+
+
+        </header>
+        <div id="navbar">
+            <a href="/index.html">Home</a>
+            <a class="anchor_link" data-scroll="y" href="#contact">Archive</a>
+            <span> | </span>
+            <a class="anchor_link_top"  href="#top">Top</a>
+
+        </div>     
+        <img class="header-footer-image"src="/media/images/headerfooter.png"> </img>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>Blog Archive</h1>   
+                    <div class="btn-group  flex-wrap">
+                            <button  ng-repeat="x in filterOptions track by $index" ng-if="$index == 0" ng-click="setActiveFilterOption(x)" data-value="{{x}}" class="btn active"> {{x}}</button>
+                            <button  ng-repeat="x in filterOptions track by $index" ng-if="$index != 0" ng-click="setActiveFilterOption(x)" data-value="{{x}}" class="btn"> {{x}}</button>
+                    </div> 
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-deck">
+                        <div class="card" ng-repeat="x in blogPosts track by $index" ng-show="checkActiveFilterOption(x)">
+                            <a class="no-decoration" style="height: 100%;" href="{{x.url}}">
+                                <!-- <img class="card-img-top" src="https://picsum.photos/309/200?image=1050" alt="Card image cap"> -->
+                                <img class="card-img-top"  ng-src="{{x.image}}" alt="Card image cap">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">{{x.title}}</h5>
+                                    <p class="card-text">{{x.description}}  </p>
+
+                                </div>
+
+
+                            </a>
+                            <footer class="card-footer">
+                                <small class="text-muted">Published: {{x.date}}</small><br/>
+                                <small class="text-muted">Updated: {{x.update}}</small><br/>
+                                <small class="text-muted">Tags:</small>
+                                <div class="tag-listing">
+                                    <small ng-click="setActiveFilterOption(xx)"ng-repeat="xx in x.tags" data-filter="{{xx}}" class="text-muted text-muted-light click-fake">{{xx}} </small>
+                                </div>
+                            </footer>
+
+                        </div>  
+                      </div>
+                </div>
+            </div>
+
+        </div>
+        <footer class="footer">
+            <img class="header-footer-image reverse"src="/media/images/headerfooter.png"> </img>
+            <div class="copyright"> <!-- lol -->
+                Rene Heijnen | 2018
+                <script>
+                    new Date().getFullYear() > 2018 && document.write(" - " + new Date().getFullYear());
+                </script>
+            </div>
+        </footer>
+
+
+  
+        <script>
+            /* basic scroll anchor navigation logic */
+            $('.anchor_link_top').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: 0 
+                }, '300');
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                    window.history.pushState({path:newurl},'',newurl);
+                }
+            });
+            $('.anchor_link').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: ($('#' + $(this).data('scroll')).offset().top - $("#navbar").height()) //- $("#navbar").height()  
+                }, '300');
+                // sneaky overwrite
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname +'#' + $(this).data('scroll');
+                    window.history.pushState({path:newurl},'',newurl);
+                }
+            });
+            if(location.href.split("#")[1]){
+                $( document ).ready(function() {
+                    setTimeout(function(){ 
+                        var anchor = location.href.split("#")[1]
+                        $('html, body').animate({
+                            scrollTop: ($('#' + anchor).offset().top - $("#navbar").height()) //- $("#navbar").height()  
+                        }, '300');                    
+                    }, 1500);
+
+                });
+            }
+
+        </script>
+    </body>
+</html>

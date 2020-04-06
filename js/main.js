@@ -22,97 +22,109 @@ app.controller("controller", controller);
 controller.$inject = ['$scope','$window'];
 
 function controller($scope,$window){
-    $scope.blogPosts = [
+    $scope.blogPosts =  [
+        {
+            title: "Codepen Dive 4",
+            description : "A look into a cool pen from @devilishalchemist",
+            day  : "4",
+            date : "4 Feb 2020",
+            image : "/media/blog/codepen-redbutton.png",
+            url   : "/blog/2020/scrollanchors/index.html",
+            tags  : ["Programming","Web-development","UX"],
+            update: "4 Feb 2020"
+        },
         {
             title: "Scroll Anchors",
             description : "Make your website go scrolly scroll",
-            d  : "20",
-            my : "March 20",
-            image : "/blog/media/code.png",
-            url   : "/blog/2020/scrollanchors/index.html"
+            day  : "4",
+            date : "4 Feb 2020",
+            image : "/media/blog/code.png",
+            url   : "/blog/2020/scrollanchors/index.html",
+            tags  : ["Programming","Web-development","UX"],
+            update: "4 Feb 2020"
         },
         {
             title: "Dithering is amazing",
             description : "A study in dithering",
-            d  : "14",
-            my : "March 20",
-            image : "/blog/media/ditheringmac.gif",
-            url   : "/blog/2020/dithering/index.html"
+            day  : "14",
+            date : "March 20",
+            image : "/media/blog/ditheringmac.gif",
+            url   : "/blog/2020/study-dithering/index.html",
+            tags  : ["Pixel Art","Learning"],
+            update: "4 Feb 2020"
         },
-        {
+        { 
             title: "Pixel art portfolio",
             description : "Interactive canvas",
             d  : "09",
-            my : "February 20",
-            image : "/blog/media/pixelartportfolio.png",
-            url   : "/blog/2020/pixelportfolio/index.html"
+            date : "February 20",
+            image : "/media/blog/pixelartportfolio.png",
+            url   : "/blog/2020/pixelportfolio/index.html",
+            tags  : ["Pixel Art","Web-development","UX"],
+            update: "4 Feb 2020"
         },
-        {
-            title: "'developers writers block?'",
-            description : "The importance of challenging yourself.",
-            d  : "09",
-            my : "September 19",
-            image : "/blog/media/10minutepixelart.png",
-            url   : "/blog/2020/challenges/index.html"
-        },
+        // {
+        //     title: "'developers writers block?'",
+        //     description : "The importance of challenging yourself.",
+        //     d  : "09",
+        //     date : "September 19",
+        //     image : "/media/blog/10minutepixelart.png",
+        //     url   : "/blog/2020/challenges/index.html",
+        //     tags  : ["Learning"],
+        //     update: "4 Feb 2020"
+        // },
 
         {
             title: "Anti aliasing",
             description : "A study in aliasing",
-            d  : "09",
-            my : "September 19",
-            image : "/blog/2020/antialias/resources/aaexample.png",
-            url   : "/blog/2020/antialias/index.html"
+            day  : "09",
+            date : "September 19",
+            image : "/media/blog/aaexample.png",
+            url   : "/blog/2020/study-aliasing/index.html",
+            tags  : ["Learning","Game Dev"],
+            update: "4 Feb 2020"
         },
         // {
-        //     title: "Online Mercenaries for hire",
-        //     description : "Or something less thrilling.",
-        //     d  : "09",
-        //     my : "September 19",
-        //     image : "/blog/media/lcqp-suspects.jpg",
-        //     url   : " "
-        // },
-        {
-            title: "I've played so many rogue lite/likes",
-            description : "And I've got some ideas",
-            d  : "09",
-            my : "September 19",
-            image : "/blog/media/roguelikecollection.png",
-            url   : "/blog/2019/roguelikes/index.html"
-        },
-        // {
-        //     title: "Offline websites",
-        //     description : "My experience with progressive webapps and service workers",
-        //     d  : "09",
-        //     my : "September 19",
-        //     image : "/blog/media/code.png",
-        //     url   : "/blog/media/code.png"
+        //     title: "I've played so many rogue lite/likes",
+        //     description : "And I've got some ideas",
+        //     day  : "09",
+        //     date : "September 19",
+        //     image : "/media/blog/roguelikecollection.png",
+        //     url   : "/blog/2019/roguelikes/index.html",
+        //     tags  : ["Game Dev"],
+        //     update: "4 Feb 2020"
         // },
 
         {
             title: "Unity tilesets",
             description : "Simple tileset tutorial",
-            d  : "02",
-            my : "January 19",
-            image : "/blog/2019/unitytilesetsP1/resources/tilesetexample.jpg",
-            url   : "/blog/2019/unitytilesetsP1/index.html"
+            day  : "02",
+            date : "January 19",
+            image : "/media/blog/tilesetexample.jpg",
+            url   : "/blog/2019/unity-tilesets-1/index.html",
+            tags  : ["Programming","Pixel Art","Game Dev"],
+            update: "4 Feb 2020"
         }, 
         {
             title: "Digital Story Collections",
             description : "My old minor project",
-            d  : "04",
-            my : "November 18",
-            image : "/blog/2018/minorproject/resources/screenshot.PNG",
-            url   : "/blog/2018/minorproject/index.html"
+            day  : "04",
+            date : "November 18",
+            image : "/media/blog/screenshot.PNG",
+            url   : "/blog/2018/minor-project-stories/index.html",
+            tags  : ["UX","Web-development","Programming"],
+            update: "4 Feb 2020"
         },
-        {
-            title: "Collecting your data",
-            description : "What kind of data can we collect?",
-            d  : "10",
-            my : "December 18",
-            image : "/blog/media/code.png",
-            url   : "/blog/2018/tracking/index.html"
-        }
+        // {
+        //     title: "Collecting your data",
+        //     description : "What kind of data can we collect?",
+        //     day  : "10",
+        //     date : "6 Sep 2018",
+        //     image : "/media/blog/code.png",
+        //     url   : "/blog/2018/tracking/index.html",
+        //     tags  : ["Programming","Web-development"],
+        //     update: "6 Sep 2018"
+        // }
     ]
     $scope.skills = [
         {name: "Javascript",progress: 83,type: ["Professional","Web-development","Programming"]},
@@ -265,6 +277,13 @@ $( document ).ready(function() {
         $('html, body').animate({
             scrollTop: ($('#' + $(this).data('scroll')).offset().top - $("#navbar").height() ) //- $("#navbar").height()  
         }, '300');
+
+        if (history.pushState) {
+            var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '#' + $(this).data('scroll');
+            window.history.pushState({path:newurl},'',newurl);
+        }
+
+
 
     });
     /* slider */

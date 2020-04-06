@@ -1,0 +1,430 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/5212751a96.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e84f07cb4e52f001290ee2e&product=inline-share-buttons&cms=website' async='async'></script>
+    <link rel="stylesheet" href="/css/blog.css">
+
+    <script src="./js/example_tracking.js"></script>
+
+    <!-- setup! -->
+    <!-- social sharing-->
+    <meta property="og:title" content="European Travel Destinations">
+    <meta property="og:description" content="Offering tour packages for individuals or groups.">
+    <meta property="og:image" content="http://euro-travel-example.com/thumbnail.jpg">
+    <meta property="og:url" content="http://euro-travel-example.com/index.htm">
+    <meta property="og:site_name" content="European Travel, Inc.">
+
+    <!-- social sharing-->
+    <meta name="twitter:title" content="European Travel Destinations ">
+    <meta name="twitter:description" content=" Offering tour packages for individuals or groups.">
+    <meta name="twitter:image" content="http://euro-travel-example.com/thumbnail.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="Alt text for image">
+    <title>
+        ✨ Blog | Collecting user information  ✨
+    </title>
+
+
+</head>
+    <body>
+        <header>
+            <div class="header-container">
+                <img class="responsive-image"src="/media/images/blogheader.png"> </img>
+            </div> 
+
+
+        </header>
+        <div id="navbar">
+            <a href="/index.html">Home</a>
+            <a href="/blog/index.html">Archive</a>
+            <span> | </span>
+            <a class="anchor_link_top"  href="#top">Top</a>
+
+        </div>     
+        <img class="header-footer-image"src="/media/images/headerfooter.png"> </img>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <article> 
+                    <div id="intro--chapter" class="row">
+                        <div class="col-sm-8">
+                            <h1> Collecting user information</h1>                   
+                        </div>
+                        <div class="right-info-header col-sm-4">
+                            <p class="pull-down">
+                                Published: 6 Sep 2018
+                            </p> 
+                            <div class="sharethis-inline-share-buttons"></div>
+                        </div>
+                    </div>
+                    <div id="about--chapter" class="row">
+                        <div class="col-sm-12">
+                            <p>For my thesis that ended up being about using collected browser behaviour from visitors to improve user experience for websites and apps, 
+                                I spent some time researching what kind of data can, and can not be collected, aswell as the limitations set by law. </p>
+                          
+                                <p>Please note that all the code on this page was written in 2016/17 and might not be applicable anymore. 
+                                  You will find the full code as a download at the bottom of the page. For now, lets start simple.</p>
+
+                        </div> 
+                    </div>
+
+                    <div id="about--chapter" class="row">
+                        <div class="col-sm-8">
+                            <h4>Where are we and where did we come from</h4>
+                            <pre class="prettyprint linenums">
+var currentPage = window.location.href;
+var referPage   = document.referrer;</pre>    
+<textarea rows="1" class="console-output" id="output1" ></textarea>
+<p>
+    the window.location tells us where we are and the document.referrer tels us where we came from, 
+    if you get an empty result from the document referer it might be possible this page opened in a new tab.
+  </p>
+                        </div> 
+                        <div class="right-info  col-sm-4">
+                            <p>MDN <br>
+                                <a class="" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/location">window.location.href</a> 
+                                <a class="" href="https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer">document.referrer</a> 
+                              </p>
+                        </div>  
+                    </div>
+
+
+                    <div id="about--chapter" class="row">
+                        <div class="col-sm-8">
+                            <h4>Timing the duration of a page load</h4>
+                            <p>
+                                Now this is not as reliable as actual load testing, but it might give you some insights so why not. We can start by setting a timer as the first 'action' of a page load, and set a timer when the page is actually done loading like so. 
+                            </p>
+<pre class="prettyprint linenums">
+var loadTimerStart = Date.now();
+document.addEventListener('DOMContentLoaded', function(){
+    var loadTimerEnd    = Date.now();
+    var loadTimerResult = loadTimerEnd - loadTimerStart;
+});</pre>    
+<textarea rows="1" class="console-output" id="output2" ></textarea>
+                        </div> 
+                    </div>
+
+
+
+                    <div id="about--chapter" class="row">
+                        <div class="col-sm-8">
+                            <h4>What kind of device is being used</h4>
+                            <p>
+                                Now this is not as reliable as actual load testing, but it might give you some insights so why not. We can start by setting a timer as the first 'action' of a page load, and set a timer when the page is actually done loading like so. 
+                            </p>
+<pre class="prettyprint linenums">
+/**
+*  creates getBrowserType() @function
+*  @returns {string} type of browser
+*  used to identify the browser types [];
+*/
+getBrowserType = (function(){
+    var ua= navigator.userAgent, tem,
+    M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    if(/trident/i.test(M[1])){
+        tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
+        return 'IE '+(tem[1] || '');
+    };
+    if(M[1]=== 'Chrome'){
+        tem= ua.match(/\b(OPR|Edge)\/(\d+)/);
+        if(tem!= null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+    };
+    M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+    if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
+    return M.join(' ');
+})();</pre>    
+
+<p>By applying regex we can parse the useragent to have a clean representation of our browsers version </p>
+<pre class="prettyprint linenums">
+/**
+*  @function @returns {boolean} based on matching in the userAgent
+*  
+*/
+    var isMobile = {
+        Android: function() {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iPad: function() {
+            return navigator.userAgent.match(/iPad/i);
+        },
+        iPhone: function() {
+            return navigator.userAgent.match(/iPhone/i);
+        },    
+        Opera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function() {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+        }
+    };
+/**
+*  call  @function isMobile and @returns {string}
+*  save  @return value as mobileType
+*/
+    var getMobileType = function(){
+        if(isMobile.Android()){
+            return'Android';
+        }else if(isMobile.Opera()){
+            return 'Opera';
+        }else if (isMobile.BlackBerry()){
+            return 'BlackBerry';
+        }else if(isMobile.iPad()){
+            return 'iPad';
+        }else if(isMobile.iPhone()){
+            return'iPhone';
+        }else if(isMobile.Windows()){
+            return 'Windows mobile';
+        }else{
+            return "none"
+        }  
+    }</pre> 
+    <p>By doing a short match we can filterout different mobile devices, remember blackberry anyone?</p>
+<pre class="prettyprint linenums">
+var browserType    = getBrowserType();
+var browserVersion = navigator.appVersion;
+var mobileUser     = getMobileType()
+</pre>
+<textarea rows="1" class="console-output" id="output3" ></textarea>
+<p> By parsing the user agent we can split it up into multiple usefull segments, the issue with this is that as time goes on - they might lose its reliability. </p>
+
+                        </div> 
+                    </div>
+
+                    <div id="about--chapter" class="row">
+                        <div class="col-sm-8">
+                            <h4>What about operating systems?</h4>
+<pre class="prettyprint linenums">
+var identifyOS = function(){
+    var OSName = "Unknown OS"; // fallback
+    if (navigator.userAgent.indexOf("Win") != -1) OSName="Windows";
+    if (navigator.userAgent.indexOf("Mac") != -1) OSName="Macintosh";
+    if (navigator.userAgent.indexOf("Linux") != -1) OSName="Linux";
+    if (navigator.userAgent.indexOf("Android") != -1) OSName="Android";
+    if (navigator.userAgent.indexOf("like Mac") != -1) OSName = "iOS";
+    if (navigator.userAgent.match(/SAMSUNG|SGH-[I|N|T]|GT-[I|P|N]|SM-[N|P|T|Z|G]|SHV-E|SCH-[I|J|R|S]|SPH-L/i))OSName = "SamsungOS";
+    return OSName
+}</pre>    
+<p>A simple 'switch' to create a nice OS name, again based on the userAgent</p>
+<pre class="prettyprint linenums">
+var osSystem       = identifyOS()
+var osPlatform     = navigator.platform</pre>    
+<textarea rows="1" class="console-output" id="output4" ></textarea>
+                        </div> 
+                    </div>
+
+
+                    <div id="about--chapter" class="row">
+                        <div class="col-sm-8">
+                            <h4>What about screen and window sizes ? </h4>
+<pre class="prettyprint linenums">
+/**
+*   @plain javascript way of doing $(window).width();
+*   [tested in:  Chrome - Safari]
+*/
+var getWindowWidth = function(){
+    return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+};
+/**
+*   @plain javascript way of doing $(window).height();
+*   [tested in:  Chrome - Safari]
+*/
+var getWindowHeight = function(){
+    return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+};
+/**
+*  @function getScreenHeight @returns screen.height from screen object
+*/
+var getScreenHeight = function(){
+    return screen.height;
+};
+/**
+*  @function getScreenWidth @returns screen.width from screen object
+*/
+var getScreenWidth = function(){
+    return screen.width;
+};</pre>    
+<pre class="prettyprint linenums">
+var windowHeight   = getWindowHeight()
+var windowWidth    = getWindowWidth()
+var screenWidth    = getScreenWidth()
+var screenHeight   = getScreenHeight()</pre>    
+<textarea rows="1" class="console-output" id="output5" ></textarea>
+                        </div> 
+                    </div>
+
+
+
+                    <div id="about--chapter" class="row">
+                        <div class="col-sm-8">
+                            <h4>Seeing how far the user has scrolled on your current page</h4>
+<pre class="prettyprint linenums">
+/**
+* @function getScrollPercent returns @var % scrolled on current page
+* @thanks https://stackoverflow.com/questions/2387136/cross-browser-method-to-determine-vertical-scroll-percentage-in-javascript
+* Going to need to see the first position ( what we get now) AND the last position firstposition + (the viewheight) to see what the
+* extend of the user's visable spectrum is.  --> getWindowHeight()
+*/
+function getScrollPercent() {
+    var h = document.documentElement, 
+    b = document.body,
+    st = 'scrollTop',
+    sh = 'scrollHeight';
+    return (h[st]||b[st]) / (h[sh]||b[sh]) * 100
+}</pre>    
+<p>By intervalling this and checking to see if the next itteration is larger than our previous, we can get a max scroll percentage on the page.</p>
+<pre class="prettyprint linenums">
+    var scrollPercentage = getScrollPercent()</pre>    
+
+<textarea rows="1" class="console-output" id="output6" ></textarea>
+                        </div> 
+                    </div>
+
+                    <div id="about--chapter" class="row">
+                        <div class="col-sm-8">
+                            <h4>Keeping track of the user interaction - clicks ON the window</h4>
+<pre class="prettyprint linenums">
+var coordContainer = [];
+var getCoordOnClick = function(event){
+    coordContainer.push({
+        "x": event.clientX,
+        "y": event.clientY
+    });
+};
+document.addEventListener("click", getCoordOnClick);</pre>  
+<textarea rows="1" class="console-output" id="output7" ></textarea>
+
+ </div></div>
+
+ 
+<div id="about--chapter" class="row">
+    <div class="col-sm-8">
+        <h4>Keeping track of the user interaction - clicks ON elements</h4>
+<pre class="prettyprint linenums">
+var elementContainer = [];
+var getElementOnClick = function(event){
+    var checkpoint    = document.elementFromPoint(event.clientX,event.clientY);    
+
+    elementContainer.push(checkpoint);
+};
+document.addEventListener("click", getElementOnClick);</pre>    
+
+
+<textarea rows="1" class="console-output" id="output8" ></textarea>
+                        </div> 
+                    </div>
+
+
+
+                    <div id="closer--chapter" class="row">
+                        <div class="col-sm-12">
+                            <p>That is it for this one, if you notice any mistakes or just want to leave me a message, leave a comment below.</p>
+                        </div> 
+                    </div>
+
+                    <div id="comments--chapter" class="row">
+                        <div class="col-sm-12">
+                            <h2>&nbsp;</h2>
+                            <h2>&nbsp;</h2>
+                            <h2>&nbsp;</h2>
+                            <h2>&nbsp;</h2>
+                            <h2>Comments</h2>
+                            <div id="disqus_thread"></div>
+
+                            <script>
+                             
+                            /**
+                            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                            /*
+                            var disqus_config = function () {
+                            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                            };
+                            */
+                            (function() { // DON'T EDIT BELOW THIS LINE
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://heijnendev.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                            })();
+                            </script>
+                            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            <script id="dsq-count-scr" src="//heijnendev.disqus.com/count.js" async></script>    
+                        </div> 
+                    </div>
+                </article>
+
+
+
+                  </div>
+                </div>
+              </div>
+
+              <footer class="footer">
+                <img class="header-footer-image reverse"src="/media/images/headerfooter.png"> </img>
+                <div class="copyright"> <!-- lol -->
+                    Rene Heijnen | 2018
+                    <script>
+                        new Date().getFullYear() > 2018 && document.write(" - " + new Date().getFullYear());
+                    </script>
+                </div>
+        
+              </footer>
+
+
+        </div>
+        <script>
+            /* basic scroll anchor navigation logic */
+            $('.anchor_link_top').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: 0 
+                }, '300');
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                    window.history.pushState({path:newurl},'',newurl);
+                }
+            });
+            $('.anchor_link').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: ($('#' + $(this).data('scroll')).offset().top - $("#navbar").height()) //- $("#navbar").height()  
+                }, '300');
+                // sneaky overwrite
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname +'#' + $(this).data('scroll');
+                    window.history.pushState({path:newurl},'',newurl);
+                }
+            });
+            if(location.href.split("#")[1]){
+                $( document ).ready(function() {
+                    setTimeout(function(){ 
+                        var anchor = location.href.split("#")[1]
+                        $('html, body').animate({
+                            scrollTop: ($('#' + anchor).offset().top - $("#navbar").height()) //- $("#navbar").height()  
+                        }, '300');                    
+                    }, 1500);
+
+                });
+            }
+
+        </script>
+    </body>
+</html>

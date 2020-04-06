@@ -1,0 +1,220 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+    <script src="https://kit.fontawesome.com/5212751a96.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e84f07cb4e52f001290ee2e&product=inline-share-buttons&cms=website' async='async'></script>
+    <link rel="stylesheet" href="/css/blog.css">
+
+
+    <!-- setup! -->
+    <!-- social sharing-->
+    <meta property="og:title" content="European Travel Destinations">
+    <meta property="og:description" content="Offering tour packages for individuals or groups.">
+    <meta property="og:image" content="http://euro-travel-example.com/thumbnail.jpg">
+    <meta property="og:url" content="http://euro-travel-example.com/index.htm">
+    <meta property="og:site_name" content="European Travel, Inc.">
+
+    <!-- social sharing-->
+    <meta name="twitter:title" content="European Travel Destinations ">
+    <meta name="twitter:description" content=" Offering tour packages for individuals or groups.">
+    <meta name="twitter:image" content="http://euro-travel-example.com/thumbnail.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="Alt text for image">
+    <title>
+        ✨ Blog | $0 ✨
+    </title>
+
+
+</head>
+    <body>
+        <header>
+            <div class="header-container">
+                <img class="responsive-image"src="/media/images/blogheader.png"> </img>
+            </div> 
+
+
+        </header>
+        <div id="navbar">
+            <a href="/index.html">Home</a>
+            <a href="/blog/index.html">Archive</a>
+            <span> | </span>
+            <a class="anchor_link_top"  href="#top">Top</a>
+
+        </div>     
+        <img class="header-footer-image"src="/media/images/headerfooter.png"> </img>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <article> 
+                    <div id="intro--chapter" class="row">
+                        <div class="col-sm-8">
+                            <h1>$0 - Do you use it ?</h1>                   
+                        </div>
+                        <div class="right-info-header col-sm-4">
+                            <p class="pull-down">
+                                Published: 19 Feb 2019
+                            </p> 
+                            <div class="sharethis-inline-share-buttons"></div>
+                        </div>
+                    </div>
+
+                    <div id="text-codepen--chapter" class="row">
+                        <div class="col-sm-12">
+                            <h2>What $0 does.</h2>
+                            <p>
+                                I am wondering how many people actually know what $0 does, not a lot of developers I talk to  <a href="https://stackoverflow.com/questions/36999739/what-does-0-double-equals-dollar-zero-mean-in-chrome-developer-tools">know about it</a> - let alone use it.  so lets dive into it.
+                            </p>  
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/img1.PNG" class="figure-img img-fluid" alt="A generic square placeholder image">
+                                    <figcaption class="figure-caption">You have atleast noticed this once or twice right ?</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="text-codepen--chapter" class="row">
+                        <div class="col-sm-12">
+                            <h2>$0 equals your selected element</h2>
+                            <p>
+                                Select something with either the element selector or by clicking an element in the element tab of the developer tools. You will notice a small '$0' next to your selected element (pictured above).  If you enter "$0" into the console it will print out your selected element.
+                            </p>  
+                            <p>I often use it when testing out code - it is a lot quicker to develop something in the browser as opposed to an slow CMS that potentially is caching old changes etc.</p>
+                            <pre class="prettyprint linenums">
+/* selecting an element with the ID "item" */
+$0.id // will return "item"
+$0 == document.getElementById("item") // same same
+$($0) // will return the jquery representation of the element
+      // i.e. $("#item")
+
+/* Note the true effectiveness of the $0 feature is when the element is not unique, i.e. classess*/
+/* Say there are 10 elements on the page that share the class "randomClass" class 
+    By selecting one of them with the selector we can target our code easily */
+
+$0.classname == "randomClass" // true
+   // $0 has a direct reference to the instance of the element by class
+   // say we selected the 4th one 
+$0 == document.getElementsByClassName("randomClass")[3] // could be true who knows
+
+   // My point being - it is super helpfull to experiment with your code
+   // I find my self useing it a lot when I have to rely on DOM structure crawling
+                            </pre>    
+
+
+                        </div>
+                    </div>
+                    <div id="text-codepen--chapter" class="row">
+                        <div class="col-sm-12">
+                            <h2>$1 equals your PREVIOUS element.</h2>
+                            <p>
+                                Treat it like a stack of selected elements that pops upwards everytime you select a new element.
+                            </p>  
+                        </div>
+                    </div>
+
+
+
+                    <div id="closer--chapter" class="row">
+                        <div class="col-sm-12">
+                            <p>That is it for this one, if you notice any mistakes or just want to leave me a message, leave a comment below.</p>
+                        </div> 
+                    </div>
+
+                    <div id="comments--chapter" class="row">
+                        <div class="col-sm-12">
+                            <h2>&nbsp;</h2>
+                            <h2>&nbsp;</h2>
+                            <h2>&nbsp;</h2>
+                            <h2>&nbsp;</h2>
+                            <h2>Comments</h2>
+                            <div id="disqus_thread"></div>
+
+                            <script>
+                             
+                            /**
+                            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                            /*
+                            var disqus_config = function () {
+                            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                            };
+                            */
+                            (function() { // DON'T EDIT BELOW THIS LINE
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://heijnendev.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                            })();
+                            </script>
+                            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            <script id="dsq-count-scr" src="//heijnendev.disqus.com/count.js" async></script>    
+                        </div> 
+                    </div>
+                </article>
+
+
+
+                  </div>
+                </div>
+              </div>
+
+              <footer class="footer">
+                <img class="header-footer-image reverse"src="/media/images/headerfooter.png"> </img>
+                <div class="copyright"> <!-- lol -->
+                    Rene Heijnen | 2018
+                    <script>
+                        new Date().getFullYear() > 2018 && document.write(" - " + new Date().getFullYear());
+                    </script>
+                </div>
+        
+              </footer>
+
+
+        </div>
+        <script>
+            /* basic scroll anchor navigation logic */
+            $('.anchor_link_top').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: 0 
+                }, '300');
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                    window.history.pushState({path:newurl},'',newurl);
+                }
+            });
+            $('.anchor_link').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: ($('#' + $(this).data('scroll')).offset().top - $("#navbar").height()) //- $("#navbar").height()  
+                }, '300');
+                // sneaky overwrite
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname +'#' + $(this).data('scroll');
+                    window.history.pushState({path:newurl},'',newurl);
+                }
+            });
+            if(location.href.split("#")[1]){
+                $( document ).ready(function() {
+                    setTimeout(function(){ 
+                        var anchor = location.href.split("#")[1]
+                        $('html, body').animate({
+                            scrollTop: ($('#' + anchor).offset().top - $("#navbar").height()) //- $("#navbar").height()  
+                        }, '300');                    
+                    }, 1500);
+
+                });
+            }
+
+        </script>
+    </body>
+</html>

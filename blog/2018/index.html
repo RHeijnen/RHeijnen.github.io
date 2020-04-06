@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Redirecting..</title>
+      <meta http-equiv = "refresh" content = "6; url = ../index.html" />
+      <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+      <link rel="stylesheet" href="../../css/404.css">
+      <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+      <script>
+          function showText(target, message, index, interval) {    
+                if (index < message.length) { 
+                    $(target).append(message[index++]); 
+                    setTimeout(function () { showText(target, message, index, interval); }, interval); 
+                } 
+            }
+            $(function () { 
+                showText("h1", "How..... did you get here?", 0, 150);    
+            }); 
+      </script>
+   </head>
+   <body>
+    <h2><span></a>Link</span></h2><h3>Page not found</h3><h1></h1>
+</body>
+   </html>

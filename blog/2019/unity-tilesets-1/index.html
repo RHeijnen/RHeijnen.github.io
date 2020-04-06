@@ -1,0 +1,325 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+    <script src="https://kit.fontawesome.com/5212751a96.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e84f07cb4e52f001290ee2e&product=inline-share-buttons&cms=website' async='async'></script>
+    <link rel="stylesheet" href="/css/blog.css">
+
+
+    <!-- setup! -->
+    <!-- social sharing-->
+    <meta property="og:title" content="European Travel Destinations">
+    <meta property="og:description" content="Offering tour packages for individuals or groups.">
+    <meta property="og:image" content="http://euro-travel-example.com/thumbnail.jpg">
+    <meta property="og:url" content="http://euro-travel-example.com/index.htm">
+    <meta property="og:site_name" content="European Travel, Inc.">
+
+    <!-- social sharing-->
+    <meta name="twitter:title" content="European Travel Destinations ">
+    <meta name="twitter:description" content=" Offering tour packages for individuals or groups.">
+    <meta name="twitter:image" content="http://euro-travel-example.com/thumbnail.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="Alt text for image">
+    <title>
+        ✨ Blog | Unity Tilesets I ✨
+    </title>
+
+
+</head>
+    <body>
+        <header>
+            <div class="header-container">
+                <img class="responsive-image"src="/media/images/blogheader.png"> </img>
+            </div> 
+
+
+        </header>
+        <div id="navbar">
+            <a href="/index.html">Home</a>
+            <a href="/blog/index.html">Archive</a>
+            <span> | </span>
+            <a class="anchor_link_top"  href="#top">Top</a>
+
+        </div>     
+        <img class="header-footer-image"src="/media/images/headerfooter.png"> </img>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <article> 
+                    <div id="intro--chapter" class="row">
+                        <div class="col-sm-8">
+                            <h1> Tilesets in unity. part I </h1>                   
+                        </div>
+                        <div class="right-info-header col-sm-4">
+                            <p class="pull-down">
+                                Published: 21 Dec 2019
+                            </p> 
+                            <div class="sharethis-inline-share-buttons"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="text-picture-landscape--chapter" class="row">
+                        <div class="col-sm-12">
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/tilesetexample.jpg" class="figure-img img-fluid" alt="A generic square placeholder image">
+                                    <figcaption class="figure-caption">Download these assets: https://free-game-assets.itch.io/free-swamp-2d-tileset-pixel-art</figcaption>
+                                </figure>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div id="text-info-simple--chapter" class="row">
+                        <div class="col-sm-8">
+                            <h2> What is a tileset?</h2>
+                            <p>A simple tileset usualy exists of a grid of 9 blocks(tiles). They are often 16x16 of 32x32 pixels per block in pixelart. But there are no set rules for the size.</p>
+                            <p>The point of these 9 blocks is that they can be repeated to make any simple shapes</p>           
+                            
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/block.png " class="figure-img img-fluid rounded" alt="A generic square placeholder image">
+                                    <figcaption class="figure-caption">The basic shape for tiling.</figcaption>
+                                </figure>
+                            </div>
+
+
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/blocksplit.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image">
+                                    <figcaption class="figure-caption">Made from these 9 tiles.</figcaption>
+                                </figure>
+                            </div>
+
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/blocksplit_inner.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image">
+                                    <figcaption class="figure-caption">Together with these tiles we should be able to make most simple shapes.</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="right-info right-info-mt col-sm-4">
+                            <ol>
+                                <li><a data-scroll="intro--chapter" class="anchor_link" href="#">Intro</a></li>
+                                <li><a data-scroll="text-info-simple--chapter" class="anchor_link" href="#">Text + side info - Simple</a></li>
+                                <li><a data-scroll="text-info-multi--chapter" class="anchor_link" href="#">Text + side info - Multiple</a></li>
+                                <li><a data-scroll="text-codepen--chapter" class="anchor_link" href="#">Text + Codepen embed</a></li>
+                            </ol>
+                        </div>
+                    </div>
+
+
+
+
+                    <div id="text-info-multi--chapter" class="row">
+                        <div class="col-sm-8">
+                            <h2> How to make them </h2>
+                            <p>Now that you have a basic understanding what a tileset is, how do you go about making them ? </p>
+                            <p>Well there are specific tools you can use to create tilesets, it is important to keep in mind that you want your 
+                              tiles to seemlessly go together to make one big object that does not look like it consists of smaller parts, well - unless you want to ofcourse!</p>
+                            <p>To help us do that we can use some programs like Aseprite - I am sure photoshop and others work just aswell but my experience is in Aseprite</p>                 
+                              
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/tiledmode.gif" class="figure-img img-fluid rounded" alt="A generic square placeholder image">
+                                    <figcaption class="figure-caption">See how in the end the blue lines represent 1 tile and how it blends together seemlessly ?</figcaption>
+                                </figure>
+                            </div>
+                        
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/tiledmodebricks.gif" class="figure-img img-fluid rounded" alt="A generic square placeholder image">
+                                    <figcaption class="figure-caption">Simple brick pattern useing tiled in both X and Y axis.</figcaption>
+                                </figure>
+                            </div>
+                            <p>You can even use symmetry tools to draw symmetrically at the same time!</p>
+
+                            <p>Try and have fun while creating your tiles, you are gonna be doing it for a while.</p>
+                        </div>
+                        <div class="right-info right-info-mt col-sm-4">
+                            <p>
+                                Trouble making tilesets? <br>
+                                <a href="https://www.youtube.com/watch?v=btnH0x7_1g8">Mort Mort: Tileset Workflow/Tutorial</a>
+                              </p>
+                        </div>
+                    </div>
+
+
+
+                    <div id="text-info-multi--chapter" class="row">
+                        <div class="col-sm-8">
+                            <h2> How to use them in Unity? </h2>
+                            <p>For the tutorial on how to use tilesets in unity I've chosen to use this free asset pack so you can work along with the same assets. Note: If you end up useing this for a commercial project - please consider donating to the author(s).</p>
+                            <p>Unity introduced support for tilesets a while ago, so I am going to assume the version you are useing has it supported.</p>
+                            <p>Open your project, or start a new one - I've decided to start a new one. Make sure you have the assets downloaded - you should have a folder called "1 Tiles" somewhere on your computer, locate it and import them into unity (drag and drop on the assets part)</p>
+                            <p>Now you might notice that the folder comes with 'precut' tiles, you can use them but for learning sake - lets learn how to use the tilesheet - the big image containing every tile. Select it in Unity like so:</p>
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/tut1.PNG" class="figure-img img-fluid rounded" alt="A generic square placeholder image">
+                                    <figcaption class="figure-caption">Select the tilesheet in the asset window and then we should configure the asset correctly.</figcaption>
+                                </figure>
+                            </div>
+                            <p>Make sure you configure the asset as follows:
+                                Change pixels per unit to 32 - this asset pack uses 32x32 pixel tiles. <br>
+                                Change filter mode to point (disabled it)<br>
+                                Change Compression to none (we do not want to compress our images)<br>
+                                Change Sprite mode to multiple
+                            </p>
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/tut2.PNG" class="figure-img img-fluid rounded" alt="A generic square placeholder image">
+                                    <figcaption class="figure-caption">Select the tilesheet in the asset window and then we should configure the asset correctly.</figcaption>
+                                </figure>
+                            </div>
+                            <p>Now we are ready to cut it up in 32 by 32 pixel tiles, open the sprite editor from the assets configuration(inspector) </p>
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/tut3.PNG" class="figure-img img-fluid rounded" alt="A generic square placeholder image">
+                                    <figcaption class="figure-caption">If all went well we should see this screen now.</figcaption>
+                                </figure>
+                            </div>
+                            <p>Open the Slice menu (found at the top of the window) and change type from "Automatic" to "Grid By Cell Size" and set the X and Y width to 32 pixels and press slice - you should now see this</p>
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/tut4.PNG" class="figure-img img-fluid rounded" alt="A generic square placeholder image">
+                                    <figcaption class="figure-caption">Slice result preview.</figcaption>
+                                </figure>
+                            </div>
+                            <p>Now apply the slicing by hitting "apply" in the righthand corner (top of the window). You just imported your first tilesheet into unity!</p>
+
+
+                            <p>Now to use it, I like to work in a grid based system so hitup GameObject -> 2D Object -> Tilemap. Now you should have a new gameobject named "Grid" with a child named "Tilemap" and we are ready to open the tile pallet. Window -> 2D -> tile pallet.  </p>
+                            <p>Once open, in the tile pallet create a new empty pallet, it will ask you to designate a folder to save its assets into, unity will save your tiles there. Now you are ready to drag your tileset asset into the window and it should end up like this</p>
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/tut5.PNG" class="figure-img img-fluid rounded" alt="A generic square placeholder image">
+                                </figure>
+                            </div>
+                            
+
+                            <p>Now we can select the tiles we want and literally draw on the grid inside the scene and creating platforming levels has never been so easy! </p>
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/tut6.PNG" class="figure-img img-fluid rounded" alt="A generic square placeholder image">
+                                </figure>
+                            </div>
+                            <p>There is a lot more to say about the grid system in general and there are a lot of other cool things you can do with tiles in unity, like randomly changing tiles to make things more interesting, adding animations to tiles or adding logic to detect corners, so you do not even have to draw them yourself anymore. </p>
+
+
+
+
+                        </div>
+                        <div class="right-info right-info-mt col-sm-4">
+                            <p>Assets: <br>
+                                <a class="" href="https://free-game-assets.itch.io/free-swamp-2d-tileset-pixel-art">Download here</a> 
+                            </p>
+                        </div>
+                    </div>
+
+
+                    
+
+
+                    <div id="closer--chapter" class="row">
+                        <div class="col-sm-12">
+                            <p>That is it for this one, if you notice any mistakes or just want to leave me a message, leave a comment below.</p>
+                        </div> 
+                    </div>
+
+                    <div id="comments--chapter" class="row">
+                        <div class="col-sm-12">
+                            <h2>&nbsp;</h2>
+                            <h2>&nbsp;</h2>
+                            <h2>&nbsp;</h2>
+                            <h2>&nbsp;</h2>
+                            <h2>Comments</h2>
+                            <div id="disqus_thread"></div>
+                            <script>
+                            /**
+                            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                            /*
+                            var disqus_config = function () {
+                            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                            };
+                            */
+                            (function() { // DON'T EDIT BELOW THIS LINE
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://heijnendev.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                            })();
+                            </script>
+                            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            <script id="dsq-count-scr" src="//heijnendev.disqus.com/count.js" async></script>    
+                        </div> 
+                    </div>
+                </article>
+
+
+
+                  </div>
+                </div>
+              </div>
+
+              <footer class="footer">
+                <img class="header-footer-image reverse"src="/media/images/headerfooter.png"> </img>
+                <div class="copyright"> <!-- lol -->
+                    Rene Heijnen | 2018
+                    <script>
+                        new Date().getFullYear() > 2018 && document.write(" - " + new Date().getFullYear());
+                    </script>
+                </div>
+        
+              </footer>
+
+
+        </div>
+        <script>
+            /* basic scroll anchor navigation logic */
+            $('.anchor_link_top').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: 0 
+                }, '300');
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                    window.history.pushState({path:newurl},'',newurl);
+                }
+            });
+            $('.anchor_link').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: ($('#' + $(this).data('scroll')).offset().top - $("#navbar").height()) //- $("#navbar").height()  
+                }, '300');
+                // sneaky overwrite
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname +'#' + $(this).data('scroll');
+                    window.history.pushState({path:newurl},'',newurl);
+                }
+            });
+            if(location.href.split("#")[1]){
+                $( document ).ready(function() {
+                    setTimeout(function(){ 
+                        var anchor = location.href.split("#")[1]
+                        $('html, body').animate({
+                            scrollTop: ($('#' + anchor).offset().top - $("#navbar").height()) //- $("#navbar").height()  
+                        }, '300');                    
+                    }, 1500);
+
+                });
+            }
+
+        </script>
+    </body>
+</html>

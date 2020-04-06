@@ -1,0 +1,383 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+    <script src="https://kit.fontawesome.com/5212751a96.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e84f07cb4e52f001290ee2e&product=inline-share-buttons&cms=website' async='async'></script>
+    <link rel="stylesheet" href="/css/blog.css">
+
+
+    <!-- setup! -->
+    <!-- social sharing-->
+    <meta property="og:title" content="European Travel Destinations">
+    <meta property="og:description" content="Offering tour packages for individuals or groups.">
+    <meta property="og:image" content="http://euro-travel-example.com/thumbnail.jpg">
+    <meta property="og:url" content="http://euro-travel-example.com/index.htm">
+    <meta property="og:site_name" content="European Travel, Inc.">
+
+    <!-- social sharing-->
+    <meta name="twitter:title" content="European Travel Destinations ">
+    <meta name="twitter:description" content=" Offering tour packages for individuals or groups.">
+    <meta name="twitter:image" content="http://euro-travel-example.com/thumbnail.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="Alt text for image">
+    <title>
+        ✨ Blog | window.history - States ✨
+    </title>
+
+
+</head>
+    <body>
+        <header>
+            <div class="header-container">
+                <img class="responsive-image"src="/media/images/blogheader.png"> </img>
+            </div> 
+
+
+        </header>
+        <div id="navbar">
+            <a href="/index.html">Home</a>
+            <a href="/blog/index.html">Archive</a>
+            <span> | </span>
+            <a class="anchor_link_top"  href="#top">Top</a>
+
+        </div>     
+        <img class="header-footer-image"src="/media/images/headerfooter.png"> </img> 
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <article> 
+                    <div id="intro--chapter" class="row">
+                        <div class="col-sm-8">
+                            <h1> Window history states </h1>                   
+
+                        </div>
+                        <div class="right-info-header col-sm-4">
+                            <p class="pull-down">
+                                Published: 6 Jan 2019
+                            </p> 
+                            <div class="sharethis-inline-share-buttons"></div>
+                        </div>
+                    </div>
+
+                    <div id="text-info-simple--chapter" class="row">
+
+                        <div class="col-sm-8">
+
+                            <p>
+                                With the window.history states we can manipulate the browser history, by altering, adding or removing pages from it. 
+                                Important to note here is that obvious exploits are not possible, you can NOT add items to the history that are not on your domain. 
+                                How ever we can manipulate the history without actually navigating away from our current page, pretty cool and still exploited by a lot of sites.
+
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="text-info-simple--chapter" class="row">
+
+                        <div class="col-sm-12">
+
+                            <h2> pushState() examples</h2>
+
+                            <p>
+                                With pushState() we can manipulate the browser history. Back when growing up I noticed people exploited this a lot, 
+                                example: You would reach someone's page, it would add 10 instances of itself to your history, you press back - 
+                                you get another 10.
+                            </p>  
+                            <p>I rarely come across it these days, but some people do use it - luckily most browsers these days reserve one spot in your back 'list' for a previous domain.</p>
+                            <p>
+                                <b>Adding / Removing URL parameters. </b>
+                            </p>  
+                            <p>
+                                <button type="button" class="btn btn-primary ex-1"> Set URL params</button>
+                                <button type="button"  class="btn btn-primary ex-2"> Remove URL params</button>
+                            </p>
+
+                            <pre class="prettyprint linenums">
+// set
+$('.ex-1').click(function(e) {
+    if (history.pushState) {
+        var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname +'?p1=test&p2=test&p3=test';
+        window.history.pushState({path:newurl},'',newurl);
+    }
+});
+// reset
+$('.ex-2').click(function(e) {
+    if (history.pushState) {
+        var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        window.history.pushState({path:newurl},'',newurl);
+    }
+});</pre> 
+
+
+<p>
+    <b>Changing the url with history entry.</b>
+</p>
+    
+                        <p>
+                            <button  type="button" class="btn btn-primary ex-3"> Set URL to root</button>
+                            <button  type="button" class="btn btn-primary ex-4"> Set URL to random page</button>
+                            <button  type="button"  class="btn btn-primary ex-5"> Restore URL</button>                                
+                        </p>
+<pre class="prettyprint linenums">
+var currentUrl =  window.location.protocol + "//" + window.location.host + window.location.pathname;            
+$('.ex-3').click(function(e) {
+    if (history.pushState) {
+        var newurl = window.location.protocol + "//" + window.location.host;
+        window.history.pushState({path:newurl},'',newurl);
+    }
+
+});
+var randomItems = [
+    "monkey",
+    "grizzly",
+    "fish",
+    "luna",
+    "vSauceMichealHere",
+    "random",
+    "words",
+    "no",
+    "effort",
+    "done",
+    "here",
+    "honestly"]
+$('.ex-4').click(function(e) {
+    var randomString = ""
+    for(var i = 0; i< 4;i++){
+        var randomNumber = Math.floor(Math.random() * randomItems.length);
+        randomString = randomString+randomItems[randomNumber] +"/"
+    }
+    randomString = randomString + "index.html"
+    if (history.pushState) {
+        var newurl = window.location.protocol + "//" + window.location.host +"/"+ randomString;
+        window.history.pushState({path:newurl},'',newurl);
+    }
+});
+$('.ex-5').click(function(e) {
+    if (history.pushState) {
+        var newurl = currentUrl;
+        window.history.pushState({path:newurl},'',newurl);
+    }
+});</pre> 
+
+
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div id="text-info-simple--chapter" class="row">
+
+                        <div class="col-sm-12">
+
+                            <h2> removeState() examples</h2>
+
+                            <p>
+                                No.
+                            </p>  
+                        </div>
+                    </div>
+
+
+                    <div id="text-info-simple--chapter" class="row">
+
+                        <div class="col-sm-12">
+
+                            <h2> replaceState() examples</h2>
+
+                            <p>
+                                With replaceState(), instead of adding to it - we are replacing items. If you reload this page without any previous history items you will notice this example will not create one.
+                            </p>  
+                            <p>
+                                <b>Changing the url without history entry.</b>
+                            </p>  
+                            <p>
+                                <button type="button" class="btn btn-primary ex-6"> Set URL to root</button>
+                                <button  type="button"  class="btn btn-primary ex-5"> Restore URL</button>                                
+                            </p>
+
+                            <pre class="prettyprint linenums">
+$('.ex-6').click(function(e) {
+    if (history.pushState) {
+        var newurl = window.location.protocol + "//" + window.location.host;
+        window.history.replaceState(null,null,newurl);
+    }
+});
+                            </pre> 
+
+
+
+
+                        </div>
+                    </div>
+
+
+
+                    <div id="text-info-multi--chapter" class="row">
+                        <div class="col-sm-8">
+                            <h2> Enjoy it while it lasts </h2>
+                            <p>
+                                Altho this has many usefull applications, I do not think this function will stand the test of time considering browser implementation are trying to move away from any and all things that can negatively impact the user experience, since this is ripe for abuse - it might be geting removed at some point in the future. 
+                            </p>                   
+                        </div>
+                        <div class="right-info right-info-mt col-sm-4">
+                            https://developer.mozilla.org/en-US/docs/Web/API/History_API
+                        </div>
+                    </div>
+
+
+                    <div id="closer--chapter" class="row">
+                        <div class="col-sm-12">
+                            <p>That is it for this one, if you notice any mistakes or just want to leave me a message, leave a comment below.</p>
+                        </div> 
+                    </div>
+
+                    <div id="comments--chapter" class="row">
+                        <div class="col-sm-12">
+                            <h2>&nbsp;</h2>
+                            <h2>&nbsp;</h2>
+                            <h2>&nbsp;</h2>
+                            <h2>&nbsp;</h2>
+                            <h2>Comments</h2>
+                            <div id="disqus_thread"></div>
+
+                            <script>
+                             
+                            /**
+                            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                            /*
+                            var disqus_config = function () {
+                            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                            };
+                            */
+                            (function() { // DON'T EDIT BELOW THIS LINE
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://heijnendev.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                            })();
+                            </script>
+                            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            <script id="dsq-count-scr" src="//heijnendev.disqus.com/count.js" async></script>    
+                        </div> 
+                    </div>
+                </article>
+
+
+
+                  </div>
+                </div>
+              </div>
+
+              <footer class="footer">
+                <img class="header-footer-image reverse"src="/media/images/headerfooter.png"> </img>
+                <div class="copyright"> <!-- lol -->
+                    Rene Heijnen | 2018
+                    <script>
+                        new Date().getFullYear() > 2018 && document.write(" - " + new Date().getFullYear());
+                    </script>
+                </div>
+        
+              </footer>
+
+
+        </div>
+        <script>
+            /* basic scroll anchor navigation logic */
+            $('.anchor_link_top').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: 0 
+                }, '300');
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                    window.history.pushState({path:newurl},'',newurl);
+                }
+            });
+            $('.anchor_link').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: ($('#' + $(this).data('scroll')).offset().top - $("#navbar").height()) //- $("#navbar").height()  
+                }, '300');
+                // sneaky overwrite
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname +'#' + $(this).data('scroll');
+                    window.history.pushState({path:newurl},'',newurl);
+                }
+            });
+
+            $('.ex-1').click(function(e) {
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname +'?p1=test&p2=test&p3=test';
+                    window.history.pushState({path:newurl},'',newurl);
+                }
+            });
+            $('.ex-2').click(function(e) {
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                    window.history.pushState({path:newurl},'',newurl);
+                }
+
+            });
+            var currentUrl =  window.location.protocol + "//" + window.location.host + window.location.pathname;            
+            $('.ex-3').click(function(e) {
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host;
+                    window.history.pushState({path:newurl},'',newurl);
+                }
+
+            });
+            var randomItems = ["monkey","grizzly","fish","luna","vSauceMichealHere","random","words","no","effort","done","here","honestly"]
+            $('.ex-4').click(function(e) {
+                var randomString = ""
+                for(var i = 0; i< 4;i++){
+                    var randomNumber = Math.floor(Math.random() * randomItems.length);
+                    randomString = randomString+randomItems[randomNumber] +"/"
+                }
+                randomString = randomString + "index.html"
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host +"/"+ randomString;
+                    window.history.pushState({path:newurl},'',newurl);
+                }
+            });
+            $('.ex-5').click(function(e) {
+                if (history.pushState) {
+                    var newurl = currentUrl;
+                    window.history.pushState({path:newurl},'',newurl);
+                }
+            });
+
+
+            $('.ex-6').click(function(e) {
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host;
+                    window.history.replaceState(null,null,newurl);
+                }
+            });
+
+            if(location.href.split("#")[1]){
+                $( document ).ready(function() {
+                    setTimeout(function(){ 
+                        var anchor = location.href.split("#")[1]
+                        $('html, body').animate({
+                            scrollTop: ($('#' + anchor).offset().top - $("#navbar").height()) //- $("#navbar").height()  
+                        }, '300');                    
+                    }, 1500);
+
+                });
+            }
+
+        </script>
+    </body>
+</html>

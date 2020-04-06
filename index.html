@@ -10,6 +10,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>        
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
@@ -26,9 +27,9 @@
         <header>
             <div class="header-container">
                 <div class="row justify-content-center header-anchor-image">                
-                    <a class="anchor_link anchor_link_intro" data-scroll="aboutanchor" href="#home"><img src="Sprite-0004.png"> </img></a>
+                    <a class="anchor_link anchor_link_intro" data-scroll="aboutanchor" href="#home"><img src="/media/images/Sprite-0004.png"> </img></a>
                 </div>
-                <img class="responsive-image"src="headerimg.png"> </img>
+                <img class="responsive-image"src="/media/images/headerimg.png"> </img>
 
             </div>
         </header>
@@ -38,7 +39,7 @@
             <a class="anchor_link" data-scroll="skillsanchor" href="#news">Skills</a> 
             <a class="anchor_link" data-scroll="contactanchor" href="#contact">Contact</a> 
         </div> 
-        <img class="header-footer-image"src="headerfooter.png"> </img>
+        <img class="header-footer-image"src="/media/images/headerfooter.png"> </img>
 
         <div class="container">
 
@@ -58,17 +59,16 @@
             <div id="bloganchor" class="row"> 
                 <div class="col-md-12">
                     <h1>Blog</h1>
-                    <p>Here you can find some of my thoughts and unfinished projects.</p>
+                    <p>Here you can find some of my latest thoughts, projects, rants and everything inbetween. For a full overview you can visit the <a href="/blog/index.html"><img src="media/images/archive.png" style="width:120px;"/></a></p>
                     <p> </p>
                     <!-- Slider main container -->
                     <div class="slider-wrapper">            
-                        <div class="news-slider blog-slider">
+                        <div class="news-slider blog-slider"> 
                         <div class="news-slider__wrp swiper-wrapper">
                             <div class="news-slider__item swiper-slide"  ng-repeat="x in blogPosts track by $index">
                                 <a target ="_blank" href="{{x.url}}" class="news__item">
                                     <div class="news-date">
-                                        <span class="news-date__title">{{x.d}}</span> 
-                                        <span class="news-date__txt">{{x.my}}</span>
+                                        <span class="news-date__title">{{x.date}}</span> 
                                     </div>
                                     <div class="news__title">
                                         {{x.title}}
@@ -122,12 +122,10 @@
             <div id="skillsanchor" class="row">
                 <div class="col-md-12">
                     <h1>Skills</h1>
-                    <div class="skill-filter-container">
-                        <div ng-repeat="x in skillOptions track by $index">
-                            <button  ng-if="$index == 0" ng-click="setActiveSkillFilter(x)" data-value="{{x}}" class="btn active"> {{x}}</button>
-                            <button  ng-if="$index != 0" ng-click="setActiveSkillFilter(x)" data-value="{{x}}" class="btn"> {{x}}</button>
-                        </div>
-                    </div>       
+                    <div class="btn-group  flex-wrap">
+                        <button  ng-repeat="x in skillOptions track by $index" ng-if="$index == 0" ng-click="setActiveSkillFilter(x)" data-value="{{x}}" class="btn active"> {{x}}</button>
+                        <button  ng-repeat="x in skillOptions track by $index" ng-if="$index != 0" ng-click="setActiveSkillFilter(x)" data-value="{{x}}" class="btn"> {{x}}</button>
+                    </div>
                     <div class="progress-container" data-ng-init="init()">
                         <div ng-repeat="x in skills"  ng-show="filterSkillCheck(x)" class="progress-bar" data-effect="1" data-value="{{x.progress}}" data-skill="{{x.name}}"></div>
                     </div>
@@ -152,46 +150,24 @@
                     <h1>Contact</h1>
 
                     <p>
-                        <!-- <i class="fab fa-github fa-5x"></i>
-                        github:
-                        All snippets from blog posts can be found here -->
-                        <img class=""src="/media/github.png"> </img>
-
+                        <img class=""src="/media/images/github.png"> </img>
                     </p>
 
                     <p>
-                        <!-- <i class="fab fa-codepen fa-5x"></i>
-                        codepen:
-                        All snippets from blog posts can be found here -->
-                        <img class=""src="/media/codepen.png"> </img>
-
+                        <img class=""src="/media/images/codepen.png"> </img>
                     </p>
 
                     <p>
-                        <!-- <i class="fab fa-linkedin-in fa-5x"></i>
-                        LinkedIn:  -->
-                        <img class=""src="/media/linkedin.png"> </img>
-
+                        <img class=""src="/media/images/linkedin.png"> </img>
                     </p>
                     <p>
-                        <!-- <i class="fab fa-twitter fa-5x"></i>                        
-                        Twitter: 
-                        Nothing to see here. -->
-                        <img class=""src="/media/twitter.png"> </img>
-
+                        <img class=""src="/media/images/twitter.png"> </img>
                     </p>
                     <p>
-                        <!-- <i class="fas fa-at fa-5x"></i>
-                        Email: heijnendev@gmail.com
-                        You can contact me on this mail adress -->
-                        <img class=""src="/media/gmail.png"> </img>
-
+                        <img class=""src="/media/images/gmail.png"> </img>
                     </p>
                     <p>
-                        <!-- <i class="fas fa-file fa-5x"></i> -->
-                        <!-- Download a copy of my resume -->
-                        <img class=""src="/media/resume.png"> </img>
-
+                        <img class=""src="/media/images/resume.png"> </img>
                     </p>
                 </div>        
             </div>
@@ -202,7 +178,7 @@
         </div>
 
         <footer class="footer">
-            <img class="footer-image"src="footer.png"> </img>
+            <img class="footer-image"src="/media/images/footer.png"> </img>
 
             <div class="copyright"> <!-- lol -->
 

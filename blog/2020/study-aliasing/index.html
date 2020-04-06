@@ -1,0 +1,264 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+    <script src="https://kit.fontawesome.com/5212751a96.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e84f07cb4e52f001290ee2e&product=inline-share-buttons&cms=website' async='async'></script>
+    <link rel="stylesheet" href="/css/blog.css">
+
+
+    <!-- setup! -->
+    <!-- social sharing-->
+    <meta property="og:title" content="European Travel Destinations">
+    <meta property="og:description" content="Offering tour packages for individuals or groups.">
+    <meta property="og:image" content="http://euro-travel-example.com/thumbnail.jpg">
+    <meta property="og:url" content="http://euro-travel-example.com/index.htm">
+    <meta property="og:site_name" content="European Travel, Inc.">
+
+    <!-- social sharing-->
+    <meta name="twitter:title" content="European Travel Destinations ">
+    <meta name="twitter:description" content=" Offering tour packages for individuals or groups.">
+    <meta name="twitter:image" content="http://euro-travel-example.com/thumbnail.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="Alt text for image">
+    <title>
+        ✨ Blog | Aliasing ✨
+    </title>
+
+
+</head>
+    <body>
+        <header>
+            <div class="header-container">
+                <img class="responsive-image"src="/media/images/blogheader.png"> </img>
+            </div> 
+
+
+        </header>
+        <div id="navbar">
+            <a href="/index.html">Home</a>
+            <a href="/blog/index.html">Archive</a>
+            <span> | </span>
+            <a class="anchor_link_top"  href="#top">Top</a>
+
+        </div>     
+        <img class="header-footer-image"src="/media/images/headerfooter.png"> </img>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <article> 
+                    <div id="intro--chapter" class="row">
+                        <div class="col-sm-8">
+                            <h1> A study into aliasing. </h1>                   
+                        </div>
+                        <div class="right-info-header col-sm-4">
+                            <p class="pull-down">
+                                Published: 11 Jan 2020
+                            </p> 
+                            <div class="sharethis-inline-share-buttons"></div>
+                        </div>
+                    </div>
+
+                    <div id="text-info-simple--chapter" class="row">
+                        <div class="col-sm-8">
+                            <h4>What is it, what does it do, why do I need it.</h4>
+                            <p>I think a lot of people know that it exists, but not what it actually does. Untill recently I was one of those people, I decided to do a writeup of my experiences studying anti aliasing.</p>
+ 
+                            <p>Antialiassing(Anti-aliassing ? Anti Alliasing? AA.) AA is a technique used to smooth out rough edges. Since the rendering of graphics is done with SQUARE pixels, things can end up looking kinda "jagged" Jaggies anyone?</p>
+
+                        </div>
+                        <div class="right-info col-sm-4">
+                            <p>
+                                Linus explaining it better     
+                              </p>
+                              <p>
+                                <a class="" href="https://www.youtube.com/watch?v=hqi0114mwtY">Youtube - Techquickie</a> 
+                              </p>
+                        </div>
+
+                    </div>
+                    <div id="text-picture-landscape--chapter" class="row">
+                        <div class="col-sm-12">
+                            <h2>Simple example </h2>
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/aaexample.png" class="figure-img img-fluid" alt="A generic square placeholder image">
+                                    <figcaption class="figure-caption">- codinghorror.com</figcaption>
+                                </figure>
+                            </div>
+                            <p>So the rightside obviously looks smoother, but why is that ? </p>
+                            <p>When we apply AA, rough edges get smoothed out, by adding transition colors. Take a look at this simple example down below:</p>
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/lineexample.png" class="figure-img img-fluid" alt="A generic square placeholder image">
+                                    <figcaption class="figure-caption">Look at those jaggies!</figcaption>
+                                </figure>
+                            </div>
+                            <p>When we look at the big picture, it does not look great eitherway yet, but it is obvious that the bottom one is smoother. So by adding color transitions to corners we can smooth them out. Lets zoom out.</p>
+
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/lineexample-zoomed.png" class="figure-img img-fluid" alt="A generic square placeholder image">
+                                    <figcaption class="figure-caption">Much smoother</figcaption>
+                                </figure>
+                            </div>
+                            <p>And zoomed out it looks much smoother - and that is a simple form of antialias.</p>
+
+                        </div>
+                    </div>
+
+                    <div id="text-picture-landscape--chapter" class="row">
+                        <div class="col-sm-12">
+                            <h2>Jaggies and Pixel Art</h2>
+                            <p>Jaggies in pixel art are easily described as unncessary/accidental corners. When you free hand draw something you will easily get these jagged looking corners. In pixel art we should remove these and smooth out our shape before we even start thinking of anti aliasing.</p>
+
+
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/jaggedcorner.png" class="figure-img img-fluid" alt="A generic square placeholder image">
+                                    <figcaption class="figure-caption"> Noticed how (rounded) corners follow a mirrored pattern? </figcaption>
+                                </figure>
+                            </div>
+                            <p>It is easier if you practise along, draw a cury line and remove the jaggies like so:</p>
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/jaggedfix.png" class="figure-img img-fluid" alt="A generic square placeholder image">
+                                    <figcaption class="figure-caption"> Left: Free hand curvy line | Right: removed jaggies </figcaption>
+                                </figure>
+                            </div>
+                            <p>See how after cleaning up the line it already becomes more rounded in places ? No more sharp edges, child proof!</p>
+                            <h2>Aliasing and Pixel Art</h2>
+
+                            
+                            <p>In pixelart we do not want to apply any (post) anti aliasing at all, it will make your sprites look fuzzy. So for anyone reading this wondering why their sprites look fuzzy in Unity, thats why. </p>
+                            <p>We do however want to apply it ourselves (but you do not have to!). look at this artwork from Pedro Medeiros one of the creators of Celeste.</p>
+                            <div class="text-center">
+                                <figure class="figure ">
+                                    <img src="./resources/pedroalias.png" class="figure-img img-fluid" alt="A generic square placeholder image">
+                                    <figcaption class="figure-caption"> https://medium.com/pixel-grimoire/how-to-start-making-pixel-art-4-ff4bfcd2d085  </figcaption>
+                                </figure>
+                            </div>
+
+                            <p> Notice on the left the image is aliased - on the right he applied some manual anti-aliasing. I find it adds more character and gives the subject more depth, the left image looks to 'pop out' more in comparison.</p>
+
+
+
+                        </div>
+                    </div>
+
+                    <div id="downloads--chapter" class="row">
+                        <div class="col-sm-12">
+
+                            <h2>Resources:</h2>
+                            <p>
+                                Words can not describe how helpfull these guys are. <br>
+                                <a href="https://www.youtube.com/watch?v=UN-m3o9V7kk"> Mort Mort - Anti Aliasing for beginners</a> <br>
+                                <a href="https://www.youtube.com/watch?v=gW1G_FLsuEs"> Mort Mort - 3 PixelArt Techniques/Common Mistakes (Doubles, Jaggies & Outline)</a> <br>
+                                <a href="https://blog.studiominiboss.com/pixelart"> Pedro Medeiros and everyone @studiominiboss</a> <br>
+                            </p>
+                        </div> 
+                    </div>
+
+                    <div id="closer--chapter" class="row">
+                        <div class="col-sm-12">
+                            <p>That is it for this one, if you notice any mistakes or just want to leave me a message, leave a comment below.</p>
+                        </div> 
+                    </div>
+
+                    <div id="comments--chapter" class="row">
+                        <div class="col-sm-12">
+                            <h2>&nbsp;</h2>
+                            <h2>&nbsp;</h2>
+                            <h2>&nbsp;</h2>
+                            <h2>&nbsp;</h2>
+                            <h2>Comments</h2>
+                            <div id="disqus_thread"></div>
+
+                            <script>
+                             
+                            /**
+                            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                            /*
+                            var disqus_config = function () {
+                            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                            };
+                            */
+                            (function() { // DON'T EDIT BELOW THIS LINE
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://heijnendev.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                            })();
+                            </script>
+                            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            <script id="dsq-count-scr" src="//heijnendev.disqus.com/count.js" async></script>    
+                        </div> 
+                    </div>
+                </article>
+
+
+
+                  </div>
+                </div>
+              </div>
+
+              <footer class="footer">
+                <img class="header-footer-image reverse"src="/media/images/headerfooter.png"> </img>
+                <div class="copyright"> <!-- lol -->
+                    Rene Heijnen | 2018
+                    <script>
+                        new Date().getFullYear() > 2018 && document.write(" - " + new Date().getFullYear());
+                    </script>
+                </div>
+        
+              </footer>
+
+
+        </div>
+        <script>
+            /* basic scroll anchor navigation logic */
+            $('.anchor_link_top').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: 0 
+                }, '300');
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                    window.history.pushState({path:newurl},'',newurl);
+                }
+            });
+            $('.anchor_link').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: ($('#' + $(this).data('scroll')).offset().top - $("#navbar").height()) //- $("#navbar").height()  
+                }, '300');
+                // sneaky overwrite
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname +'#' + $(this).data('scroll');
+                    window.history.pushState({path:newurl},'',newurl);
+                }
+            });
+            if(location.href.split("#")[1]){
+                $( document ).ready(function() { 
+                    setTimeout(function(){ 
+                        var anchor = location.href.split("#")[1]
+                        $('html, body').animate({
+                            scrollTop: ($('#' + anchor).offset().top - $("#navbar").height()) //- $("#navbar").height()  
+                        }, '300');                    
+                    }, 1500);
+
+                });
+            }
+
+        </script>
+    </body>
+</html>
