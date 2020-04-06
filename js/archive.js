@@ -10,7 +10,7 @@ function controller($scope,$window){
             title: "Codepen Dive 3",
             description : "A look into a cool pen from @devilishalchemist",
             date : "4 Mar 2020",
-            image : "/media/blog/codepen-redbutton.png",
+            image : "/media/blog/codepen-redbutton.PNG",
             url   : "/blog/2020/codepen-dive-offcanvas-sidebar/index.html",
             tags  : ["Programming","Web-development","UX"],
             update: "4 Mar 2020"
