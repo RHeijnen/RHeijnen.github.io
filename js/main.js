@@ -24,19 +24,26 @@ controller.$inject = ['$scope','$window'];
 function controller($scope,$window){
     $scope.blogPosts =  [
         {
-            title: "Codepen Dive 4",
+            title: "Codepen Dive 3",
             description : "A look into a cool pen from @devilishalchemist",
-            day  : "4",
-            date : "4 Feb 2020",
+            date : "4 Mar 2020",
             image : "/media/blog/codepen-redbutton.png",
-            url   : "/blog/2020/scrollanchors/index.html",
+            url   : "/blog/2020/codepen-dive-offcanvas-sidebar/index.html",
             tags  : ["Programming","Web-development","UX"],
-            update: "4 Feb 2020"
+            update: "4 Mar 2020"
+        },
+        {
+            title: "Charging animation",
+            description : "Inspired by Xiaomi Mi Mix Alpha",
+            date : "29 Feb 2020",
+            image : "/blog/2020/bat-charge-animation/resources/front.PNG",
+            url   : "/blog/2020/bat-charge-animation/index.html",
+            tags  : ["Programming","Web-development","UX"],
+            update: "29 Feb 2020"
         },
         {
             title: "Scroll Anchors",
             description : "Make your website go scrolly scroll",
-            day  : "4",
             date : "4 Feb 2020",
             image : "/media/blog/code.png",
             url   : "/blog/2020/scrollanchors/index.html",
@@ -44,87 +51,23 @@ function controller($scope,$window){
             update: "4 Feb 2020"
         },
         {
-            title: "Dithering is amazing",
+            title: "Dithering",
             description : "A study in dithering",
-            day  : "14",
-            date : "March 20",
+            date : "2 Feb 2020",
             image : "/media/blog/ditheringmac.gif",
             url   : "/blog/2020/study-dithering/index.html",
             tags  : ["Pixel Art","Learning"],
-            update: "4 Feb 2020"
+            update: "2 Feb 2020"
         },
         { 
             title: "Pixel art portfolio",
             description : "Interactive canvas",
-            d  : "09",
-            date : "February 20",
+            date : "1 Feb 2020",
             image : "/media/blog/pixelartportfolio.png",
             url   : "/blog/2020/pixelportfolio/index.html",
             tags  : ["Pixel Art","Web-development","UX"],
-            update: "4 Feb 2020"
-        },
-        // {
-        //     title: "'developers writers block?'",
-        //     description : "The importance of challenging yourself.",
-        //     d  : "09",
-        //     date : "September 19",
-        //     image : "/media/blog/10minutepixelart.png",
-        //     url   : "/blog/2020/challenges/index.html",
-        //     tags  : ["Learning"],
-        //     update: "4 Feb 2020"
-        // },
-
-        {
-            title: "Anti aliasing",
-            description : "A study in aliasing",
-            day  : "09",
-            date : "September 19",
-            image : "/media/blog/aaexample.png",
-            url   : "/blog/2020/study-aliasing/index.html",
-            tags  : ["Learning","Game Dev"],
-            update: "4 Feb 2020"
-        },
-        // {
-        //     title: "I've played so many rogue lite/likes",
-        //     description : "And I've got some ideas",
-        //     day  : "09",
-        //     date : "September 19",
-        //     image : "/media/blog/roguelikecollection.png",
-        //     url   : "/blog/2019/roguelikes/index.html",
-        //     tags  : ["Game Dev"],
-        //     update: "4 Feb 2020"
-        // },
-
-        {
-            title: "Unity tilesets",
-            description : "Simple tileset tutorial",
-            day  : "02",
-            date : "January 19",
-            image : "/media/blog/tilesetexample.jpg",
-            url   : "/blog/2019/unity-tilesets-1/index.html",
-            tags  : ["Programming","Pixel Art","Game Dev"],
-            update: "4 Feb 2020"
-        }, 
-        {
-            title: "Digital Story Collections",
-            description : "My old minor project",
-            day  : "04",
-            date : "November 18",
-            image : "/media/blog/screenshot.PNG",
-            url   : "/blog/2018/minor-project-stories/index.html",
-            tags  : ["UX","Web-development","Programming"],
-            update: "4 Feb 2020"
-        },
-        // {
-        //     title: "Collecting your data",
-        //     description : "What kind of data can we collect?",
-        //     day  : "10",
-        //     date : "6 Sep 2018",
-        //     image : "/media/blog/code.png",
-        //     url   : "/blog/2018/tracking/index.html",
-        //     tags  : ["Programming","Web-development"],
-        //     update: "6 Sep 2018"
-        // }
+            update: "1 Feb 2020"
+        }
     ]
     $scope.skills = [
         {name: "Javascript",progress: 83,type: ["Professional","Web-development","Programming"]},
